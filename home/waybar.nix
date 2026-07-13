@@ -31,8 +31,7 @@ in
       };
 
       clock = {
-        format = "{:L%B %d %H:%M}";
-        format-alt = "{:L%A W%V %Y}";
+        format = "{:L%B %d · %H:%M}";
         tooltip = false;
       };
     };
