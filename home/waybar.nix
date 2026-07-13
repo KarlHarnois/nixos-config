@@ -26,7 +26,7 @@ in
 
         format-icons = {
           "10" = "0";
-          active = "●";
+          active = "󱓻";
         };
 
         persistent-workspaces = lib.genAttrs pinnedWorkspaces (_: [ ]);
@@ -49,6 +49,7 @@ in
         border: none;
         border-radius: 0;
         min-height: 0;
+        font-family: '${theme.font}';
         font-size: 12px;
       }
 

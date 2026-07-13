@@ -4,6 +4,7 @@
   home.packages = [ pkgs.cliamp ];
 
   imports = [
+    ./fonts.nix
     ./hyprland
     ./kitty.nix
     ./wallpaper.nix

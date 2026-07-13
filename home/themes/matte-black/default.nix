@@ -1,4 +1,6 @@
 {
+  font = "IosevkaTerm Nerd Font Mono";
+
   wallpaper = ./wallpaper.jpg;
 
   foreground = "8a8a8d";
