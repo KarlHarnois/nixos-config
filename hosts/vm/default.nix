@@ -11,7 +11,10 @@
     memorySize = 8192;
     cores = 4;
     forwardPorts = [{ from = "host"; host.port = 2222; guest.port = 22; }];
-    qemu.options = [ "-device virtio-vga-gl" "-display gtk,gl=on,zoom-to-fit=on" ];
+    qemu.options = [
+      "-device virtio-vga-gl"
+      "-display gtk,gl=on,zoom-to-fit=on,full-screen=on,show-menubar=off"
+    ];
   };
 
   system.stateVersion = "26.05";
