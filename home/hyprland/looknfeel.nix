@@ -12,8 +12,8 @@ in
         border_size = 2;
 
         col = {
-          active_border = "rgb(${theme.foreground})";
-          inactive_border = "rgba(${theme.inactiveBorder})";
+          active_border = "rgb(${theme.accent})";
+          inactive_border = "rgba(595959aa)";
         };
       };
 
@@ -24,7 +24,7 @@ in
           enabled = true;
           range = 2;
           render_power = 3;
-          color = "rgba(${theme.shadow})";
+          color = "rgba(1a1a1aee)";
         };
 
         blur = {
