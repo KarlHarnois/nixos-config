@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  theme = import ./theme.nix;
+in
 {
   services.hyprpaper = {
     enable = true;
@@ -7,7 +10,7 @@
     settings.wallpaper = [
       {
         monitor = "";
-        path = "${./wallpapers/matte-black.jpg}";
+        path = "${theme.wallpaper}";
         fit_mode = "cover";
       }
     ];

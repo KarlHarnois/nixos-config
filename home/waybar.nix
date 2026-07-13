@@ -1,6 +1,8 @@
 { lib, ... }:
 
 let
+  theme = import ./theme.nix;
+
   pinnedWorkspaceCount = 5;
   pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
 in
@@ -37,8 +39,8 @@ in
     };
 
     style = ''
-      @define-color foreground #8a8a8d;
-      @define-color background #1e1e1e;
+      @define-color foreground #${theme.foreground};
+      @define-color background #${theme.background};
 
       * {
         background-color: @background;

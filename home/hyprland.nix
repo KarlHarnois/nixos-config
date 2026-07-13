@@ -3,6 +3,8 @@
 let
   inherit (lib.generators) mkLuaInline;
 
+  theme = import ./theme.nix;
+
   mod = "SUPER";
   terminal = "kitty";
   workspaceCount = 10;
@@ -90,8 +92,8 @@ in
           border_size = 2;
 
           col = {
-            active_border = "rgb(8A8A8D)";
-            inactive_border = "rgba(595959aa)";
+            active_border = "rgb(${theme.foreground})";
+            inactive_border = "rgba(${theme.inactiveBorder})";
           };
         };
 
@@ -102,7 +104,7 @@ in
             enabled = true;
             range = 2;
             render_power = 3;
-            color = "rgba(1a1a1aee)";
+            color = "rgba(${theme.shadow})";
           };
 
           blur = {
