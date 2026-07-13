@@ -4,7 +4,7 @@
   home.packages = [ pkgs.cliamp ];
 
   imports = [
-    ./hyprland.nix
+    ./hyprland
     ./kitty.nix
     ./wallpaper.nix
     ./waybar.nix
