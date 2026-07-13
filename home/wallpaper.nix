@@ -8,6 +8,7 @@
       {
         monitor = "";
         path = "${./wallpapers/matte-black.jpg}";
+        fit_mode = "cover";
       }
     ];
   };
