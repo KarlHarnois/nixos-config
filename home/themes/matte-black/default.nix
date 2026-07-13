@@ -11,6 +11,23 @@
   selectionForeground = "eaeaea";
   selectionBackground = "333333";
 
+  neovim = {
+    plugin = {
+      owner = "metalelf0";
+      repo = "black-metal-theme-neovim";
+      rev = "6d0207871387077f40d5396ab1ae90520e688d36";
+      hash = "sha256-sRbXxekmQuL412AJKrSkI1EdcuYQkKm1qfcIyMNhLBA=";
+    };
+
+    setup = ''
+      require("black-metal").setup({
+        theme = "darkthrone",
+        transparent = true,
+      })
+      require("black-metal").load()
+    '';
+  };
+
   colors = [
     "333333"
     "d35f5f"
