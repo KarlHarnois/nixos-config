@@ -94,6 +94,8 @@ in
           };
         };
 
+        dwindle.preserve_split = true;
+
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
@@ -140,6 +142,7 @@ in
         (bind "W" "hl.dsp.window.close()")
         (bind "F" "hl.dsp.window.fullscreen()")
         (bind "SHIFT + E" "hl.dsp.exit()")
+        (bind "N" ''hl.dsp.layout("togglesplit")'')
       ] ++ focusBinds ++ swapBinds ++ workspaceBinds;
     };
   };
