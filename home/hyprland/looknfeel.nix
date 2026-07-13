@@ -40,7 +40,7 @@ in
     window_rule = [
       {
         name = "terminal-opacity";
-        match.class = "^(com.mitchellh.ghostty|cliamp)$";
+        match.class = "^(com.mitchellh.ghostty|local\\..+)$";
         opacity = "0.97 0.9";
       }
     ];

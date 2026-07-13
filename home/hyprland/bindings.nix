@@ -25,7 +25,7 @@ let
       end'';
   };
 
-  launchOrFocusTui = app: ''launchOrFocus("${app}", "${terminal} --class=${app} -e ${app}")'';
+  launchOrFocusTui = app: ''launchOrFocus("local.${app}", "${terminal} --class=local.${app} -e ${app}")'';
 
   vimDirections = { h = "left"; j = "down"; k = "up"; l = "right"; };
 
