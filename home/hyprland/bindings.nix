@@ -4,7 +4,7 @@ let
   inherit (lib.generators) mkLuaInline;
 
   mod = "SUPER";
-  terminal = "kitty";
+  terminal = "ghostty";
   workspaceCount = 10;
 
   bind = keys: dispatcher: {
@@ -25,7 +25,7 @@ let
       end'';
   };
 
-  launchOrFocusTui = app: ''launchOrFocus("${app}", "${terminal} --class ${app} -e ${app}")'';
+  launchOrFocusTui = app: ''launchOrFocus("${app}", "${terminal} --class=${app} -e ${app}")'';
 
   vimDirections = { h = "left"; j = "down"; k = "up"; l = "right"; };
 

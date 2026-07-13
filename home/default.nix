@@ -6,7 +6,7 @@
   imports = [
     ./fonts.nix
     ./hyprland
-    ./kitty.nix
+    ./ghostty.nix
     ./wallpaper.nix
     ./waybar.nix
   ];
