@@ -12,9 +12,13 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
     git
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   services.openssh.enable = true;
 
