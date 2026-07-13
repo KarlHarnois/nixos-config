@@ -160,6 +160,14 @@ in
         { leaf = "monitorAdded"; enabled = false; }
       ];
 
+      window_rule = [
+        {
+          name = "terminal-opacity";
+          match.class = "^(kitty|cliamp)$";
+          opacity = "0.97 0.9";
+        }
+      ];
+
       bind = [
         (bind "Return" ''hl.dsp.exec_cmd("${terminal}")'')
         (bind "W" "hl.dsp.window.close()")
