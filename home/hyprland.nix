@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   inherit (lib.generators) mkLuaInline;
@@ -6,6 +6,8 @@ let
   mod = "SUPER";
   terminal = "kitty";
   workspaceCount = 5;
+  cursorTheme = "Adwaita";
+  cursorSize = 24;
 
   bind = keys: dispatcher: {
     _args = [ "${mod} + ${keys}" (mkLuaInline dispatcher) ];
@@ -35,6 +37,13 @@ let
     (lib.range 1 workspaceCount);
 in
 {
+  home.pointerCursor = {
+    package = pkgs.adwaita-icon-theme;
+    name = cursorTheme;
+    size = cursorSize;
+    hyprcursor.enable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -95,6 +104,12 @@ in
           warp_on_change_workspace = 1;
         };
       };
+
+      env = [
+        { _args = [ "XCURSOR_THEME" cursorTheme ]; }
+        { _args = [ "XCURSOR_SIZE" (toString cursorSize) ]; }
+        { _args = [ "HYPRCURSOR_SIZE" (toString cursorSize) ]; }
+      ];
 
       curve = [
         (bezierCurve "easeOutQuint" [ [ 0.23 1.0 ] [ 0.32 1.0 ] ])
