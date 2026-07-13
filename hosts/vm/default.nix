@@ -5,11 +5,13 @@
 
   networking.hostName = "nixos-vm";
 
+  boot.kernelParams = [ "video=Virtual-1:1280x800" ];
+
   virtualisation.vmVariant.virtualisation = {
     memorySize = 8192;
     cores = 4;
     forwardPorts = [{ from = "host"; host.port = 2222; guest.port = 22; }];
-    qemu.options = [ "-vga virtio" ];
+    qemu.options = [ "-vga virtio" "-display gtk,zoom-to-fit=on" ];
   };
 
   system.stateVersion = "26.05";
