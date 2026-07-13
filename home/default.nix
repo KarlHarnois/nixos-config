@@ -1,6 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = [ pkgs.cliamp ];
+
   imports = [
     ./hyprland.nix
     ./kitty.nix

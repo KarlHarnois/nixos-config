@@ -143,6 +143,7 @@ in
         (bind "F" "hl.dsp.window.fullscreen()")
         (bind "SHIFT + E" "hl.dsp.exit()")
         (bind "N" ''hl.dsp.layout("togglesplit")'')
+        (bind "SHIFT + M" ''hl.dsp.exec_cmd("${terminal} -e cliamp")'')
       ] ++ focusBinds ++ swapBinds ++ workspaceBinds;
     };
   };
