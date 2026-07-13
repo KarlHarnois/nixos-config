@@ -7,6 +7,7 @@
     ./fonts.nix
     ./hyprland
     ./ghostty.nix
+    ./starship
     ./wallpaper.nix
     ./waybar.nix
   ];
