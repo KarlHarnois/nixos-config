@@ -17,6 +17,22 @@ let
     _args = [ name { type = "bezier"; inherit points; } ];
   };
 
+  launchOrFocus = {
+    _var = mkLuaInline ''
+      function(class, command)
+        return function()
+          local windows = hl.get_windows({ class = class })
+          if #windows > 0 then
+            hl.dispatch(hl.dsp.focus({ window = windows[1] }))
+          else
+            hl.exec_cmd(command)
+          end
+        end
+      end'';
+  };
+
+  launchOrFocusTui = app: ''launchOrFocus("${app}", "${terminal} --class ${app} -e ${app}")'';
+
   vimDirections = { h = "left"; j = "down"; k = "up"; l = "right"; };
 
   focusBinds = lib.mapAttrsToList
@@ -50,6 +66,8 @@ in
     portalPackage = null;
 
     settings = {
+      inherit launchOrFocus;
+
       monitor = {
         output = "";
         mode = "preferred";
@@ -143,7 +161,7 @@ in
         (bind "F" "hl.dsp.window.fullscreen()")
         (bind "SHIFT + E" "hl.dsp.exit()")
         (bind "N" ''hl.dsp.layout("togglesplit")'')
-        (bind "SHIFT + M" ''hl.dsp.exec_cmd("${terminal} -e cliamp")'')
+        (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
       ] ++ focusBinds ++ swapBinds ++ workspaceBinds;
     };
   };
