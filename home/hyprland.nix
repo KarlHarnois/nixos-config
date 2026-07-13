@@ -153,6 +153,7 @@ in
         { leaf = "fadeLayersIn"; enabled = true; speed = 1.79; bezier = "almostLinear"; }
         { leaf = "fadeLayersOut"; enabled = true; speed = 1.39; bezier = "almostLinear"; }
         { leaf = "workspaces"; enabled = false; }
+        { leaf = "monitorAdded"; enabled = false; }
       ];
 
       bind = [
