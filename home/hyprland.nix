@@ -5,7 +5,7 @@ let
 
   mod = "SUPER";
   terminal = "kitty";
-  workspaceCount = 5;
+  workspaceCount = 10;
   cursorTheme = "Adwaita";
   cursorSize = 24;
 
@@ -45,10 +45,12 @@ let
 
   workspaceBinds = lib.concatMap
     (i:
-      let workspace = toString i;
+      let
+        workspace = toString i;
+        key = toString (lib.mod i 10);
       in [
-        (bind workspace "hl.dsp.focus({ workspace = ${workspace} })")
-        (bind "SHIFT + ${workspace}" "hl.dsp.window.move({ workspace = ${workspace} })")
+        (bind key "hl.dsp.focus({ workspace = ${workspace} })")
+        (bind "SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${workspace} })")
       ])
     (lib.range 1 workspaceCount);
 in
