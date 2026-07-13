@@ -7,10 +7,10 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "Hyprland";
+        command = "start-hyprland";
         user = "karl";
       };
-      default_session.command = "${pkgs.tuigreet}/bin/tuigreet --cmd Hyprland";
+      default_session.command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
     };
   };
 
