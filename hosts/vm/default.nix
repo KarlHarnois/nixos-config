@@ -14,6 +14,8 @@
     qemu.options = [
       "-device virtio-vga-gl"
       "-display gtk,gl=on,zoom-to-fit=on,full-screen=on,show-menubar=off"
+      "-audiodev pa,id=snd0"
+      "-device virtio-sound-pci,audiodev=snd0"
     ];
   };
 

@@ -3,6 +3,14 @@
 {
   programs.hyprland.enable = true;
 
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
   services.greetd = {
     enable = true;
     settings = {
