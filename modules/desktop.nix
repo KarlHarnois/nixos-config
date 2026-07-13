@@ -13,8 +13,4 @@
       default_session.command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    kitty
-  ];
 }
