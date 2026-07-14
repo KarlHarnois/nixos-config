@@ -22,7 +22,7 @@ let
   };
 in
 {
-  imports = [ ./neo-tree.nix ./snacks.nix ];
+  imports = [ ./neo-tree.nix ./snacks.nix ./telescope.nix ];
 
   programs.nixvim = {
     enable = true;
