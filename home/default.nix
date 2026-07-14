@@ -6,7 +6,7 @@
   imports = [
     ./fonts.nix
     ./hyprland
-    ./neovim.nix
+    ./nvim
     ./ghostty.nix
     ./starship
     ./wallpaper.nix
