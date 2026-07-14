@@ -4,6 +4,7 @@
   home.packages = [ pkgs.cliamp ];
 
   imports = [
+    ./bash.nix
     ./fonts.nix
     ./git.nix
     ./hyprland
