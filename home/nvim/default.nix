@@ -31,7 +31,8 @@ in
     globals.mapleader = " ";
 
     opts = {
-      laststatus = 0;
+      laststatus = 3;
+      statusline = " ";
       number = true;
       relativenumber = false;
       cursorline = true;

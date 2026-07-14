@@ -19,6 +19,7 @@ local groups = {
 	"SignColumn",
 	"LineNr",
 	"CursorLineNr",
+	"StatusLine",
 	"NeoTreeNormal",
 	"NeoTreeNormalNC",
 	"NeoTreeVertSplit",
