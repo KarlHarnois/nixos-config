@@ -16,7 +16,7 @@ let
   };
 in
 {
-  imports = [ ./neo-tree.nix ];
+  imports = [ ./neo-tree.nix ./gutter.nix ];
 
   programs.nixvim = {
     enable = true;
@@ -33,7 +33,6 @@ in
       tabstop = 2;
       expandtab = true;
       fillchars.eob = " ";
-      statuscolumn = "  %=%{v:virtnum > 0 ? '' : v:lnum}   ";
     };
 
     extraPlugins = [ colorschemePlugin ];
