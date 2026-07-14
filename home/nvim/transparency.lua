@@ -8,50 +8,22 @@ local function make_transparent(name)
 end
 
 local groups = {
-	-- transparent background
 	"Normal",
+	"NormalNC",
 	"NormalFloat",
 	"FloatBorder",
 	"Pmenu",
-	"Terminal",
 	"EndOfBuffer",
 	"FoldColumn",
 	"Folded",
 	"SignColumn",
 	"LineNr",
 	"CursorLineNr",
-	"NormalNC",
-	"WhichKeyFloat",
-	"TelescopeBorder",
-	"TelescopeNormal",
-	"TelescopePromptBorder",
-	"TelescopePromptTitle",
-	-- neotree
 	"NeoTreeNormal",
 	"NeoTreeNormalNC",
 	"NeoTreeVertSplit",
 	"NeoTreeWinSeparator",
 	"NeoTreeEndOfBuffer",
-	-- nvim-tree
-	"NvimTreeNormal",
-	"NvimTreeVertSplit",
-	"NvimTreeEndOfBuffer",
-	-- notify
-	"NotifyINFOBody",
-	"NotifyERRORBody",
-	"NotifyWARNBody",
-	"NotifyTRACEBody",
-	"NotifyDEBUGBody",
-	"NotifyINFOTitle",
-	"NotifyERRORTitle",
-	"NotifyWARNTitle",
-	"NotifyTRACETitle",
-	"NotifyDEBUGTitle",
-	"NotifyINFOBorder",
-	"NotifyERRORBorder",
-	"NotifyWARNBorder",
-	"NotifyTRACEBorder",
-	"NotifyDEBUGBorder",
 }
 
 for _, name in ipairs(groups) do
