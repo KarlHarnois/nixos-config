@@ -13,6 +13,7 @@
     ./starship
     ./wallpaper.nix
     ./waybar.nix
+    ./zoxide.nix
   ];
 
   home.stateVersion = "26.05";
