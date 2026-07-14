@@ -33,6 +33,7 @@ in
       tabstop = 2;
       expandtab = true;
       fillchars.eob = " ";
+      statuscolumn = "  %=%{v:virtnum > 0 ? '' : v:lnum}   ";
     };
 
     extraPlugins = [ colorschemePlugin ];
