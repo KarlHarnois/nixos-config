@@ -16,7 +16,7 @@ let
   };
 in
 {
-  imports = [ ./neo-tree.nix ./gutter.nix ];
+  imports = [ ./neo-tree.nix ./snacks.nix ];
 
   programs.nixvim = {
     enable = true;
@@ -33,7 +33,10 @@ in
       tabstop = 2;
       expandtab = true;
       fillchars.eob = " ";
+      signcolumn = "yes";
     };
+
+    plugins.gitsigns.enable = true;
 
     extraPlugins = [ colorschemePlugin ];
 
