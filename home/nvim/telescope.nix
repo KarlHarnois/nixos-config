@@ -5,6 +5,11 @@
     plugins.telescope = {
       enable = true;
 
+      settings.defaults.mappings.i = {
+        "<C-j>".__raw = "require('telescope.actions').move_selection_next";
+        "<C-k>".__raw = "require('telescope.actions').move_selection_previous";
+      };
+
       keymaps = {
         "<leader><leader>" = { action = "find_files"; options.desc = "Find files"; };
         "<leader>/" = { action = "live_grep"; options.desc = "Grep files"; };
