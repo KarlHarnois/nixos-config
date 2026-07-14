@@ -38,6 +38,8 @@ in
 
     extraConfigLua = theme.neovim.setup;
 
+    extraFiles."plugin/after/transparency.lua".source = ./transparency.lua;
+
     autoCmd = [ trimTrailingWhitespaceOnSave ];
 
     keymaps = [
