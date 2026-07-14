@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  zdReplacingCd = ''
+  zd = ''
     zd() {
       if (( $# == 0 )); then
         builtin cd ~ || return
@@ -23,7 +23,7 @@ in
   programs.zoxide.enable = true;
 
   programs.bash = {
-    initExtra = zdReplacingCd;
+    initExtra = zd;
     shellAliases.cd = "zd";
   };
 }
