@@ -5,6 +5,7 @@
 
   imports = [
     ./fonts.nix
+    ./git.nix
     ./hyprland
     ./nvim
     ./ghostty.nix
