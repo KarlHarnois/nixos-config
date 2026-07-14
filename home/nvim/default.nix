@@ -9,6 +9,12 @@ let
     command = ''%s/\s\+$//e'';
   };
 
+  reloadFileChangedOutside = {
+    event = [ "FocusGained" "TermClose" "TermLeave" ];
+    pattern = "*";
+    command = "if &buftype !=# 'nofile' | checktime | endif";
+  };
+
   colorschemePlugin = pkgs.vimUtils.buildVimPlugin {
     pname = theme.neovim.plugin.repo;
     version = builtins.substring 0 7 theme.neovim.plugin.rev;
@@ -44,7 +50,7 @@ in
 
     extraFiles."plugin/after/transparency.lua".source = ./transparency.lua;
 
-    autoCmd = [ trimTrailingWhitespaceOnSave ];
+    autoCmd = [ trimTrailingWhitespaceOnSave reloadFileChangedOutside ];
 
     keymaps = [
       { mode = "i"; key = "jj"; action = "<Esc>"; }
