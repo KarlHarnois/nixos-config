@@ -24,7 +24,10 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ nixvim.homeModules.nixvim ];
+          home-manager.sharedModules = [
+            nixvim.homeModules.nixvim
+            ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
+          ];
           home-manager.users.karl = ./home;
         }
       ];
