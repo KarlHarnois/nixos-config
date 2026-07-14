@@ -1,4 +1,4 @@
-.PHONY: build-vm run-vm wipe-vm fresh-vm
+.PHONY: build-vm run-vm wipe-vm vm
 
 build-vm:
 	nix build .#nixosConfigurations.vm.config.system.build.vm
@@ -11,4 +11,4 @@ run-vm: build-vm
 wipe-vm:
 	rm -f nixos-vm.qcow2
 
-fresh-vm: wipe-vm run-vm
+vm: wipe-vm run-vm
