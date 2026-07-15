@@ -16,6 +16,7 @@ in
   background = "121212";
   surface = "1e1e1e";
   surfaceLight = "333333";
+  separator = "505050";
 
   ghostty = {
     repo = blackMetalRepo;

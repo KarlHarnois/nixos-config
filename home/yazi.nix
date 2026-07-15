@@ -17,7 +17,7 @@ in
     theme = {
       mgr = {
         cwd = { fg = "#${theme.accent}"; bold = true; };
-        border_style.fg = "#${theme.surfaceLight}";
+        border_style.fg = "#${theme.separator}";
       };
 
       indicator = {
