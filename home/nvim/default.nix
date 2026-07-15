@@ -22,7 +22,7 @@ let
   };
 in
 {
-  imports = [ ./neo-tree.nix ./snacks.nix ];
+  imports = [ ./lualine.nix ./neo-tree.nix ./snacks.nix ];
 
   programs.nixvim = {
     enable = true;
@@ -31,8 +31,7 @@ in
     globals.mapleader = " ";
 
     opts = {
-      laststatus = 3;
-      statusline = " ";
+      showmode = false;
       number = true;
       relativenumber = false;
       cursorline = true;
@@ -47,7 +46,7 @@ in
 
     extraPlugins = [ colorschemePlugin ];
 
-    extraConfigLua = theme.neovim.setup;
+    extraConfigLuaPre = theme.neovim.setup;
 
     extraFiles."plugin/after/transparency.lua".source = ./transparency.lua;
 
