@@ -1,28 +1,14 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 
 let
   theme = import ./theme.nix;
 
   pinnedWorkspaceCount = 5;
   pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
-
-  # Waybar clicks send workspace dispatches in the old hyprlang syntax,
-  # which lua-config hyprland no longer parses. Rewrite them to the lua
-  # dispatcher form.
-  waybarSpeakingLuaDispatch = pkgs.waybar.overrideAttrs (old: {
-    postPatch = (old.postPatch or "") + ''
-      substituteInPlace src/modules/hyprland/workspace.cpp \
-        --replace-fail '"dispatch workspace " + std::to_string(id())' \
-          '"dispatch hl.dsp.focus({ workspace = " + std::to_string(id()) + " })"' \
-        --replace-fail '"dispatch workspace name:" + name()' \
-          '"dispatch hl.dsp.focus({ workspace = \"name:" + name() + "\" })"'
-    '';
-  });
 in
 {
   programs.waybar = {
     enable = true;
-    package = waybarSpeakingLuaDispatch;
     systemd.enable = true;
 
     settings.mainBar = {
@@ -35,7 +21,6 @@ in
       modules-center = [ "clock" ];
 
       "hyprland/workspaces" = {
-        on-click = "activate";
         format = "{icon}";
 
         format-icons = {
