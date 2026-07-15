@@ -16,6 +16,7 @@ in
       lsa = "ls -a";
       lt = "eza --tree --level=2 --long --icons --git";
       lta = "lt -a";
+      yz = "yazi";
     };
 
     initExtra = nvimDefaultingToCurrentDir;
