@@ -17,9 +17,13 @@ in
     theme = {
       mgr = {
         cwd = { fg = "#${theme.accent}"; bold = true; };
-        hovered = { bg = "#${theme.surfaceLight}"; };
-        preview_hovered = { bg = "#${theme.surface}"; };
         border_style.fg = "#${theme.surfaceLight}";
+      };
+
+      indicator = {
+        parent = { bg = "#000000"; };
+        current = { bg = "#000000"; };
+        preview = { bg = "#000000"; };
       };
 
       tabs = {
@@ -35,6 +39,8 @@ in
         select_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
         unset_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
       };
+
+      icon.dirs = [ ];
 
       icon.prepend_exts = [
         { name = "nix"; text = nixIcon; fg = "#${theme.accent}"; }
