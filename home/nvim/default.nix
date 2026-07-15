@@ -22,7 +22,7 @@ let
   };
 in
 {
-  imports = [ ./lualine.nix ./neo-tree.nix ./snacks.nix ];
+  imports = [ ./icons.nix ./lualine.nix ./neo-tree.nix ./snacks.nix ];
 
   programs.nixvim = {
     enable = true;
