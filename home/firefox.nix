@@ -22,6 +22,7 @@ let
       --input-bgcolor: #${theme.surface} !important;
       --smartbar-background-color: #${theme.surface} !important;
       --panel-background-color: #${theme.surface} !important;
+      --focus-outline-color: #${theme.accent} !important;
       --urlbar-box-background-color: #${theme.surfaceLight} !important;
       --urlbar-box-background-color-focus: #${theme.surfaceLight} !important;
       --tabpanel-background-color: #${theme.background} !important;
@@ -57,6 +58,8 @@ let
     "browser.newtabpage.enabled" = false;
   };
 
+  neverShowBookmarksBar."browser.toolbars.bookmarks.visibility" = "never";
+
   darkThemeSettings = {
     "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
     "browser.theme.toolbar-theme" = 0;
@@ -79,14 +82,14 @@ in
         id = 0;
         isDefault = true;
 
-        settings = emptyStartAndNewTabPage // darkThemeSettings;
+        settings = emptyStartAndNewTabPage // darkThemeSettings // neverShowBookmarksBar;
         userChrome = themedChrome;
       };
 
       work = {
         id = 1;
 
-        settings = emptyStartAndNewTabPage // darkThemeSettings;
+        settings = emptyStartAndNewTabPage // darkThemeSettings // neverShowBookmarksBar;
         userChrome = themedChrome;
       };
     };
