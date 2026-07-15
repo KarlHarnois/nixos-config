@@ -59,6 +59,7 @@ in
       (bind "SHIFT + E" "hl.dsp.exit()")
       (bind "N" ''hl.dsp.layout("togglesplit")'')
       (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
+      (bind "SHIFT + F" (launchOrFocusTui "yazi"))
       (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
