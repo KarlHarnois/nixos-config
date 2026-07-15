@@ -26,27 +26,6 @@ let
     padding = { left = 0; right = 1; };
   };
 
-  gitDiffFromGitsigns = {
-    __unkeyed-1 = "diff";
-    symbols = {
-      added = glyph ''"\uf0fe "'';
-      modified = glyph ''"\uf14b "'';
-      removed = glyph ''"\uf146 "'';
-    };
-    source.__raw = ''
-      function()
-        local gitsigns = vim.b.gitsigns_status_dict
-        if gitsigns then
-          return {
-            added = gitsigns.added,
-            modified = gitsigns.changed,
-            removed = gitsigns.removed,
-          }
-        end
-      end
-    '';
-  };
-
   progress = {
     __unkeyed-1 = "progress";
     separator = " ";
@@ -75,7 +54,7 @@ in
         lualine_a = [ "mode" ];
         lualine_b = [ "branch" ];
         lualine_c = [ diagnostics fileTypeIcon relativeFilePath ];
-        lualine_x = [ gitDiffFromGitsigns ];
+        lualine_x.__raw = "{}";
         lualine_y = [ progress location ];
         lualine_z = [ clock ];
       };

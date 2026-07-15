@@ -32,6 +32,7 @@ in
 
     opts = {
       showmode = false;
+      showcmd = false;
       number = true;
       relativenumber = false;
       cursorline = true;
