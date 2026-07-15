@@ -7,6 +7,7 @@ let
 
   folderIcon = glyph ''"\ue5ff"'';
   folderOpenIcon = glyph ''"\ue5fe"'';
+  nixIcon = glyph ''"\uf313"'';
 in
 {
   programs.yazi = {
@@ -22,8 +23,10 @@ in
       };
 
       tabs = {
-        active = { bg = "#${theme.accent}"; fg = "#${theme.background}"; bold = true; };
-        inactive = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; };
+        active = { fg = "#${theme.foreground}"; bold = true; };
+        inactive = { fg = "#${theme.accent}"; };
+        sep_inner = { open = ""; close = ""; };
+        sep_outer = { open = ""; close = ""; };
       };
 
       mode = {
@@ -32,6 +35,10 @@ in
         select_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
         unset_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
       };
+
+      icon.prepend_exts = [
+        { name = "nix"; text = nixIcon; fg = "#${theme.accent}"; }
+      ];
 
       icon.prepend_conds = [
         { "if" = "dir & hovered"; text = folderOpenIcon; fg = "#${theme.accent}"; }

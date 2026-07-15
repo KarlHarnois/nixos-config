@@ -12,6 +12,7 @@ in
   wallpaper = ./wallpaper.jpg;
 
   accent = "8a8a8d";
+  foreground = "c1c1c1";
   background = "121212";
   surface = "1e1e1e";
   surfaceLight = "333333";
