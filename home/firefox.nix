@@ -19,6 +19,13 @@ in
   programs.firefox = {
     enable = true;
 
+    # Firefox on linux selects tabs with alt+number. This extension adds the
+    # ctrl+number bindings.
+    policies.ExtensionSettings."{84601290-bec9-494a-b11c-1baa897a9683}" = {
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/ctrl-number-to-switch-tabs/latest.xpi";
+      installation_mode = "force_installed";
+    };
+
     profiles = {
       personal = {
         id = 0;
