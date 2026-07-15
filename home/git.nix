@@ -24,4 +24,6 @@
       rebase.autosquash = true;
     };
   };
+
+  programs.lazygit.enable = true;
 }
