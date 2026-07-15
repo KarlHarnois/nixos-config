@@ -42,6 +42,7 @@ in
       expandtab = true;
       fillchars.eob = " ";
       signcolumn = "yes";
+      wrap = false;
     };
 
     plugins.gitsigns.enable = true;
