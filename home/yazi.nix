@@ -21,9 +21,9 @@ in
       };
 
       indicator = {
-        parent = { bg = "#000000"; };
-        current = { bg = "#000000"; };
-        preview = { bg = "#000000"; };
+        parent = { bg = "#${theme.surfaceLight}"; bold = true; };
+        current = { bg = "#${theme.surfaceLight}"; bold = true; };
+        preview = { bg = "#${theme.surfaceLight}"; bold = true; };
       };
 
       tabs = {
