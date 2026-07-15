@@ -24,12 +24,16 @@
     # The indent.disable list above is ignored on the rewritten
     # nvim-treesitter API: nixvim's compatibility shim sets the treesitter
     # indentexpr on every filetype unconditionally. Restore ruby's regex
-    # indent from indent/ruby.vim after the shim runs.
+    # indent from indent/ruby.vim after the shim runs. The regex syntax
+    # engine must stay on too: GetRubyIndent decides whether text is inside
+    # a string with synID against the ruby syntax groups, and with syntax
+    # off both sides are 0, which matches everything and breaks indenting
+    # after block openers.
     autoCmd = [
       {
         event = "FileType";
         pattern = "ruby";
-        command = "setlocal indentexpr=GetRubyIndent()";
+        command = "setlocal indentexpr=GetRubyIndent() syntax=ruby";
       }
     ];
 
