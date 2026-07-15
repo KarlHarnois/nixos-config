@@ -5,6 +5,7 @@
 
   imports = [
     ./bash.nix
+    ./firefox.nix
     ./fonts.nix
     ./git.nix
     ./hyprland
