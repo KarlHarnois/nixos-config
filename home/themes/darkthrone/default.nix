@@ -18,6 +18,8 @@ in
   surfaceLight = "333333";
   separator = "505050";
 
+  btop = ./btop.theme;
+
   ghostty = {
     repo = blackMetalRepo;
     themeFile = "extras/ghostty/darkthrone.lua";
