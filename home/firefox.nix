@@ -56,6 +56,14 @@ let
     "browser.startup.homepage" = "about:blank";
     "browser.newtabpage.enabled" = false;
   };
+
+  darkThemeSettings = {
+    "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+    "browser.theme.toolbar-theme" = 0;
+    "browser.theme.content-theme" = 0;
+    "layout.css.prefers-color-scheme.content-override" = 0;
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  };
 in
 {
   programs.firefox = {
@@ -71,21 +79,15 @@ in
         id = 0;
         isDefault = true;
 
-        settings = emptyStartAndNewTabPage // {
-          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-          "browser.theme.toolbar-theme" = 0;
-          "browser.theme.content-theme" = 0;
-          "layout.css.prefers-color-scheme.content-override" = 0;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        };
-
+        settings = emptyStartAndNewTabPage // darkThemeSettings;
         userChrome = themedChrome;
       };
 
       work = {
         id = 1;
 
-        settings = emptyStartAndNewTabPage;
+        settings = emptyStartAndNewTabPage // darkThemeSettings;
+        userChrome = themedChrome;
       };
     };
   };
