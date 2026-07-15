@@ -39,6 +39,8 @@
         };
 
         ecosystem.no_update_news = true;
+
+        xwayland.force_zero_scaling = true;
       };
     };
   };
