@@ -11,22 +11,55 @@ let
     installation_mode = "force_installed";
   };
 
-  emptyStartAndNewTabPage = {
-    "browser.startup.homepage" = "about:blank";
-    "browser.newtabpage.enabled" = false;
-  };
-
   themedChrome = ''
-    :root {
+    :root,
+    #navigator-toolbox {
+      --toolbox-background-color: #${theme.background} !important;
+      --toolbar-background-color: #${theme.background} !important;
       --lwt-accent-color: #${theme.background} !important;
       --toolbar-bgcolor: #${theme.background} !important;
+      --tab-background-color-selected: #${theme.surface} !important;
       --tab-selected-bgcolor: #${theme.surface} !important;
       --toolbar-field-background-color: #${theme.surface} !important;
       --toolbar-field-focus-background-color: #${theme.surface} !important;
       --toolbar-field-focus-border-color: #${theme.accent} !important;
+      --input-bgcolor: #${theme.surface} !important;
+      --smartbar-background-color: #${theme.surface} !important;
       --arrowpanel-background: #${theme.surface} !important;
+      --urlbar-box-background-color: #${theme.surfaceLight} !important;
+      --urlbar-box-background-color-focus: #${theme.surfaceLight} !important;
+      --tabpanel-background-color: #${theme.background} !important;
+    }
+
+    #navigator-toolbox,
+    #TabsToolbar,
+    #nav-bar {
+      background-color: #${theme.background} !important;
+    }
+
+    .tab-background[selected] {
+      background-color: #${theme.surface} !important;
+    }
+
+    .urlbar-background,
+    #searchbar {
+      background-color: #${theme.surface} !important;
+    }
+
+    #tabbrowser-tabpanels,
+    .browserContainer {
+      background: #${theme.background} !important;
+    }
+
+    #urlbar-searchmode-switcher {
+      background-color: #${theme.surfaceLight} !important;
     }
   '';
+
+  emptyStartAndNewTabPage = {
+    "browser.startup.homepage" = "about:blank";
+    "browser.newtabpage.enabled" = false;
+  };
 in
 {
   programs.firefox = {

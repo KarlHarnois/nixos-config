@@ -14,6 +14,7 @@ in
   accent = "8a8a8d";
   background = "121212";
   surface = "1e1e1e";
+  surfaceLight = "333333";
 
   ghostty = {
     repo = blackMetalRepo;
