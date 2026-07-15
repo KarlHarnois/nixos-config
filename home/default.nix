@@ -5,6 +5,7 @@
 
   imports = [
     ./bash.nix
+    ./btop.nix
     ./firefox.nix
     ./fonts.nix
     ./git.nix
