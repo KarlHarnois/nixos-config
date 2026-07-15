@@ -3,6 +3,14 @@
 let
   theme = import ./theme.nix;
 
+  ctrlNumberTabSwitching = "{84601290-bec9-494a-b11c-1baa897a9683}";
+  vimium = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
+
+  forceInstalled = slug: {
+    install_url = "https://addons.mozilla.org/firefox/downloads/latest/${slug}/latest.xpi";
+    installation_mode = "force_installed";
+  };
+
   themedChrome = ''
     :root {
       --lwt-accent-color: #${theme.background} !important;
@@ -19,11 +27,9 @@ in
   programs.firefox = {
     enable = true;
 
-    # Firefox on linux selects tabs with alt+number. This extension adds the
-    # ctrl+number bindings.
-    policies.ExtensionSettings."{84601290-bec9-494a-b11c-1baa897a9683}" = {
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/ctrl-number-to-switch-tabs/latest.xpi";
-      installation_mode = "force_installed";
+    policies.ExtensionSettings = {
+      ${ctrlNumberTabSwitching} = forceInstalled "ctrl-number-to-switch-tabs";
+      ${vimium} = forceInstalled "vimium-ff";
     };
 
     profiles = {
