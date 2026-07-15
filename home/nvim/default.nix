@@ -22,7 +22,7 @@ let
   };
 in
 {
-  imports = [ ./icons.nix ./lualine.nix ./neo-tree.nix ./snacks.nix ];
+  imports = [ ./icons.nix ./lualine.nix ./neo-tree.nix ./noice.nix ./snacks.nix ];
 
   programs.nixvim = {
     enable = true;
@@ -31,6 +31,7 @@ in
     globals.mapleader = " ";
 
     opts = {
+      confirm = true;
       showmode = false;
       showcmd = false;
       number = true;
