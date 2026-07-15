@@ -5,7 +5,7 @@
 
   networking.hostName = "nixos-vm";
 
-  virtualisation.vmVariant = let configDir = "/home/karl/Projects/Personal/nixos-config"; in {
+  virtualisation.vmVariant = let configDir = "/mnt/nixos-config"; in {
     services.openssh.enable = true;
     users.users.karl.initialPassword = "nixos";
 
