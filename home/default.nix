@@ -14,6 +14,7 @@
     ./starship
     ./wallpaper.nix
     ./waybar.nix
+    ./xdg.nix
     ./yazi.nix
     ./zoxide.nix
   ];
