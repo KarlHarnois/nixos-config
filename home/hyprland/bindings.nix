@@ -59,6 +59,9 @@ in
       (bind "SHIFT + E" "hl.dsp.exit()")
       (bind "N" ''hl.dsp.layout("togglesplit")'')
       (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
+      (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
+      (bind "V" ''hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" })'')
+      (bind "X" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "X" })'')
     ] ++ focusBinds ++ swapBinds ++ workspaceBinds;
   };
 }

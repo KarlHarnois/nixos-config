@@ -39,6 +39,11 @@ in
 
     globals.mapleader = " ";
 
+    clipboard = {
+      register = "unnamedplus";
+      providers.wl-copy.enable = true;
+    };
+
     opts = {
       confirm = true;
       showmode = false;
