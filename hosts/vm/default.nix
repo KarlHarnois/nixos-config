@@ -13,7 +13,7 @@
       let toplevel = "${configDir}#nixosConfigurations.vm.config.virtualisation.vmVariant.system.build.toplevel";
       in ''sudo "$(nix build --no-link --print-out-paths ${toplevel})/bin/switch-to-configuration" test'';
 
-    imports = [ ./display-scale.nix ./wifi-sandbox.nix ];
+    imports = [ ./bluetooth-sandbox.nix ./display-scale.nix ./wifi-sandbox.nix ];
 
     networking.interfaces.eth0.useDHCP = true;
 

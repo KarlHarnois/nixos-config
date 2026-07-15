@@ -8,6 +8,8 @@
 
   networking.useDHCP = false;
 
+  hardware.bluetooth.enable = true;
+
   time.timeZone = "America/Montreal";
 
   users.users.karl = {

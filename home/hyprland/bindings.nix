@@ -61,6 +61,7 @@ in
       (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
       (bind "SHIFT + F" (launchOrFocusTui "yazi"))
       (bind "I" (launchOrFocusTui "impala"))
+      (bind "U" (launchOrFocusTui "bluetui"))
       (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
