@@ -11,6 +11,11 @@ let
     installation_mode = "force_installed";
   };
 
+  emptyStartAndNewTabPage = {
+    "browser.startup.homepage" = "about:blank";
+    "browser.newtabpage.enabled" = false;
+  };
+
   themedChrome = ''
     :root {
       --lwt-accent-color: #${theme.background} !important;
@@ -37,7 +42,7 @@ in
         id = 0;
         isDefault = true;
 
-        settings = {
+        settings = emptyStartAndNewTabPage // {
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           "browser.theme.toolbar-theme" = 0;
           "browser.theme.content-theme" = 0;
@@ -50,6 +55,8 @@ in
 
       work = {
         id = 1;
+
+        settings = emptyStartAndNewTabPage;
       };
     };
   };
