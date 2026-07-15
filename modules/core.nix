@@ -1,13 +1,18 @@
 { pkgs, ... }:
 
 {
-  networking.networkmanager.enable = true;
+  networking.wireless.iwd = {
+    enable = true;
+    settings.General.EnableNetworkConfiguration = true;
+  };
+
+  networking.useDHCP = false;
 
   time.timeZone = "America/Montreal";
 
   users.users.karl = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" ];
   };
 
   environment.systemPackages = with pkgs; [

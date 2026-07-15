@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.cliamp ];
+  home.packages = [ pkgs.cliamp pkgs.impala ];
 
   imports = [
     ./bash.nix
