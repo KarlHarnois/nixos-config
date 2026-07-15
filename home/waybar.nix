@@ -3,8 +3,6 @@
 let
   theme = import ./theme.nix;
 
-  brightBlack = builtins.elemAt theme.colors 8;
-
   pinnedWorkspaceCount = 5;
   pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
 in
@@ -41,7 +39,7 @@ in
     };
 
     style = ''
-      @define-color foreground #${brightBlack};
+      @define-color foreground #${theme.accent};
       @define-color background #${theme.surface};
 
       * {

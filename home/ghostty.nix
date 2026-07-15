@@ -1,19 +1,17 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   theme = import ./theme.nix;
+
+  themeRepo = pkgs.fetchFromGitHub theme.ghostty.repo;
 in
 {
   programs.ghostty = {
     enable = true;
 
     settings = {
+      theme = "${themeRepo}/${theme.ghostty.themeFile}";
       background = "#${theme.background}";
-      foreground = "#${theme.foreground}";
-      cursor-color = "#${theme.cursor}";
-      selection-background = "#${theme.selectionBackground}";
-      selection-foreground = "#${theme.selectionForeground}";
-      palette = lib.imap0 (index: color: "${toString index}=#${color}") theme.colors;
 
       font-family = theme.font;
       font-style = "Regular";

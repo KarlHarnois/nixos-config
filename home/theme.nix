@@ -1,1 +1,1 @@
-import ./themes/matte-black
+import ./themes/darkthrone
