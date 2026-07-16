@@ -1,7 +1,18 @@
 { pkgs, ... }:
 
+let
+  theme = import ../home/theme.nix;
+in
 {
   programs.hyprland.enable = true;
+
+  programs.chromium = {
+    enable = true;
+    extraOpts = {
+      BrowserColorScheme = "dark";
+      BrowserThemeColor = "#${theme.background}";
+    };
+  };
 
   security.rtkit.enable = true;
 

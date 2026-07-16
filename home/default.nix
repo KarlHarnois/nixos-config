@@ -1,11 +1,13 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.bluetui pkgs.chromium pkgs.cliamp pkgs.impala ];
+  home.packages = [ pkgs.bluetui pkgs.cliamp pkgs.impala ];
 
   imports = [
     ./bash.nix
     ./btop.nix
+    ./chromium.nix
+    ./dark-mode.nix
     ./firefox.nix
     ./fonts.nix
     ./git.nix
