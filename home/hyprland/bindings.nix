@@ -27,6 +27,16 @@ let
 
   launchOrFocusTui = app: ''launchOrFocus("local.${app}", "${terminal} --class=local.${app} -e ${app}")'';
 
+  webappClass = url:
+    let
+      hostAndPath = lib.splitString "/" (lib.removePrefix "https://" url);
+      host = lib.head hostAndPath;
+      path = lib.concatStringsSep "_" (lib.tail hostAndPath);
+    in
+    "chrome-${host}__${path}-Default";
+
+  launchOrFocusWebapp = url: ''launchOrFocus("${webappClass url}", "chromium --app=${url}")'';
+
   vimDirections = { h = "left"; j = "down"; k = "up"; l = "right"; };
 
   focusBinds = lib.mapAttrsToList
@@ -65,6 +75,7 @@ in
       (bind "I" (launchOrFocusTui "impala"))
       (bind "U" (launchOrFocusTui "bluetui"))
       (bind "T" (launchOrFocusTui "btop"))
+      (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
