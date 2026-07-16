@@ -37,15 +37,18 @@ let
 
   launchOrFocusWebapp = url: ''launchOrFocus("${webappClass url}", "chromium --app=${url}")'';
 
-  vimDirections = { h = "left"; j = "down"; k = "up"; l = "right"; };
+  directionKeys = {
+    h = "left"; j = "down"; k = "up"; l = "right";
+    Left = "left"; Down = "down"; Up = "up"; Right = "right";
+  };
 
   focusBinds = lib.mapAttrsToList
     (key: direction: bind key ''hl.dsp.focus({ direction = "${direction}" })'')
-    vimDirections;
+    directionKeys;
 
   swapBinds = lib.mapAttrsToList
     (key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })'')
-    vimDirections;
+    directionKeys;
 
   workspaceBinds = lib.concatMap
     (i:
