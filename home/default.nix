@@ -16,6 +16,7 @@
     ./nvim
     ./ghostty.nix
     ./starship
+    ./tabiew.nix
     ./wallpaper.nix
     ./waybar.nix
     ./xdg.nix
