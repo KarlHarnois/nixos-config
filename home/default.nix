@@ -12,6 +12,7 @@
     ./fonts.nix
     ./git.nix
     ./hyprland
+    ./mako.nix
     ./nvim
     ./ghostty.nix
     ./starship
