@@ -58,6 +58,8 @@ in
       (bind "F" "hl.dsp.window.fullscreen()")
       (bind "SHIFT + E" "hl.dsp.exit()")
       (bind "N" ''hl.dsp.layout("togglesplit")'')
+      (bind "SHIFT + S" ''hl.dsp.layout("swapsplit")'')
+      (bind "SHIFT + W" ''hl.dsp.workspace.move({ monitor = "+1" })'')
       (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
       (bind "SHIFT + F" (launchOrFocusTui "yazi"))
       (bind "I" (launchOrFocusTui "impala"))
