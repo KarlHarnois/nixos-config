@@ -4,7 +4,14 @@ let
   theme = import ./theme.nix;
 
   notificationHistory = pkgs.writeShellScriptBin "notification-history" ''
-    ${pkgs.mako}/bin/makoctl history | ${pkgs.less}/bin/less
+    history_file=$(${pkgs.coreutils}/bin/mktemp --suffix=.json)
+    trap '${pkgs.coreutils}/bin/rm -f "$history_file"' EXIT
+
+    ${pkgs.mako}/bin/makoctl history -j \
+      | ${pkgs.jq}/bin/jq 'map({id, app: .app_name, urgency, summary, body})' \
+      > "$history_file"
+
+    ${pkgs.tabiew}/bin/tw -f json "$history_file"
   '';
 in
 {
