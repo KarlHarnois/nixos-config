@@ -76,6 +76,7 @@ in
       (bind "U" (launchOrFocusTui "bluetui"))
       (bind "T" (launchOrFocusTui "btop"))
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
+      (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
       (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
