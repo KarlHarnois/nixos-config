@@ -15,13 +15,15 @@ in
 
     settings = {
       font = "${theme.font} 11";
-      background-color = "#${theme.surface}";
-      text-color = "#${theme.foreground}";
-      border-color = "#${theme.separator}";
+      background-color = "#${theme.background}";
+      text-color = "#${theme.accent}";
+      border-color = "#${theme.accent}";
       border-size = 2;
       border-radius = 0;
-      width = 400;
-      padding = "8";
+      width = 420;
+      padding = "10";
+      outer-margin = 20;
+      max-icon-size = 32;
       default-timeout = 5000;
       max-history = 100;
 
@@ -29,7 +31,7 @@ in
 
       "urgency=critical" = {
         default-timeout = 0;
-        border-color = "#${theme.accent}";
+        layer = "overlay";
       };
 
       "mode=do-not-disturb".invisible = 1;
