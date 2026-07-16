@@ -26,6 +26,7 @@ in
       cursor-style = "block";
       cursor-style-blink = false;
       shell-integration-features = "no-cursor,ssh-env";
+      copy-on-select = "clipboard";
       gtk-single-instance = true;
       quit-after-last-window-closed = false;
       mouse-scroll-multiplier = 0.95;
