@@ -10,6 +10,7 @@
     ./dark-mode.nix
     ./firefox.nix
     ./fonts.nix
+    ./fsel.nix
     ./git.nix
     ./hyprland
     ./mako.nix

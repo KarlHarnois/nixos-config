@@ -67,6 +67,7 @@ in
 
     bind = [
       (bind "Return" ''hl.dsp.exec_cmd("${terminal}")'')
+      (bind "Space" (launchOrFocusTui "fsel"))
       (bind "W" "hl.dsp.window.close()")
       (bind "F" "hl.dsp.window.fullscreen()")
       (bind "SHIFT + E" "hl.dsp.exit()")
