@@ -1,7 +1,7 @@
 .PHONY: build-vm run-vm wipe-vm vm
 
 build-vm:
-	nix build .#nixosConfigurations.vm.config.system.build.vm
+	nix build .#vm
 
 run-vm: build-vm
 	@MONITOR=$$(hyprctl monitors -j 2>/dev/null | jq -c '[.[] | select(.focused)][0] // empty' 2>/dev/null); \

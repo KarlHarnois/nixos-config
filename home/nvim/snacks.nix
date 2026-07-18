@@ -19,7 +19,10 @@ in
       };
     };
 
-    extraPackages = [ pkgs.ripgrep pkgs.fd ];
+    extraPackages = [
+      pkgs.ripgrep
+      pkgs.fd
+    ];
 
     keymaps = [
       (pickerKeymap "<leader><leader>" "files" "Find files")

@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   programs.nixvim.plugins = {
     friendly-snippets.enable = true;
@@ -18,7 +16,12 @@
           };
         };
 
-        sources.default = [ "lsp" "path" "snippets" "buffer" ];
+        sources.default = [
+          "lsp"
+          "path"
+          "snippets"
+          "buffer"
+        ];
 
         cmdline = {
           enabled = true;
@@ -38,9 +41,18 @@
 
         keymap = {
           preset = "default";
-          "<Tab>" = [ "select_and_accept" "fallback" ];
-          "<C-j>" = [ "select_next" "fallback" ];
-          "<C-k>" = [ "select_prev" "fallback" ];
+          "<Tab>" = [
+            "select_and_accept"
+            "fallback"
+          ];
+          "<C-j>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<C-k>" = [
+            "select_prev"
+            "fallback"
+          ];
         };
       };
     };

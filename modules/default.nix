@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   imports = [
     ./core.nix

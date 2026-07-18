@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   vimium = "dbepggeogbaibhgnhhndojpepiihcmeb";
 in

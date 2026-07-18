@@ -3,9 +3,11 @@
 {
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = lib.genAttrs
-      [ "text/html" "x-scheme-handler/http" "x-scheme-handler/https" ]
-      (_mimeType: "firefox.desktop");
+    defaultApplications = lib.genAttrs [
+      "text/html"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ] (_mimeType: "firefox.desktop");
   };
 
   xdg.userDirs = {

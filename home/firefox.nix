@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   theme = import ./theme.nix;
 

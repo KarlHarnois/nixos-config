@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   glyph = builtins.fromJSON;
 in

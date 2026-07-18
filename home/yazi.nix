@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   glyph = builtins.fromJSON;
 
@@ -16,40 +14,92 @@ in
 
     theme = {
       mgr = {
-        cwd = { fg = "#${theme.accent}"; bold = true; };
+        cwd = {
+          fg = "#${theme.accent}";
+          bold = true;
+        };
         border_style.fg = "#${theme.separator}";
       };
 
       indicator = {
-        parent = { bg = "#${theme.surfaceLight}"; bold = true; };
-        current = { bg = "#${theme.surfaceLight}"; bold = true; };
-        preview = { bg = "#${theme.surfaceLight}"; bold = true; };
+        parent = {
+          bg = "#${theme.surfaceLight}";
+          bold = true;
+        };
+        current = {
+          bg = "#${theme.surfaceLight}";
+          bold = true;
+        };
+        preview = {
+          bg = "#${theme.surfaceLight}";
+          bold = true;
+        };
       };
 
       tabs = {
-        active = { fg = "#${theme.foreground}"; bold = true; };
-        inactive = { fg = "#${theme.accent}"; };
-        sep_inner = { open = ""; close = ""; };
-        sep_outer = { open = ""; close = ""; };
+        active = {
+          fg = "#${theme.foreground}";
+          bold = true;
+        };
+        inactive = {
+          fg = "#${theme.accent}";
+        };
+        sep_inner = {
+          open = "";
+          close = "";
+        };
+        sep_outer = {
+          open = "";
+          close = "";
+        };
       };
 
       mode = {
-        normal_main = { bg = "#${theme.accent}"; fg = "#${theme.background}"; bold = true; };
-        normal_alt = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; };
-        select_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
-        unset_main = { bg = "#${theme.surfaceLight}"; fg = "#${theme.accent}"; bold = true; };
+        normal_main = {
+          bg = "#${theme.accent}";
+          fg = "#${theme.background}";
+          bold = true;
+        };
+        normal_alt = {
+          bg = "#${theme.surfaceLight}";
+          fg = "#${theme.accent}";
+        };
+        select_main = {
+          bg = "#${theme.surfaceLight}";
+          fg = "#${theme.accent}";
+          bold = true;
+        };
+        unset_main = {
+          bg = "#${theme.surfaceLight}";
+          fg = "#${theme.accent}";
+          bold = true;
+        };
       };
 
-      icon.dirs = [ ];
+      icon = {
+        dirs = [ ];
 
-      icon.prepend_exts = [
-        { name = "nix"; text = nixIcon; fg = "#${theme.accent}"; }
-      ];
+        prepend_exts = [
+          {
+            name = "nix";
+            text = nixIcon;
+            fg = "#${theme.accent}";
+          }
+        ];
 
-      icon.prepend_conds = [
-        { "if" = "dir & hovered"; text = folderOpenIcon; fg = "#${theme.accent}"; }
-        { "if" = "dir"; text = folderIcon; fg = "#${theme.accent}"; }
-      ];
+        prepend_conds = [
+          {
+            "if" = "dir & hovered";
+            text = folderOpenIcon;
+            fg = "#${theme.accent}";
+          }
+          {
+            "if" = "dir";
+            text = folderIcon;
+            fg = "#${theme.accent}";
+          }
+        ];
+      };
     };
   };
 }

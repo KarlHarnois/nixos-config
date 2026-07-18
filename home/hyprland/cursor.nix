@@ -19,9 +19,24 @@ in
     };
 
     env = [
-      { _args = [ "XCURSOR_THEME" cursorTheme ]; }
-      { _args = [ "XCURSOR_SIZE" (toString cursorSize) ]; }
-      { _args = [ "HYPRCURSOR_SIZE" (toString cursorSize) ]; }
+      {
+        _args = [
+          "XCURSOR_THEME"
+          cursorTheme
+        ];
+      }
+      {
+        _args = [
+          "XCURSOR_SIZE"
+          (toString cursorSize)
+        ];
+      }
+      {
+        _args = [
+          "HYPRCURSOR_SIZE"
+          (toString cursorSize)
+        ];
+      }
     ];
   };
 }

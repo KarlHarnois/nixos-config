@@ -8,7 +8,10 @@ let
   workspaceCount = 10;
 
   bind = keys: dispatcher: {
-    _args = [ "${mod} + ${keys}" (mkLuaInline dispatcher) ];
+    _args = [
+      "${mod} + ${keys}"
+      (mkLuaInline dispatcher)
+    ];
   };
 
   launchOrFocus = {
@@ -25,9 +28,11 @@ let
       end'';
   };
 
-  launchOrFocusTui = app: ''launchOrFocus("local.${app}", "${terminal} --class=local.${app} -e ${app}")'';
+  launchOrFocusTui =
+    app: ''launchOrFocus("local.${app}", "${terminal} --class=local.${app} -e ${app}")'';
 
-  webappClass = url:
+  webappClass =
+    url:
     let
       hostAndPath = lib.splitString "/" (lib.removePrefix "https://" url);
       host = lib.head hostAndPath;
@@ -38,28 +43,35 @@ let
   launchOrFocusWebapp = url: ''launchOrFocus("${webappClass url}", "chromium --app=${url}")'';
 
   directionKeys = {
-    h = "left"; j = "down"; k = "up"; l = "right";
-    Left = "left"; Down = "down"; Up = "up"; Right = "right";
+    h = "left";
+    j = "down";
+    k = "up";
+    l = "right";
+    Left = "left";
+    Down = "down";
+    Up = "up";
+    Right = "right";
   };
 
-  focusBinds = lib.mapAttrsToList
-    (key: direction: bind key ''hl.dsp.focus({ direction = "${direction}" })'')
-    directionKeys;
+  focusBinds = lib.mapAttrsToList (
+    key: direction: bind key ''hl.dsp.focus({ direction = "${direction}" })''
+  ) directionKeys;
 
-  swapBinds = lib.mapAttrsToList
-    (key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })'')
-    directionKeys;
+  swapBinds = lib.mapAttrsToList (
+    key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })''
+  ) directionKeys;
 
-  workspaceBinds = lib.concatMap
-    (i:
-      let
-        workspace = toString i;
-        key = toString (lib.mod i 10);
-      in [
-        (bind key "hl.dsp.focus({ workspace = ${workspace} })")
-        (bind "SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${workspace} })")
-      ])
-    (lib.range 1 workspaceCount);
+  workspaceBinds = lib.concatMap (
+    i:
+    let
+      workspace = toString i;
+      key = toString (lib.mod i 10);
+    in
+    [
+      (bind key "hl.dsp.focus({ workspace = ${workspace} })")
+      (bind "SHIFT + ${key}" "hl.dsp.window.move({ workspace = ${workspace} })")
+    ]
+  ) (lib.range 1 workspaceCount);
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -90,6 +102,9 @@ in
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
       (bind "V" ''hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" })'')
       (bind "X" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "X" })'')
-    ] ++ focusBinds ++ swapBinds ++ workspaceBinds;
+    ]
+    ++ focusBinds
+    ++ swapBinds
+    ++ workspaceBinds;
   };
 }

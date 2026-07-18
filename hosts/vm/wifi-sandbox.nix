@@ -38,7 +38,10 @@ in
   };
 
   networking.interfaces.wlan0.ipv4.addresses = [
-    { address = "192.168.50.1"; prefixLength = 24; }
+    {
+      address = "192.168.50.1";
+      prefixLength = 24;
+    }
   ];
 
   networking.firewall.interfaces.wlan0.allowedUDPPorts = [ 67 ];

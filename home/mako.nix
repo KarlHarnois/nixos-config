@@ -15,7 +15,10 @@ let
   '';
 in
 {
-  home.packages = [ pkgs.libnotify notificationHistory ];
+  home.packages = [
+    pkgs.libnotify
+    notificationHistory
+  ];
 
   services.mako = {
     enable = true;
