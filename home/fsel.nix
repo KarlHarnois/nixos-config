@@ -21,6 +21,10 @@ in
       main_text_color = "#${theme.foreground}"
       apps_text_color = "#${theme.foreground}"
       input_text_color = "#${theme.foreground}"
+
+      [keybinds]
+      down = ["down", { key = "j", modifiers = "ctrl" }]
+      up = ["up", { key = "k", modifiers = "ctrl" }]
     '';
   };
 }
