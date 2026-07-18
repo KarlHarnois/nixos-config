@@ -11,6 +11,7 @@
     ./bash.nix
     ./btop.nix
     ./chromium.nix
+    ./claude-code.nix
     ./dark-mode.nix
     ./firefox.nix
     ./fonts.nix
