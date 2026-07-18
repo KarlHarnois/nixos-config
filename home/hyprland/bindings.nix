@@ -7,12 +7,14 @@ let
   terminal = "ghostty";
   workspaceCount = 10;
 
-  bind = keys: dispatcher: {
+  bindKeys = keys: dispatcher: {
     _args = [
-      "${mod} + ${keys}"
+      keys
       (mkLuaInline dispatcher)
     ];
   };
+
+  bind = keys: bindKeys "${mod} + ${keys}";
 
   launchOrFocus = {
     _var = mkLuaInline ''
@@ -99,6 +101,8 @@ in
       (bind "comma" ''hl.dsp.exec_cmd("makoctl dismiss")'')
       (bind "SHIFT + comma" ''hl.dsp.exec_cmd("makoctl dismiss --all")'')
       (bind "CTRL + comma" ''hl.dsp.exec_cmd("makoctl mode -t do-not-disturb")'')
+      (bindKeys "Print" ''hl.dsp.exec_cmd("grimblast copysave area")'')
+      (bindKeys "SHIFT + Print" ''hl.dsp.exec_cmd([[f="$XDG_RUNTIME_DIR/annotate.png"; grimblast save area "$f" && satty --filename "$f"]])'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
       (bind "V" ''hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" })'')
       (bind "X" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "X" })'')

@@ -20,6 +20,7 @@
     ./mako.nix
     ./nvim
     ./ghostty.nix
+    ./screenshot.nix
     ./starship
     ./tabiew.nix
     ./wallpaper.nix
