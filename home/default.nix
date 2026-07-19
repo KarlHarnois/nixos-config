@@ -23,6 +23,7 @@
     ./ghostty.nix
     ./screenshot.nix
     ./starship
+    ./swayimg.nix
     ./tabiew.nix
     ./wallpaper.nix
     ./waybar.nix
