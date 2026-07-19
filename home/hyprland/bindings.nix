@@ -89,7 +89,7 @@ in
       (bind "SHIFT + S" ''hl.dsp.layout("swapsplit")'')
       (bind "SHIFT + W" ''hl.dsp.workspace.move({ monitor = "+1" })'')
       (bind "SHIFT + M" (launchOrFocusTui "cliamp"))
-      (bind "SHIFT + F" (launchOrFocusTui "yazi"))
+      (bind "SHIFT + F" ''hl.dsp.exec_cmd("${terminal} -e yazi")'')
       (bind "I" (launchOrFocusTui "impala"))
       (bind "U" (launchOrFocusTui "bluetui"))
       (bind "T" (launchOrFocusTui "btop"))
