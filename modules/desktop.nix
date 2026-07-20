@@ -4,13 +4,20 @@ let
   theme = import ../home/theme.nix;
 in
 {
-  programs.hyprland.enable = true;
+  programs = {
+    hyprland.enable = true;
 
-  programs.chromium = {
-    enable = true;
-    extraOpts = {
-      BrowserColorScheme = "dark";
-      BrowserThemeColor = "#${theme.background}";
+    chromium = {
+      enable = true;
+      extraOpts = {
+        BrowserColorScheme = "dark";
+        BrowserThemeColor = "#${theme.background}";
+      };
+    };
+
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "karl" ];
     };
   };
 

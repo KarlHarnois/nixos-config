@@ -2,6 +2,7 @@ let
   theme = import ./theme.nix;
 
   ctrlNumberTabSwitching = "{84601290-bec9-494a-b11c-1baa897a9683}";
+  onePassword = "{d634138d-c276-4fc8-924b-40a0ea21d284}";
   vimium = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
 
   forceInstalled = slug: {
@@ -72,6 +73,7 @@ in
 
     policies.ExtensionSettings = {
       ${ctrlNumberTabSwitching} = forceInstalled "ctrl-number-to-switch-tabs";
+      ${onePassword} = forceInstalled "1password-x-password-manager";
       ${vimium} = forceInstalled "vimium-ff";
     };
 

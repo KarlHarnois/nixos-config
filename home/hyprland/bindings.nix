@@ -107,6 +107,7 @@ in
       (bind "T" (launchOrFocusTui "btop"))
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
+      (bind "slash" ''launchOrFocus("1Password", "1password")'')
       (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "ALT + comma" (launchOrFocusTui "notification-history"))
