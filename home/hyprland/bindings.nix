@@ -59,6 +59,18 @@ let
     key: direction: bind key ''hl.dsp.focus({ direction = "${direction}" })''
   ) directionKeys;
 
+  resizeStep = 100;
+
+  resizeWindow =
+    x: y: "hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })";
+
+  resizeBinds = [
+    (bind "minus" (resizeWindow (-resizeStep) 0))
+    (bind "equal" (resizeWindow resizeStep 0))
+    (bind "SHIFT + minus" (resizeWindow 0 (-resizeStep)))
+    (bind "SHIFT + equal" (resizeWindow 0 resizeStep))
+  ];
+
   swapBinds = lib.mapAttrsToList (
     key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })''
   ) directionKeys;
@@ -109,6 +121,7 @@ in
     ]
     ++ focusBinds
     ++ swapBinds
+    ++ resizeBinds
     ++ workspaceBinds;
   };
 }
