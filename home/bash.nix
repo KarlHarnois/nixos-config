@@ -10,6 +10,7 @@ in
 
   programs.bash = {
     enable = true;
+    enableCompletion = true;
 
     shellAliases = {
       ls = "eza -lh --group-directories-first --icons=auto";

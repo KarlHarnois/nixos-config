@@ -21,6 +21,7 @@
     ./mako.nix
     ./nvim
     ./ghostty.nix
+    ./readline.nix
     ./screenshot.nix
     ./starship
     ./swayimg.nix
