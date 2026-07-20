@@ -26,6 +26,8 @@
       networking.interfaces.eth0.useDHCP = true;
 
       virtualisation = {
+        diskSize = 32 * 1024;
+        msize = 262144;
         memorySize = 8192;
         cores = 4;
         forwardPorts = [
@@ -36,10 +38,11 @@
           }
         ];
         sharedDirectories.config = {
-          source = ''"''${NIXOS_CONFIG_DIR:?launch the VM with make run-vm}"'';
+          source = ''"''${NIXOS_CONFIG_DIR:?launch the VM with make vm}"'';
           target = configDir;
         };
         qemu.options = [
+          "-device virtio-tablet-pci"
           "-display gtk,gl=on,zoom-to-fit=on,full-screen=on,show-menubar=off"
           "-audiodev pa,id=snd0"
           "-device virtio-sound-pci,audiodev=snd0"

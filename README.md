@@ -11,7 +11,7 @@ Karl's NixOS configurations.
 ## Usage
 
 ```sh
-make run-vm    # build and launch the VM
-make vm        # same, from a clean disk
+make vm        # build and launch the VM, keeping its disk
+make fresh-vm  # same, from a clean disk
 ```
 
