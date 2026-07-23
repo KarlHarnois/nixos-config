@@ -18,6 +18,7 @@
         ''sudo "$(nix build --no-link --print-out-paths ${toplevel})/bin/switch-to-configuration" test'';
 
       imports = [
+        ./battery-sandbox.nix
         ./bluetooth-sandbox.nix
         ./display-scale.nix
         ./wifi-sandbox.nix
