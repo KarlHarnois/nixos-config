@@ -44,6 +44,16 @@ let
 
   launchOrFocusWebapp = url: ''launchOrFocus("${webappClass url}", "chromium --app=${url}")'';
 
+  toggleFloatingCentered = ''
+    function()
+      hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+      for _, window in ipairs(hl.get_windows({ floating = true })) do
+        if window.active then
+          hl.dispatch(hl.dsp.window.center())
+        end
+      end
+    end'';
+
   directionKeys = {
     h = "left";
     j = "down";
@@ -104,7 +114,8 @@ in
       (bind "SHIFT + F" ''hl.dsp.exec_cmd("${terminal} -e yazi")'')
       (bind "I" (launchOrFocusTui "impala"))
       (bind "U" (launchOrFocusTui "bluetui"))
-      (bind "T" (launchOrFocusTui "btop"))
+      (bind "T" toggleFloatingCentered)
+      (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
       (bind "CTRL + L" ''hl.dsp.exec_cmd("loginctl lock-session")'')
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
