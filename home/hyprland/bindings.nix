@@ -105,6 +105,7 @@ in
       (bind "I" (launchOrFocusTui "impala"))
       (bind "U" (launchOrFocusTui "bluetui"))
       (bind "T" (launchOrFocusTui "btop"))
+      (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
       (bind "slash" ''launchOrFocus("1Password", "1password")'')
