@@ -4,6 +4,7 @@
     ./animations.nix
     ./bindings.nix
     ./cursor.nix
+    ./hypridle.nix
     ./hyprlock.nix
   ];
 
