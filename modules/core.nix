@@ -35,12 +35,14 @@
       options = "--delete-older-than 14d";
     };
 
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
     };
+
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 }
