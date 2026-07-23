@@ -4,6 +4,7 @@
     ./animations.nix
     ./bindings.nix
     ./cursor.nix
+    ./hyprlock.nix
   ];
 
   wayland.windowManager.hyprland = {
