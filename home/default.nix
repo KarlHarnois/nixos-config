@@ -28,6 +28,7 @@
     ./tabiew.nix
     ./wallpaper.nix
     ./waybar.nix
+    ./wiremix.nix
     ./xdg.nix
     ./yazi.nix
     ./zoxide.nix
