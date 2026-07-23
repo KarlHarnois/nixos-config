@@ -20,9 +20,9 @@ let
   };
 
   colorschemePlugin = pkgs.vimUtils.buildVimPlugin {
-    pname = theme.neovim.plugin.repo;
-    version = builtins.substring 0 7 theme.neovim.plugin.rev;
-    src = pkgs.fetchFromGitHub theme.neovim.plugin;
+    pname = theme.apps.neovim.plugin.repo;
+    version = builtins.substring 0 7 theme.apps.neovim.plugin.rev;
+    src = pkgs.fetchFromGitHub theme.apps.neovim.plugin;
   };
 in
 {
@@ -67,7 +67,7 @@ in
 
     extraPlugins = [ colorschemePlugin ];
 
-    extraConfigLuaPre = theme.neovim.setup;
+    extraConfigLuaPre = theme.apps.neovim.setup;
 
     extraFiles."plugin/after/transparency.lua".source = ./transparency.lua;
 

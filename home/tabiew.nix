@@ -17,68 +17,68 @@ in
     force = true;
     text = ''
       [table_header]
-      fg = "#${theme.accent}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.accent}"
+      bg = "#${theme.palette.background}"
 
       [[table_headers]]
-      fg = "#${theme.accent}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.accent}"
+      bg = "#${theme.palette.background}"
 
       [[rows]]
-      fg = "#${theme.foreground}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.foreground}"
+      bg = "#${theme.palette.background}"
 
       [[rows]]
-      fg = "#${theme.foreground}"
-      bg = "#${theme.surface}"
+      fg = "#${theme.palette.foreground}"
+      bg = "#${theme.palette.surface}"
 
       [row_highlight]
-      fg = "#${theme.background}"
-      bg = "#${theme.accent}"
+      fg = "#${theme.palette.background}"
+      bg = "#${theme.palette.accent}"
 
       [[table_tags]]
-      fg = "#${theme.background}"
-      bg = "#${theme.accent}"
+      fg = "#${theme.palette.background}"
+      bg = "#${theme.palette.accent}"
 
       [[table_tags]]
-      fg = "#${theme.background}"
-      bg = "#${theme.separator}"
+      fg = "#${theme.palette.background}"
+      bg = "#${theme.palette.separator}"
 
       [block]
-      fg = "#${theme.separator}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.separator}"
+      bg = "#${theme.palette.background}"
 
       [block_tag]
-      fg = "#${theme.background}"
-      bg = "#${theme.accent}"
+      fg = "#${theme.palette.background}"
+      bg = "#${theme.palette.accent}"
 
       [text]
-      fg = "#${theme.foreground}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.foreground}"
+      bg = "#${theme.palette.background}"
 
       [text_highlighted]
-      fg = "#${theme.foreground}"
-      bg = "#${theme.separator}"
+      fg = "#${theme.palette.foreground}"
+      bg = "#${theme.palette.separator}"
 
       [subtext]
-      fg = "#${theme.accent}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.accent}"
+      bg = "#${theme.palette.background}"
 
       [error]
-      fg = "#${theme.background}"
-      bg = "#${theme.foreground}"
+      fg = "#${theme.palette.background}"
+      bg = "#${theme.palette.foreground}"
 
       [gutter]
-      fg = "#${theme.separator}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.separator}"
+      bg = "#${theme.palette.background}"
 
       [[chart]]
-      fg = "#${theme.accent}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.accent}"
+      bg = "#${theme.palette.background}"
 
       [[chart]]
-      fg = "#${theme.foreground}"
-      bg = "#${theme.background}"
+      fg = "#${theme.palette.foreground}"
+      bg = "#${theme.palette.background}"
     '';
   };
 }

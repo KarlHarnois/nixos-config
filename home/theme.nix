@@ -1,1 +1,1 @@
-import ./themes/darkthrone
+import ./themes/contract.nix (import ./themes/darkthrone)

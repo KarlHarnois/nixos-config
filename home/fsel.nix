@@ -13,14 +13,14 @@ in
       terminal_launcher = "ghostty -e"
       rounded_borders = false
 
-      highlight_color = "#${theme.accent}"
-      header_title_color = "#${theme.accent}"
-      main_border_color = "#${theme.separator}"
-      apps_border_color = "#${theme.separator}"
-      input_border_color = "#${theme.separator}"
-      main_text_color = "#${theme.foreground}"
-      apps_text_color = "#${theme.foreground}"
-      input_text_color = "#${theme.foreground}"
+      highlight_color = "#${theme.palette.accent}"
+      header_title_color = "#${theme.palette.accent}"
+      main_border_color = "#${theme.palette.separator}"
+      apps_border_color = "#${theme.palette.separator}"
+      input_border_color = "#${theme.palette.separator}"
+      main_text_color = "#${theme.palette.foreground}"
+      apps_text_color = "#${theme.palette.foreground}"
+      input_text_color = "#${theme.palette.foreground}"
 
       [keybinds]
       down = ["down", { key = "j", modifiers = "ctrl" }]

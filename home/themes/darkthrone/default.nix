@@ -11,29 +11,33 @@ in
 
   wallpaper = ./wallpaper.jpg;
 
-  accent = "8a8a8d";
-  foreground = "c1c1c1";
-  background = "121212";
-  surface = "1e1e1e";
-  surfaceLight = "333333";
-  separator = "505050";
-
-  btop = ./btop.theme;
-
-  ghostty = {
-    repo = blackMetalRepo;
-    themeFile = "extras/ghostty/darkthrone.lua";
+  palette = {
+    accent = "8a8a8d";
+    foreground = "c1c1c1";
+    background = "121212";
+    surface = "1e1e1e";
+    surfaceLight = "333333";
+    separator = "505050";
   };
 
-  neovim = {
-    plugin = blackMetalRepo;
+  apps = {
+    btop = ./btop.theme;
 
-    setup = ''
-      require("black-metal").setup({
-        theme = "darkthrone",
-        transparent = true,
-      })
-      require("black-metal").load()
-    '';
+    ghostty = {
+      repo = blackMetalRepo;
+      themeFile = "extras/ghostty/darkthrone.lua";
+    };
+
+    neovim = {
+      plugin = blackMetalRepo;
+
+      setup = ''
+        require("black-metal").setup({
+          theme = "darkthrone",
+          transparent = true,
+        })
+        require("black-metal").load()
+      '';
+    };
   };
 }

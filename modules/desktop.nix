@@ -11,7 +11,7 @@ in
       enable = true;
       extraOpts = {
         BrowserColorScheme = "dark";
-        BrowserThemeColor = "#${theme.background}";
+        BrowserThemeColor = "#${theme.palette.background}";
       };
     };
 

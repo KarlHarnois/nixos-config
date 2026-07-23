@@ -79,8 +79,8 @@ in
     };
 
     style = ''
-      @define-color foreground #${theme.accent};
-      @define-color background #${theme.surface};
+      @define-color foreground #${theme.palette.accent};
+      @define-color background #${theme.palette.surface};
 
       * {
         background-color: @background;

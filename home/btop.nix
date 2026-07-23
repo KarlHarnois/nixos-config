@@ -7,10 +7,10 @@ in
   programs.btop = {
     enable = true;
 
-    themes.darkthrone = theme.btop;
+    themes.custom = theme.apps.btop;
 
     settings = {
-      color_theme = "darkthrone";
+      color_theme = "custom";
       theme_background = false;
       vim_keys = true;
     };

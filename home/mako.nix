@@ -25,9 +25,9 @@ in
 
     settings = {
       font = "${theme.font} 11";
-      background-color = "#${theme.background}";
-      text-color = "#${theme.accent}";
-      border-color = "#${theme.accent}";
+      background-color = "#${theme.palette.background}";
+      text-color = "#${theme.palette.accent}";
+      border-color = "#${theme.palette.accent}";
       border-size = 2;
       border-radius = 0;
       width = 420;

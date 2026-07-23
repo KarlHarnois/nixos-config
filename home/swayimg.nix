@@ -2,6 +2,7 @@
 
 let
   theme = import ./theme.nix;
+  inherit (import ./themes/lib.nix) hexAlpha;
 in
 {
   home.packages = [ pkgs.swayimg ];
@@ -10,17 +11,17 @@ in
     force = true;
     text = ''
       [viewer]
-      window = #${theme.background}ff
+      window = ${hexAlpha theme.palette.background "ff"}
 
       [gallery]
-      window = #${theme.background}ff
-      background = #${theme.surface}ff
-      select = #${theme.surfaceLight}ff
-      border_color = #${theme.accent}ff
+      window = ${hexAlpha theme.palette.background "ff"}
+      background = ${hexAlpha theme.palette.surface "ff"}
+      select = ${hexAlpha theme.palette.surfaceLight "ff"}
+      border_color = ${hexAlpha theme.palette.accent "ff"}
 
       [font]
       name = ${theme.font}
-      color = #${theme.foreground}ff
+      color = ${hexAlpha theme.palette.foreground "ff"}
 
       [keys.viewer]
       Ctrl+Equal = zoom +10

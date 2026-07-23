@@ -1,7 +1,6 @@
 let
   theme = import ../theme.nix;
-
-  color = hex: alpha: "rgba(${hex}${alpha})";
+  inherit (import ../themes/lib.nix) rgba;
 in
 {
   programs.hyprlock = {
@@ -14,7 +13,7 @@ in
 
       background = {
         monitor = "";
-        color = color theme.background "ff";
+        color = rgba theme.palette.background "ff";
         path = "${theme.wallpaper}";
         blur_passes = 3;
       };
@@ -26,15 +25,15 @@ in
         halign = "center";
         valign = "center";
 
-        inner_color = color theme.accent "4d";
-        outer_color = color theme.foreground "80";
+        inner_color = rgba theme.palette.accent "4d";
+        outer_color = rgba theme.palette.foreground "80";
         outline_thickness = 4;
 
         font_family = theme.font;
-        font_color = color theme.foreground "ff";
+        font_color = rgba theme.palette.foreground "ff";
 
         placeholder_text = "Enter Password";
-        check_color = color theme.accent "ff";
+        check_color = rgba theme.palette.accent "ff";
         fail_text = "<i>$FAIL ($ATTEMPTS)</i>";
 
         rounding = 0;

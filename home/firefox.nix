@@ -13,42 +13,42 @@ let
   themedChrome = ''
     :root,
     #navigator-toolbox {
-      --toolbox-background-color: #${theme.background} !important;
-      --toolbar-background-color: #${theme.background} !important;
-      --lwt-accent-color: #${theme.background} !important;
-      --tab-background-color-selected: #${theme.surface} !important;
-      --toolbar-field-background-color: #${theme.surface} !important;
-      --input-bgcolor: #${theme.surface} !important;
-      --smartbar-background-color: #${theme.surface} !important;
-      --panel-background-color: #${theme.surface} !important;
-      --focus-outline-color: #${theme.accent} !important;
-      --urlbar-box-background-color: #${theme.surfaceLight} !important;
-      --urlbar-box-background-color-focus: #${theme.surfaceLight} !important;
-      --tabpanel-background-color: #${theme.background} !important;
+      --toolbox-background-color: #${theme.palette.background} !important;
+      --toolbar-background-color: #${theme.palette.background} !important;
+      --lwt-accent-color: #${theme.palette.background} !important;
+      --tab-background-color-selected: #${theme.palette.surface} !important;
+      --toolbar-field-background-color: #${theme.palette.surface} !important;
+      --input-bgcolor: #${theme.palette.surface} !important;
+      --smartbar-background-color: #${theme.palette.surface} !important;
+      --panel-background-color: #${theme.palette.surface} !important;
+      --focus-outline-color: #${theme.palette.accent} !important;
+      --urlbar-box-background-color: #${theme.palette.surfaceLight} !important;
+      --urlbar-box-background-color-focus: #${theme.palette.surfaceLight} !important;
+      --tabpanel-background-color: #${theme.palette.background} !important;
     }
 
     #navigator-toolbox,
     #TabsToolbar,
     #nav-bar {
-      background-color: #${theme.background} !important;
+      background-color: #${theme.palette.background} !important;
     }
 
     .tab-background[selected] {
-      background-color: #${theme.surface} !important;
+      background-color: #${theme.palette.surface} !important;
     }
 
     .urlbar-background,
     #searchbar {
-      background-color: #${theme.surface} !important;
+      background-color: #${theme.palette.surface} !important;
     }
 
     #tabbrowser-tabpanels,
     .browserContainer {
-      background: #${theme.background} !important;
+      background: #${theme.palette.background} !important;
     }
 
     #urlbar-searchmode-switcher {
-      background-color: #${theme.surfaceLight} !important;
+      background-color: #${theme.palette.surfaceLight} !important;
     }
   '';
 

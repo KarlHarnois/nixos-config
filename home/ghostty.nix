@@ -3,15 +3,15 @@
 let
   theme = import ./theme.nix;
 
-  themeRepo = pkgs.fetchFromGitHub theme.ghostty.repo;
+  themeRepo = pkgs.fetchFromGitHub theme.apps.ghostty.repo;
 in
 {
   programs.ghostty = {
     enable = true;
 
     settings = {
-      theme = "${themeRepo}/${theme.ghostty.themeFile}";
-      background = "#${theme.background}";
+      theme = "${themeRepo}/${theme.apps.ghostty.themeFile}";
+      background = "#${theme.palette.background}";
 
       font-family = theme.font;
       font-style = "Regular";
