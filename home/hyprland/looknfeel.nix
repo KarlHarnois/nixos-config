@@ -41,6 +41,13 @@ in
         match.class = "^(com.mitchellh.ghostty|local\\..+)$";
         opacity = "0.97 0.9";
       }
+      {
+        name = "floating-panels";
+        match.class = "^local\\.(bluetui|fsel|impala|wiremix)$";
+        float = true;
+        center = true;
+        size = "800 600";
+      }
     ];
   };
 }
