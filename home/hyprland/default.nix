@@ -26,6 +26,8 @@
           kb_layout = "us";
           kb_variant = "altgr-intl";
           kb_options = "ctrl:nocaps";
+
+          touchpad.scroll_factor = 0.4;
         };
 
         dwindle = {
