@@ -13,7 +13,7 @@
         ];
 
         postFixup = (old.postFixup or "") + ''
-          wrapProgram $out/bin/voxtype --prefix PATH : $out/bin
+          wrapProgram $out/bin/voxtype --prefix PATH : $out/bin:${final.playerctl}/bin
         '';
       });
     })
