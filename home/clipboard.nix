@@ -1,4 +1,4 @@
-{ theme, ... }:
+{ pkgs, theme, ... }:
 
 let
   inherit (theme.palette)
@@ -7,10 +7,21 @@ let
     surface
     separator
     ;
+
+  # Unreleased upstream fix: skip copies flagged x-kde-passwordManagerHint
+  dropSensitiveCopies = old: {
+    patches = (old.patches or [ ]) ++ [
+      (pkgs.fetchpatch {
+        url = "https://github.com/savedra1/clipse/commit/cd197d0c99543782f5d5aaecf6d4af0c6150f271.patch";
+        hash = "sha256-3PIspZqyihoZ3FAJxHsQkm9ysNYjoV1Dj5k83ENkyBM=";
+      })
+    ];
+  };
 in
 {
   services.clipse = {
     enable = true;
+    package = pkgs.clipse.overrideAttrs dropSensitiveCopies;
 
     imageDisplay.type = "kitty";
 
@@ -32,5 +43,11 @@ in
     };
   };
 
-  services.wl-clip-persist.enable = true;
+  services.wl-clip-persist = {
+    enable = true;
+    extraOptions = [
+      "--all-mime-type-regex"
+      "^(?!x-kde-passwordManagerHint).+"
+    ];
+  };
 }
