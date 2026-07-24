@@ -13,6 +13,7 @@
     ./chromium.nix
     ./claude-code.nix
     ./dark-mode.nix
+    ./direnv.nix
     ./firefox.nix
     ./fonts.nix
     ./fsel.nix
