@@ -26,6 +26,7 @@
     ./starship
     ./swayimg.nix
     ./tabiew.nix
+    ./voxtype.nix
     ./wallpaper.nix
     ./waybar.nix
     ./wiremix.nix

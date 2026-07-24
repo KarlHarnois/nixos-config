@@ -16,6 +16,14 @@ let
 
   bind = keys: bindKeys "${mod} + ${keys}";
 
+  bindKeysOnRelease = keys: dispatcher: {
+    _args = [
+      keys
+      (mkLuaInline dispatcher)
+      { release = true; }
+    ];
+  };
+
   launchOrFocus = {
     _var = mkLuaInline ''
       function(class, command)
@@ -85,6 +93,12 @@ let
     key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })''
   ) directionKeys;
 
+  dictationBinds = [
+    (bind "CTRL + X" ''hl.dsp.exec_cmd("voxtype record toggle")'')
+    (bindKeys "F9" ''hl.dsp.exec_cmd("voxtype record start")'')
+    (bindKeysOnRelease "F9" ''hl.dsp.exec_cmd("voxtype record stop")'')
+  ];
+
   workspaceBinds = lib.concatMap (
     i:
     let
@@ -136,6 +150,7 @@ in
     ++ focusBinds
     ++ swapBinds
     ++ resizeBinds
-    ++ workspaceBinds;
+    ++ workspaceBinds
+    ++ dictationBinds;
   };
 }

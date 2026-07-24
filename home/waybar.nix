@@ -1,10 +1,16 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   theme = import ./theme.nix;
 
   pinnedWorkspaceCount = 5;
   pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
+
+  voxtypeStatusStream = pkgs.writeShellScript "voxtype-status-stream" ''
+    trap 'kill 0' EXIT
+    ${pkgs.voxtype-onnx}/bin/voxtype status --follow --extended --format json \
+      | ${lib.getExe pkgs.jq} --unbuffered --compact-output '. + {alt: .class}'
+  '';
 in
 {
   programs.waybar = {
@@ -18,7 +24,10 @@ in
       height = 26;
 
       modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "clock" ];
+      modules-center = [
+        "clock"
+        "custom/voxtype"
+      ];
       modules-right = [ "battery" ];
 
       "hyprland/workspaces" = {
@@ -35,6 +44,18 @@ in
       clock = {
         format = "{:L%B %d, %H:%M}";
         tooltip = false;
+      };
+
+      "custom/voxtype" = {
+        exec = voxtypeStatusStream;
+        return-type = "json";
+        format = "{icon}";
+
+        format-icons = {
+          idle = "";
+          recording = "󰍬";
+          transcribing = "󰔟";
+        };
       };
 
       battery = {
@@ -110,6 +131,11 @@ in
 
       #workspaces button.empty {
         opacity: 0.5;
+      }
+
+      #custom-voxtype {
+        min-width: 12px;
+        margin-left: 7.5px;
       }
     '';
   };
