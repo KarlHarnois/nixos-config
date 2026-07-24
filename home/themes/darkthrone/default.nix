@@ -28,6 +28,12 @@ in
       themeFile = "extras/ghostty/darkthrone.lua";
     };
 
+    voxtype = {
+      meterLow = "c1c1c1";
+      meterMid = "888888";
+      meterHigh = "5f8787";
+    };
+
     neovim = {
       plugin = blackMetalRepo;
 

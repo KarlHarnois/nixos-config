@@ -46,6 +46,7 @@ let
   apps = require theme "theme" "apps";
   ghostty = require apps "theme.apps" "ghostty";
   neovim = require apps "theme.apps" "neovim";
+  voxtype = require apps "theme.apps" "voxtype";
 
   checks = [
     (requireString theme "theme" "font")
@@ -63,6 +64,11 @@ let
     (requireString ghostty "theme.apps.ghostty" "themeFile")
     (requireRepo neovim "theme.apps.neovim" "plugin")
     (requireString neovim "theme.apps.neovim" "setup")
+    (map (requireHex voxtype "theme.apps.voxtype") [
+      "meterLow"
+      "meterMid"
+      "meterHigh"
+    ])
   ];
 in
 builtins.deepSeq checks theme

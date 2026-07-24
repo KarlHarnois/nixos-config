@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -19,6 +20,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       nixvim,
       ...
@@ -29,6 +31,7 @@
 
       vmSystem = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit nixpkgs-unstable; };
         modules = [
           ./hosts/vm
           home-manager.nixosModules.home-manager
