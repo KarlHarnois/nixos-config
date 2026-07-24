@@ -12,6 +12,7 @@
     ./btop.nix
     ./chromium.nix
     ./claude-code.nix
+    ./clipboard.nix
     ./dark-mode.nix
     ./direnv.nix
     ./firefox.nix

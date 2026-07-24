@@ -131,6 +131,7 @@ in
       (bind "T" toggleFloatingCentered)
       (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
+      (bind "SHIFT + V" (launchOrFocusTui "clipse"))
       (bind "CTRL + L" ''hl.dsp.exec_cmd("loginctl lock-session")'')
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))

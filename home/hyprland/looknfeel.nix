@@ -42,7 +42,7 @@
       }
       {
         name = "floating-panels";
-        match.class = "^(local\\.(bluetui|fsel|impala|wiremix)|1[pP]assword)$";
+        match.class = "^(local\\.(bluetui|clipse|fsel|impala|wiremix)|1[pP]assword)$";
         float = true;
         center = true;
         size = "800 600";
