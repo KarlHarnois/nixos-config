@@ -1,8 +1,5 @@
 { theme, ... }:
 
-let
-  inherit (import ../../themes/lib.nix) rgb rgba;
-in
 {
   wayland.windowManager.hyprland.settings = {
     config = {
@@ -12,8 +9,8 @@ in
         border_size = 2;
 
         col = {
-          active_border = rgb theme.palette.accent;
-          inactive_border = rgba theme.palette.separator "aa";
+          active_border = theme.palette.accent.rgb;
+          inactive_border = theme.palette.separator.rgba "aa";
         };
       };
 
@@ -24,7 +21,7 @@ in
           enabled = true;
           range = 2;
           render_power = 3;
-          color = rgba theme.palette.surface "ee";
+          color = theme.palette.surface.rgba "ee";
         };
 
         blur = {

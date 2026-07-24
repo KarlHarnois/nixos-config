@@ -1,3 +1,5 @@
+{ username, ... }:
+
 {
   imports = [ ../../modules ];
 
@@ -9,7 +11,7 @@
     in
     {
       services.openssh.enable = true;
-      users.users.karl.initialPassword = "nixos";
+      users.users.${username}.initialPassword = "nixos";
 
       environment.shellAliases.rebuild =
         let

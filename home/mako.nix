@@ -23,9 +23,9 @@ in
 
     settings = {
       font = "${theme.font} 11";
-      background-color = "#${theme.palette.background}";
-      text-color = "#${theme.palette.accent}";
-      border-color = "#${theme.palette.accent}";
+      background-color = theme.palette.background.hex;
+      text-color = theme.palette.accent.hex;
+      border-color = theme.palette.accent.hex;
       border-size = 2;
       border-radius = 0;
       width = 420;

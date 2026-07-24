@@ -29,11 +29,13 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
+      username = "karl";
+
       theme = import ./themes/contract.nix (import ./themes/darkthrone);
 
       vmSystem = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit nixpkgs-unstable theme; };
+        specialArgs = { inherit nixpkgs-unstable theme username; };
         modules = [
           ./hosts/vm
           home-manager.nixosModules.home-manager
@@ -46,7 +48,7 @@
                 nixvim.homeModules.nixvim
                 ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
               ];
-              users.karl = ./home;
+              users.${username} = ./home;
             };
           }
         ];

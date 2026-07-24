@@ -1,8 +1,5 @@
 { pkgs, theme, ... }:
 
-let
-  inherit (import ../themes/lib.nix) hexAlpha;
-in
 {
   home.packages = [ pkgs.swayimg ];
 
@@ -10,17 +7,17 @@ in
     force = true;
     text = ''
       [viewer]
-      window = ${hexAlpha theme.palette.background "ff"}
+      window = ${theme.palette.background.hexAlpha "ff"}
 
       [gallery]
-      window = ${hexAlpha theme.palette.background "ff"}
-      background = ${hexAlpha theme.palette.surface "ff"}
-      select = ${hexAlpha theme.palette.surfaceLight "ff"}
-      border_color = ${hexAlpha theme.palette.accent "ff"}
+      window = ${theme.palette.background.hexAlpha "ff"}
+      background = ${theme.palette.surface.hexAlpha "ff"}
+      select = ${theme.palette.surfaceLight.hexAlpha "ff"}
+      border_color = ${theme.palette.accent.hexAlpha "ff"}
 
       [font]
       name = ${theme.font}
-      color = ${hexAlpha theme.palette.foreground "ff"}
+      color = ${theme.palette.foreground.hexAlpha "ff"}
 
       [keys.viewer]
       Ctrl+Equal = zoom +10

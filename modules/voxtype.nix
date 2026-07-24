@@ -1,4 +1,4 @@
-{ nixpkgs-unstable, ... }:
+{ nixpkgs-unstable, username, ... }:
 
 {
   nixpkgs.overlays = [
@@ -34,5 +34,5 @@
 
   hardware.uinput.enable = true;
 
-  users.users.karl.extraGroups = [ "uinput" ];
+  users.users.${username}.extraGroups = [ "uinput" ];
 }

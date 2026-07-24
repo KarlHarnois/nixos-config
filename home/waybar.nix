@@ -103,8 +103,8 @@ in
     };
 
     style = ''
-      @define-color accent #${theme.palette.accent};
-      @define-color surface #${theme.palette.surface};
+      @define-color accent ${theme.palette.accent.hex};
+      @define-color surface ${theme.palette.surface.hex};
 
       * {
         background-color: @surface;

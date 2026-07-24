@@ -2,8 +2,8 @@
 
 let
   colors = fg: bg: {
-    fg = "#${fg}";
-    bg = "#${bg}";
+    fg = fg.hex;
+    bg = bg.hex;
   };
 
   inherit (theme.palette)

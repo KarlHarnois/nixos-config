@@ -13,42 +13,42 @@ let
   themedChrome = ''
     :root,
     #navigator-toolbox {
-      --toolbox-background-color: #${theme.palette.background} !important;
-      --toolbar-background-color: #${theme.palette.background} !important;
-      --lwt-accent-color: #${theme.palette.background} !important;
-      --tab-background-color-selected: #${theme.palette.surface} !important;
-      --toolbar-field-background-color: #${theme.palette.surface} !important;
-      --input-bgcolor: #${theme.palette.surface} !important;
-      --smartbar-background-color: #${theme.palette.surface} !important;
-      --panel-background-color: #${theme.palette.surface} !important;
-      --focus-outline-color: #${theme.palette.accent} !important;
-      --urlbar-box-background-color: #${theme.palette.surfaceLight} !important;
-      --urlbar-box-background-color-focus: #${theme.palette.surfaceLight} !important;
-      --tabpanel-background-color: #${theme.palette.background} !important;
+      --toolbox-background-color: ${theme.palette.background.hex} !important;
+      --toolbar-background-color: ${theme.palette.background.hex} !important;
+      --lwt-accent-color: ${theme.palette.background.hex} !important;
+      --tab-background-color-selected: ${theme.palette.surface.hex} !important;
+      --toolbar-field-background-color: ${theme.palette.surface.hex} !important;
+      --input-bgcolor: ${theme.palette.surface.hex} !important;
+      --smartbar-background-color: ${theme.palette.surface.hex} !important;
+      --panel-background-color: ${theme.palette.surface.hex} !important;
+      --focus-outline-color: ${theme.palette.accent.hex} !important;
+      --urlbar-box-background-color: ${theme.palette.surfaceLight.hex} !important;
+      --urlbar-box-background-color-focus: ${theme.palette.surfaceLight.hex} !important;
+      --tabpanel-background-color: ${theme.palette.background.hex} !important;
     }
 
     #navigator-toolbox,
     #TabsToolbar,
     #nav-bar {
-      background-color: #${theme.palette.background} !important;
+      background-color: ${theme.palette.background.hex} !important;
     }
 
     .tab-background[selected] {
-      background-color: #${theme.palette.surface} !important;
+      background-color: ${theme.palette.surface.hex} !important;
     }
 
     .urlbar-background,
     #searchbar {
-      background-color: #${theme.palette.surface} !important;
+      background-color: ${theme.palette.surface.hex} !important;
     }
 
     #tabbrowser-tabpanels,
     .browserContainer {
-      background: #${theme.palette.background} !important;
+      background: ${theme.palette.background.hex} !important;
     }
 
     #urlbar-searchmode-switcher {
-      background-color: #${theme.palette.surfaceLight} !important;
+      background-color: ${theme.palette.surfaceLight.hex} !important;
     }
   '';
 

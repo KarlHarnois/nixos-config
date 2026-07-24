@@ -14,7 +14,7 @@ in
 
     settings = {
       theme = "${themeRepo}/${theme.apps.ghostty.themeFile}";
-      background = "#${theme.palette.background}";
+      background = theme.palette.background.hex;
 
       font-family = theme.font;
       font-style = "Regular";

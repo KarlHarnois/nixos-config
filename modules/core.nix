@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 
 {
   nixpkgs.config.allowUnfreePredicate =
@@ -19,7 +24,7 @@
 
   time.timeZone = "America/Montreal";
 
-  users.users.karl = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };

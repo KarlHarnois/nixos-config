@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  username,
+  ...
+}:
 
 {
   programs = {
@@ -8,13 +13,13 @@
       enable = true;
       extraOpts = {
         BrowserColorScheme = "dark";
-        BrowserThemeColor = "#${theme.palette.background}";
+        BrowserThemeColor = theme.palette.background.hex;
       };
     };
 
     _1password-gui = {
       enable = true;
-      polkitPolicyOwners = [ "karl" ];
+      polkitPolicyOwners = [ username ];
     };
   };
 
@@ -33,7 +38,7 @@
     settings = {
       initial_session = {
         command = "start-hyprland";
-        user = "karl";
+        user = username;
       };
       default_session.command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
     };

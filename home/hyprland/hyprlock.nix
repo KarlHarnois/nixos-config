@@ -1,8 +1,5 @@
 { theme, ... }:
 
-let
-  inherit (import ../../themes/lib.nix) rgba;
-in
 {
   programs.hyprlock = {
     enable = true;
@@ -14,7 +11,7 @@ in
 
       background = {
         monitor = "";
-        color = rgba theme.palette.background "ff";
+        color = theme.palette.background.rgba "ff";
         path = "${theme.wallpaper}";
         blur_passes = 3;
       };
@@ -26,15 +23,15 @@ in
         halign = "center";
         valign = "center";
 
-        inner_color = rgba theme.palette.accent "4d";
-        outer_color = rgba theme.palette.foreground "80";
+        inner_color = theme.palette.accent.rgba "4d";
+        outer_color = theme.palette.foreground.rgba "80";
         outline_thickness = 4;
 
         font_family = theme.font;
-        font_color = rgba theme.palette.foreground "ff";
+        font_color = theme.palette.foreground.rgba "ff";
 
         placeholder_text = "Enter Password";
-        check_color = rgba theme.palette.accent "ff";
+        check_color = theme.palette.accent.rgba "ff";
         fail_text = "<i>$FAIL ($ATTEMPTS)</i>";
 
         rounding = 0;

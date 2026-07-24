@@ -15,34 +15,34 @@ in
     theme = {
       mgr = {
         cwd = {
-          fg = "#${theme.palette.accent}";
+          fg = theme.palette.accent.hex;
           bold = true;
         };
-        border_style.fg = "#${theme.palette.separator}";
+        border_style.fg = theme.palette.separator.hex;
       };
 
       indicator = {
         parent = {
-          bg = "#${theme.palette.surfaceLight}";
+          bg = theme.palette.surfaceLight.hex;
           bold = true;
         };
         current = {
-          bg = "#${theme.palette.surfaceLight}";
+          bg = theme.palette.surfaceLight.hex;
           bold = true;
         };
         preview = {
-          bg = "#${theme.palette.surfaceLight}";
+          bg = theme.palette.surfaceLight.hex;
           bold = true;
         };
       };
 
       tabs = {
         active = {
-          fg = "#${theme.palette.foreground}";
+          fg = theme.palette.foreground.hex;
           bold = true;
         };
         inactive = {
-          fg = "#${theme.palette.accent}";
+          fg = theme.palette.accent.hex;
         };
         sep_inner = {
           open = "";
@@ -56,22 +56,22 @@ in
 
       mode = {
         normal_main = {
-          bg = "#${theme.palette.accent}";
-          fg = "#${theme.palette.background}";
+          bg = theme.palette.accent.hex;
+          fg = theme.palette.background.hex;
           bold = true;
         };
         normal_alt = {
-          bg = "#${theme.palette.surfaceLight}";
-          fg = "#${theme.palette.accent}";
+          bg = theme.palette.surfaceLight.hex;
+          fg = theme.palette.accent.hex;
         };
         select_main = {
-          bg = "#${theme.palette.surfaceLight}";
-          fg = "#${theme.palette.accent}";
+          bg = theme.palette.surfaceLight.hex;
+          fg = theme.palette.accent.hex;
           bold = true;
         };
         unset_main = {
-          bg = "#${theme.palette.surfaceLight}";
-          fg = "#${theme.palette.accent}";
+          bg = theme.palette.surfaceLight.hex;
+          fg = theme.palette.accent.hex;
           bold = true;
         };
       };
@@ -83,7 +83,7 @@ in
           {
             name = "nix";
             text = nixIcon;
-            fg = "#${theme.palette.accent}";
+            fg = theme.palette.accent.hex;
           }
         ];
 
@@ -91,12 +91,12 @@ in
           {
             "if" = "dir & hovered";
             text = folderOpenIcon;
-            fg = "#${theme.palette.accent}";
+            fg = theme.palette.accent.hex;
           }
           {
             "if" = "dir";
             text = folderIcon;
-            fg = "#${theme.palette.accent}";
+            fg = theme.palette.accent.hex;
           }
         ];
       };

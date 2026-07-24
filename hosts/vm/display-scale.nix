@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, username, ... }:
 
 # The host passes its monitor resolution and scale as hypr_res and hypr_scale
 # on the kernel cmdline (see the vm target in the Makefile). The mode is
@@ -24,7 +24,7 @@ let
   };
 in
 {
-  home-manager.users.karl.wayland.windowManager.hyprland.settings = {
+  home-manager.users.${username}.wayland.windowManager.hyprland.settings = {
     inherit hostDisplay;
 
     monitor = {
