@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  theme = import ./theme.nix;
-
   notificationHistory = pkgs.writeShellScriptBin "notification-history" ''
     history_file=$(${pkgs.coreutils}/bin/mktemp --suffix=.json)
     trap '${pkgs.coreutils}/bin/rm -f "$history_file"' EXIT

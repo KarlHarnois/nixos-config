@@ -1,6 +1,7 @@
+{ theme, ... }:
+
 let
-  theme = import ../theme.nix;
-  inherit (import ../themes/lib.nix) rgba;
+  inherit (import ../../themes/lib.nix) rgba;
 in
 {
   programs.hyprlock = {

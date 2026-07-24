@@ -1,6 +1,5 @@
-let
-  theme = import ./theme.nix;
-in
+{ theme, ... }:
+
 {
   services.hyprpaper = {
     enable = true;

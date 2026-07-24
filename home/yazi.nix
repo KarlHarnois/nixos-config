@@ -1,7 +1,7 @@
+{ theme, ... }:
+
 let
   glyph = builtins.fromJSON;
-
-  theme = import ./theme.nix;
 
   folderIcon = glyph ''"\ue5ff"'';
   folderOpenIcon = glyph ''"\ue5fe"'';

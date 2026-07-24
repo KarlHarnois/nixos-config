@@ -1,8 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  theme,
+  ...
+}:
 
 let
-  theme = import ./theme.nix;
-
   themeRepo = pkgs.fetchFromGitHub theme.apps.ghostty.repo;
 in
 {

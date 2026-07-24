@@ -1,8 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  theme,
+  ...
+}:
 
 let
-  theme = import ./theme.nix;
-
   pinnedWorkspaceCount = 5;
   pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
 

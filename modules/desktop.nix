@@ -1,8 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
-let
-  theme = import ../home/theme.nix;
-in
 {
   programs = {
     hyprland.enable = true;

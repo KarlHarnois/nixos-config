@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  theme = import ./theme.nix;
-
   parakeetModelName = "parakeet-tdt-0.6b-v2";
 
   parakeetModelFile =

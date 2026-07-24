@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  theme = import ./theme.nix;
-  inherit (import ./themes/lib.nix) hexAlpha;
+  inherit (import ../themes/lib.nix) hexAlpha;
 in
 {
   home.packages = [ pkgs.swayimg ];

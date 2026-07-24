@@ -1,6 +1,5 @@
-let
-  theme = import ./theme.nix;
-in
+{ theme, ... }:
+
 {
   xdg.configFile."btop/btop.conf".force = true;
 

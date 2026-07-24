@@ -29,9 +29,11 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
+      theme = import ./themes/contract.nix (import ./themes/darkthrone);
+
       vmSystem = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit nixpkgs-unstable; };
+        specialArgs = { inherit nixpkgs-unstable theme; };
         modules = [
           ./hosts/vm
           home-manager.nixosModules.home-manager
@@ -39,6 +41,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = { inherit theme; };
               sharedModules = [
                 nixvim.homeModules.nixvim
                 ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })

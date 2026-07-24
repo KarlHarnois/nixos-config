@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 let
-  theme = import ../theme.nix;
-
   trimTrailingWhitespaceOnSave = {
     event = "BufWritePre";
     pattern = "*";

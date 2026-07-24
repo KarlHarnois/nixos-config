@@ -1,6 +1,7 @@
+{ theme, ... }:
+
 let
-  theme = import ../theme.nix;
-  inherit (import ../themes/lib.nix) rgb rgba;
+  inherit (import ../../themes/lib.nix) rgb rgba;
 in
 {
   wayland.windowManager.hyprland.settings = {

@@ -1,8 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
-let
-  theme = import ./theme.nix;
-in
 {
   home.packages = [ pkgs.fsel ];
 
