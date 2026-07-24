@@ -66,6 +66,11 @@ let
     "layout.css.prefers-color-scheme.content-override" = 0;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   };
+
+  profileDefaults = {
+    settings = emptyStartAndNewTabPage // darkThemeSettings // neverShowBookmarksBar;
+    userChrome = themedChrome;
+  };
 in
 {
   programs.firefox = {
@@ -78,19 +83,13 @@ in
     };
 
     profiles = {
-      personal = {
+      personal = profileDefaults // {
         id = 0;
         isDefault = true;
-
-        settings = emptyStartAndNewTabPage // darkThemeSettings // neverShowBookmarksBar;
-        userChrome = themedChrome;
       };
 
-      work = {
+      work = profileDefaults // {
         id = 1;
-
-        settings = emptyStartAndNewTabPage // darkThemeSettings // neverShowBookmarksBar;
-        userChrome = themedChrome;
       };
     };
   };

@@ -103,12 +103,12 @@ in
     };
 
     style = ''
-      @define-color foreground #${theme.palette.accent};
-      @define-color background #${theme.palette.surface};
+      @define-color accent #${theme.palette.accent};
+      @define-color surface #${theme.palette.surface};
 
       * {
-        background-color: @background;
-        color: @foreground;
+        background-color: @surface;
+        color: @accent;
 
         border: none;
         border-radius: 0;

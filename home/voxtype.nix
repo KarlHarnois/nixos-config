@@ -30,14 +30,17 @@ in
     force = true;
   };
 
-  xdg.configFile."voxtype/theme/colors.toml".text = ''
-    background = "#${theme.palette.background}"
-    foreground = "#${theme.palette.foreground}"
-    accent = "#${theme.palette.accent}"
-    color1 = "#${theme.apps.voxtype.meterHigh}"
-    color2 = "#${theme.apps.voxtype.meterLow}"
-    color3 = "#${theme.apps.voxtype.meterMid}"
-  '';
+  xdg.configFile."voxtype/theme/colors.toml" = {
+    force = true;
+    text = ''
+      background = "#${theme.palette.background}"
+      foreground = "#${theme.palette.foreground}"
+      accent = "#${theme.palette.accent}"
+      color1 = "#${theme.apps.voxtype.meterHigh}"
+      color2 = "#${theme.apps.voxtype.meterLow}"
+      color3 = "#${theme.apps.voxtype.meterMid}"
+    '';
+  };
 
   xdg.configFile."voxtype/config.toml" = {
     force = true;

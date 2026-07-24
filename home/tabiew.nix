@@ -1,5 +1,46 @@
 { pkgs, theme, ... }:
 
+let
+  colors = fg: bg: {
+    fg = "#${fg}";
+    bg = "#${bg}";
+  };
+
+  inherit (theme.palette)
+    accent
+    background
+    foreground
+    surface
+    separator
+    ;
+
+  customTheme = {
+    table_header = colors accent background;
+    table_headers = [ (colors accent background) ];
+    rows = [
+      (colors foreground background)
+      (colors foreground surface)
+    ];
+    row_highlight = colors background accent;
+    table_tags = [
+      (colors background accent)
+      (colors background separator)
+    ];
+    block = colors separator background;
+    block_tag = colors background accent;
+    text = colors foreground background;
+    text_highlighted = colors foreground separator;
+    subtext = colors accent background;
+    error = colors background foreground;
+    gutter = colors separator background;
+    chart = [
+      (colors accent background)
+      (colors foreground background)
+    ];
+  };
+
+  tomlFormat = pkgs.formats.toml { };
+in
 {
   home.packages = [ pkgs.tabiew ];
 
@@ -12,70 +53,6 @@
 
   xdg.configFile."tabiew/theme.toml" = {
     force = true;
-    text = ''
-      [table_header]
-      fg = "#${theme.palette.accent}"
-      bg = "#${theme.palette.background}"
-
-      [[table_headers]]
-      fg = "#${theme.palette.accent}"
-      bg = "#${theme.palette.background}"
-
-      [[rows]]
-      fg = "#${theme.palette.foreground}"
-      bg = "#${theme.palette.background}"
-
-      [[rows]]
-      fg = "#${theme.palette.foreground}"
-      bg = "#${theme.palette.surface}"
-
-      [row_highlight]
-      fg = "#${theme.palette.background}"
-      bg = "#${theme.palette.accent}"
-
-      [[table_tags]]
-      fg = "#${theme.palette.background}"
-      bg = "#${theme.palette.accent}"
-
-      [[table_tags]]
-      fg = "#${theme.palette.background}"
-      bg = "#${theme.palette.separator}"
-
-      [block]
-      fg = "#${theme.palette.separator}"
-      bg = "#${theme.palette.background}"
-
-      [block_tag]
-      fg = "#${theme.palette.background}"
-      bg = "#${theme.palette.accent}"
-
-      [text]
-      fg = "#${theme.palette.foreground}"
-      bg = "#${theme.palette.background}"
-
-      [text_highlighted]
-      fg = "#${theme.palette.foreground}"
-      bg = "#${theme.palette.separator}"
-
-      [subtext]
-      fg = "#${theme.palette.accent}"
-      bg = "#${theme.palette.background}"
-
-      [error]
-      fg = "#${theme.palette.background}"
-      bg = "#${theme.palette.foreground}"
-
-      [gutter]
-      fg = "#${theme.palette.separator}"
-      bg = "#${theme.palette.background}"
-
-      [[chart]]
-      fg = "#${theme.palette.accent}"
-      bg = "#${theme.palette.background}"
-
-      [[chart]]
-      fg = "#${theme.palette.foreground}"
-      bg = "#${theme.palette.background}"
-    '';
+    source = tomlFormat.generate "tabiew-theme.toml" customTheme;
   };
 }
