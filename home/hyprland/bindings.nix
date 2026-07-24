@@ -24,6 +24,25 @@ let
     ];
   };
 
+  bindKeysWhileHeld = keys: dispatcher: {
+    _args = [
+      keys
+      (mkLuaInline dispatcher)
+      {
+        locked = true;
+        repeating = true;
+      }
+    ];
+  };
+
+  bindKeysEvenLocked = keys: dispatcher: {
+    _args = [
+      keys
+      (mkLuaInline dispatcher)
+      { locked = true; }
+    ];
+  };
+
   launchOrFocus = {
     _var = mkLuaInline ''
       function(class, command)
@@ -93,6 +112,19 @@ let
     key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })''
   ) directionKeys;
 
+  hardwareKeyBinds = [
+    (bindKeysWhileHeld "XF86AudioRaiseVolume" ''hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")'')
+    (bindKeysWhileHeld "XF86AudioLowerVolume" ''hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")'')
+    (bindKeysEvenLocked "XF86AudioMute" ''hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")'')
+    (bindKeysEvenLocked "XF86AudioMicMute" ''hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")'')
+    (bindKeysWhileHeld "XF86MonBrightnessUp" ''hl.dsp.exec_cmd("brightnessctl --exponent=4 --min-value=2 set 5%+")'')
+    (bindKeysWhileHeld "XF86MonBrightnessDown" ''hl.dsp.exec_cmd("brightnessctl --exponent=4 --min-value=2 set 5%-")'')
+    (bindKeysEvenLocked "XF86AudioPlay" ''hl.dsp.exec_cmd("playerctl play-pause")'')
+    (bindKeysEvenLocked "XF86AudioPause" ''hl.dsp.exec_cmd("playerctl play-pause")'')
+    (bindKeysEvenLocked "XF86AudioNext" ''hl.dsp.exec_cmd("playerctl next")'')
+    (bindKeysEvenLocked "XF86AudioPrev" ''hl.dsp.exec_cmd("playerctl previous")'')
+  ];
+
   dictationBinds = [
     (bind "CTRL + X" ''hl.dsp.exec_cmd("voxtype record toggle")'')
     (bindKeys "F9" ''hl.dsp.exec_cmd("voxtype record start")'')
@@ -152,6 +184,7 @@ in
     ++ swapBinds
     ++ resizeBinds
     ++ workspaceBinds
-    ++ dictationBinds;
+    ++ dictationBinds
+    ++ hardwareKeyBinds;
   };
 }

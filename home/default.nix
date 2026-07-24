@@ -3,8 +3,10 @@
 {
   home.packages = [
     pkgs.bluetui
+    pkgs.brightnessctl
     pkgs.cliamp
     pkgs.impala
+    pkgs.playerctl
   ];
 
   imports = [
