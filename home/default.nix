@@ -11,6 +11,7 @@
 
   imports = [
     ./bash.nix
+    ./bat.nix
     ./btop.nix
     ./chromium.nix
     ./claude-code.nix
