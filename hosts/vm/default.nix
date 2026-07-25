@@ -1,8 +1,6 @@
 { username, ... }:
 
 {
-  imports = [ ../../modules ];
-
   networking.hostName = "nixos-vm";
 
   virtualisation.vmVariant =

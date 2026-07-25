@@ -33,24 +33,30 @@
 
       theme = import ./themes/contract.nix (import ./themes/darkthrone);
 
+      desktop = {
+        imports = [
+          ./modules
+          home-manager.nixosModules.home-manager
+        ];
+
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { inherit theme; };
+          sharedModules = [
+            nixvim.homeModules.nixvim
+            ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
+          ];
+          users.${username} = ./home;
+        };
+      };
+
       vmSystem = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit nixpkgs-unstable theme username; };
         modules = [
+          desktop
           ./hosts/vm
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit theme; };
-              sharedModules = [
-                nixvim.homeModules.nixvim
-                ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
-              ];
-              users.${username} = ./home;
-            };
-          }
         ];
       };
 
