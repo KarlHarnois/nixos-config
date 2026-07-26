@@ -66,6 +66,7 @@
       packages.${system} = {
         vm = vmRunner;
         vmToplevel = vmSystem.config.virtualisation.vmVariant.system.build.toplevel;
+        l2tp-commands = pkgs.callPackage ./modules/l2tp-client/commands.nix { };
       };
 
       formatter.${system} = pkgs.nixfmt-tree;

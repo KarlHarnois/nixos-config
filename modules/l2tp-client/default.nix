@@ -3,8 +3,8 @@
 let
   stateDir = "/var/lib/l2tp";
 
-  # Declaring connections here would put the gateway address and the PSK in the
-  # world-readable Nix store.
+  commands = pkgs.callPackage ./commands.nix { };
+
   daemonConf = pkgs.writeText "strongswan.conf" ''
     charon {
       plugins {
@@ -22,7 +22,10 @@ in
 {
   boot.kernelModules = [ "l2tp_ppp" ];
 
-  environment.systemPackages = [ pkgs.strongswan ];
+  environment.systemPackages = [
+    pkgs.strongswan
+    commands
+  ];
 
   systemd.tmpfiles.rules = [ "d ${stateDir} 0700 root root -" ];
 
