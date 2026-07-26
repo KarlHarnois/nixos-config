@@ -22,12 +22,16 @@ in
 {
   boot.kernelModules = [ "l2tp_ppp" ];
 
-  environment.systemPackages = [
-    pkgs.strongswan
-    commands
-  ];
+  environment = {
+    systemPackages = [
+      pkgs.strongswan
+      commands
+    ];
 
-  systemd.tmpfiles.rules = [ "d ${stateDir} 0700 root root -" ];
+    etc."strongswan.conf".source = daemonConf;
+  };
+
+  systemd.tmpfiles.rules = [ "d ${stateDir} 0755 root root -" ];
 
   systemd.services = {
     strongswan = {
@@ -41,7 +45,6 @@ in
         pkgs.kmod
         pkgs.util-linux
       ];
-      environment.STRONGSWAN_CONF = daemonConf;
       unitConfig.ConditionPathExists = "${stateDir}/ipsec.conf";
       serviceConfig.ExecStart = "${pkgs.strongswan}/sbin/ipsec start --nofork";
     };
