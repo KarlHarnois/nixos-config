@@ -8,6 +8,12 @@ let
   daemonConf = pkgs.writeText "strongswan.conf" ''
     charon {
       plugins {
+        # xl2tpd is IPv4 only, so an IPv6 IKE_SA would leave the L2TP traffic
+        # outside the negotiated policy and the tunnel would never come up.
+        socket-default {
+          use_ipv6 = no
+        }
+
         stroke {
           secrets_file = ${stateDir}/ipsec.secrets
         }
