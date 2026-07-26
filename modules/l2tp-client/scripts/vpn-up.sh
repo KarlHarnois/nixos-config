@@ -38,23 +38,29 @@ route_host() {
     return
   fi
 
-  while IFS= read -r address; do
+  local resolved
+  mapfile -t resolved <<<"$addresses"
+
+  for address in "${resolved[@]}"; do
     if [ -n "$address" ]; then
       as_root ip route replace "$address/32" dev "$interface" || true
       echo "$address" | as_root tee -a "$ROUTE_STATE" >/dev/null
     fi
-  done <<<"$addresses"
+  done
 }
 
 install_split_routes() {
   echo "[+] $interface is ready; installing split-tunnel routes..."
   as_root sh -c ": >'$ROUTE_STATE'"
 
-  while IFS= read -r host; do
+  local hosts
+  mapfile -t hosts <"$STATE_DIR/routed-hosts"
+
+  for host in "${hosts[@]}"; do
     if [ -n "$host" ]; then
       route_host "$host"
     fi
-  done <"$STATE_DIR/routed-hosts"
+  done
 }
 
 verify_split_routes() {

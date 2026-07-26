@@ -6,11 +6,14 @@ remove_split_routes() {
     return
   fi
 
-  while IFS= read -r address; do
+  local addresses
+  mapfile -t addresses <"$ROUTE_STATE"
+
+  for address in "${addresses[@]}"; do
     if [ -n "$address" ]; then
       as_root ip route del "$address/32" dev "$interface" >/dev/null 2>&1 || true
     fi
-  done <"$ROUTE_STATE"
+  done
 
   as_root rm -f "$ROUTE_STATE"
 }
