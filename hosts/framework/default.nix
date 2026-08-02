@@ -6,8 +6,13 @@
   networking.hostName = "framework";
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
+      efi.canTouchEfiVariables = true;
+    };
     kernelModules = [ "kvm-intel" ];
   };
 
