@@ -22,10 +22,10 @@ start_l2tp_session() {
 }
 
 report_unusable_interface() {
-  echo "[✘] $interface never became usable (no IPv4). Dumping recent logs..." >&2
+  echo "[✘] $INTERFACE never became usable (no IPv4). Dumping recent logs..." >&2
   as_root journalctl -u xl2tpd -n 200 --no-pager || true
   pgrep -a pppd || true
-  ip -4 addr show dev "$interface" 2>/dev/null || true
+  ip -4 addr show dev "$INTERFACE" 2>/dev/null || true
   exit 1
 }
 
@@ -43,15 +43,15 @@ route_host() {
 
   for address in "${resolved[@]}"; do
     if [ -n "$address" ]; then
-      as_root ip route replace "$address/32" dev "$interface" || true
+      as_root ip route replace "$address/32" dev "$INTERFACE" || true
       echo "$address" | as_root tee -a "$ROUTE_STATE" >/dev/null
     fi
   done
 }
 
 install_split_routes() {
-  echo "[+] $interface is ready; installing split-tunnel routes..."
-  as_root sh -c ": >'$ROUTE_STATE'"
+  echo "[+] $INTERFACE is ready; installing split-tunnel routes..."
+  as_root truncate -s 0 "$ROUTE_STATE"
 
   local hosts
   mapfile -t hosts <"$STATE_DIR/routed-hosts"
@@ -66,8 +66,8 @@ install_split_routes() {
 verify_split_routes() {
   echo "[+] Verifying split routes installed..."
 
-  if ! ip route show dev "$interface" | grep -q .; then
-    echo "[✘] No routes installed on $interface; split tunnel is NOT active." >&2
+  if ! ip route show dev "$INTERFACE" | grep -q .; then
+    echo "[✘] No routes installed on $INTERFACE; split tunnel is NOT active." >&2
     exit 1
   fi
 }
@@ -77,7 +77,7 @@ start_ipsec
 clear_stale_session
 start_l2tp_session
 
-echo "[+] Waiting for $interface to exist and have an IPv4 address..."
+echo "[+] Waiting for $INTERFACE to exist and have an IPv4 address..."
 wait_until 60 interface_has_address || report_unusable_interface
 
 install_split_routes

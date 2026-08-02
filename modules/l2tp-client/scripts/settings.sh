@@ -8,6 +8,4 @@ require_configuration() {
 
   # shellcheck source=/dev/null
   . "$STATE_DIR/settings"
-
-  interface="${PPP_IFACE:-$INTERFACE}"
 }

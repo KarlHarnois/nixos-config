@@ -22,8 +22,8 @@ route="$(ip route get "$address")"
 
 echo "$host → $address"
 
-if echo "$route" | grep -q "dev $interface"; then
-  echo "✅ routed via VPN ($interface)"
+if echo "$route" | grep -q "dev $INTERFACE"; then
+  echo "✅ routed via VPN ($INTERFACE)"
 else
   echo "❌ not routed via VPN"
 fi

@@ -21,12 +21,12 @@ end_l2tp_session() {
 }
 
 interface_has_address() {
-  ip link show "$interface" >/dev/null 2>&1 &&
-    ip -4 addr show dev "$interface" | grep -q " inet "
+  ip link show "$INTERFACE" >/dev/null 2>&1 &&
+    ip -4 addr show dev "$INTERFACE" | grep -q " inet "
 }
 
 interface_is_gone() {
-  ! ip link show "$interface" >/dev/null 2>&1
+  ! ip link show "$INTERFACE" >/dev/null 2>&1
 }
 
 wait_until() {

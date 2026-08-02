@@ -11,7 +11,7 @@ remove_split_routes() {
 
   for address in "${addresses[@]}"; do
     if [ -n "$address" ]; then
-      as_root ip route del "$address/32" dev "$interface" >/dev/null 2>&1 || true
+      as_root ip route del "$address/32" dev "$INTERFACE" >/dev/null 2>&1 || true
     fi
   done
 
@@ -29,7 +29,7 @@ echo "[+] Disconnecting L2TP/PPP session..."
 end_l2tp_session
 
 wait_until 10 interface_is_gone ||
-  echo "[!] $interface still present after disconnect; continuing cleanup"
+  echo "[!] $INTERFACE still present after disconnect; continuing cleanup"
 
 remove_split_routes
 tear_down_ipsec
