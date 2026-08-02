@@ -11,6 +11,7 @@
     builtins.elem (lib.getName pkg) [
       "1password"
       "claude-code"
+      "parsec-bin"
     ];
 
   networking.wireless.iwd = {
