@@ -94,11 +94,6 @@ in
 
         interval = 5;
         tooltip = false;
-
-        states = {
-          warning = 20;
-          critical = 10;
-        };
       };
     };
 
