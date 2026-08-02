@@ -19,6 +19,11 @@
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,6 +34,7 @@
       home-manager,
       nixvim,
       nixos-hardware,
+      disko,
       ...
     }:
     let
@@ -68,16 +74,20 @@
 
       vmRunner = vmSystem.config.system.build.vm;
 
-      laptopConfig =
-        (nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./modules/laptop.nix
-            nixos-hardware.nixosModules.framework-intel-core-ultra-series1
-          ];
-        }).config;
+      frameworkSystem = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit nixpkgs-unstable theme username; };
+        modules = [
+          desktop
+          ./hosts/framework
+          disko.nixosModules.disko
+          nixos-hardware.nixosModules.framework-intel-core-ultra-series1
+        ];
+      };
     in
     {
+      nixosConfigurations.framework = frameworkSystem;
+
       packages.${system} = {
         vm = vmRunner;
         vmToplevel = vmSystem.config.virtualisation.vmVariant.system.build.toplevel;
@@ -89,11 +99,7 @@
       checks.${system} = {
         vm = vmRunner;
 
-        laptop =
-          assert nixpkgs.lib.assertMsg (
-            !laptopConfig.services.tlp.enable
-          ) "power-profiles-daemon must suppress the TLP default from nixos-hardware";
-          pkgs.runCommand "check-laptop" { } "touch $out";
+        framework = frameworkSystem.config.system.build.toplevel;
 
         formatting = pkgs.runCommand "check-formatting" { nativeBuildInputs = [ pkgs.nixfmt ]; } ''
           nixfmt --check $(find ${self} -name '*.nix')
