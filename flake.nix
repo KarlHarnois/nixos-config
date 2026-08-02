@@ -14,6 +14,11 @@
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +28,7 @@
       nixpkgs-unstable,
       home-manager,
       nixvim,
+      nixos-hardware,
       ...
     }:
     let
@@ -61,6 +67,15 @@
       };
 
       vmRunner = vmSystem.config.system.build.vm;
+
+      laptopConfig =
+        (nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./modules/laptop.nix
+            nixos-hardware.nixosModules.framework-intel-core-ultra-series1
+          ];
+        }).config;
     in
     {
       packages.${system} = {
@@ -73,6 +88,12 @@
 
       checks.${system} = {
         vm = vmRunner;
+
+        laptop =
+          assert nixpkgs.lib.assertMsg (
+            !laptopConfig.services.tlp.enable
+          ) "power-profiles-daemon must suppress the TLP default from nixos-hardware";
+          pkgs.runCommand "check-laptop" { } "touch $out";
 
         formatting = pkgs.runCommand "check-formatting" { nativeBuildInputs = [ pkgs.nixfmt ]; } ''
           nixfmt --check $(find ${self} -name '*.nix')

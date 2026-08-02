@@ -22,6 +22,8 @@
 
   hardware.bluetooth.enable = true;
 
+  zramSwap.enable = true;
+
   time.timeZone = "America/Montreal";
 
   users.users.${username} = {
