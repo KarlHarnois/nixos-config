@@ -5,6 +5,7 @@
     pkgs.bluetui
     pkgs.brightnessctl
     pkgs.cliamp
+    pkgs.gimp
     pkgs.impala
     pkgs.playerctl
   ];
