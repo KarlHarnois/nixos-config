@@ -47,6 +47,13 @@
         center = true;
         size = "800 600";
       }
+      {
+        name = "power-menu";
+        match.class = "^local\\.power-menu$";
+        float = true;
+        center = true;
+        size = "400 260";
+      }
     ];
   };
 }

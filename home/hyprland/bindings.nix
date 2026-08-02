@@ -112,6 +112,11 @@ let
     key: direction: bind "SHIFT + ${key}" ''hl.dsp.window.swap({ direction = "${direction}" })''
   ) directionKeys;
 
+  sessionBinds = [
+    (bind "ALT + Space" (launchOrFocusTui "power-menu"))
+    (bind "SHIFT + E" "hl.dsp.exit()")
+  ];
+
   hardwareKeyBinds = [
     (bindKeysWhileHeld "XF86AudioRaiseVolume" ''hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")'')
     (bindKeysWhileHeld "XF86AudioLowerVolume" ''hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")'')
@@ -152,7 +157,6 @@ in
       (bind "Space" (launchOrFocusTui "fsel"))
       (bind "W" "hl.dsp.window.close()")
       (bind "F" "hl.dsp.window.fullscreen()")
-      (bind "SHIFT + E" "hl.dsp.exit()")
       (bind "N" ''hl.dsp.layout("togglesplit")'')
       (bind "SHIFT + S" ''hl.dsp.layout("swapsplit")'')
       (bind "SHIFT + W" ''hl.dsp.workspace.move({ monitor = "+1" })'')
@@ -164,7 +168,6 @@ in
       (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
       (bind "SHIFT + V" (launchOrFocusTui "clipse"))
-      (bind "CTRL + L" ''hl.dsp.exec_cmd("loginctl lock-session")'')
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
       (bind "slash" ''launchOrFocus("1Password", "1password")'')
@@ -185,6 +188,7 @@ in
     ++ resizeBinds
     ++ workspaceBinds
     ++ dictationBinds
+    ++ sessionBinds
     ++ hardwareKeyBinds;
   };
 }

@@ -27,6 +27,7 @@
     ./mako.nix
     ./nvim
     ./ghostty.nix
+    ./power-menu
     ./readline.nix
     ./screenshot.nix
     ./starship
