@@ -8,4 +8,15 @@ require_configuration() {
 
   # shellcheck source=/dev/null
   . "$STATE_DIR/settings"
+
+  require_setting IPSEC_CONNECTION
+  require_setting L2TP_TUNNEL
+  require_setting INTERFACE
+}
+
+require_setting() {
+  if [ -z "${!1:-}" ]; then
+    echo "[✘] $1 is not set in $STATE_DIR/settings; re-run vpn-install" >&2
+    exit 1
+  fi
 }
