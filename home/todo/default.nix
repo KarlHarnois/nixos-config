@@ -8,20 +8,20 @@
 let
   todoRoot = "${config.xdg.userDirs.documents}/Todo";
   neovim = lib.getExe config.programs.nixvim.build.package;
-  hideChrome = "setlocal nonumber norelativenumber noswapfile signcolumn=no statuscolumn=";
+  hideChrome = "autocmd BufReadPre *.todo.md setlocal nonumber norelativenumber noswapfile signcolumn=no statuscolumn=";
 
   todo = pkgs.writeShellApplication {
     name = "todo";
 
     text = ''
+      cd "${todoRoot}"
+
       case "''${1:-}" in
         work)
-          cd "${todoRoot}/Work"
-          exec ${neovim} main.todo.md -c '${hideChrome}'
+          exec ${neovim} --cmd '${hideChrome}' Work/main.todo.md
           ;;
         personal)
-          cd "${todoRoot}/Personal"
-          exec ${neovim} main.todo.md -c '${hideChrome}'
+          exec ${neovim} --cmd '${hideChrome}' Personal/main.todo.md
           ;;
         *)
           echo "usage: todo work|personal" >&2
