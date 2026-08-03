@@ -7,7 +7,6 @@
     pkgs.cliamp
     pkgs.gimp
     pkgs.impala
-    pkgs.parsec-bin
     pkgs.playerctl
   ];
 
