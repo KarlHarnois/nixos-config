@@ -8,6 +8,7 @@
   hardware = {
     enableRedistributableFirmware = true;
     cpu.intel.npu.enable = true;
+    framework.laptop13.audioEnhancement.enable = true;
   };
 
   console = {
