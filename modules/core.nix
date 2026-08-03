@@ -33,6 +33,8 @@
 
   zramSwap.enable = true;
 
+  boot.tmp.cleanOnBoot = true;
+
   time.timeZone = "America/Montreal";
 
   users.users.${username} = {
