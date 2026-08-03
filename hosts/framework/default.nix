@@ -40,6 +40,12 @@
       enable = true;
       criticalPowerAction = "PowerOff";
     };
+
+    # Lithium cells age from sitting at a high charge and this laptop is plugged
+    # in nearly all the time. The attribute comes from framework-laptop-kmod.
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="power_supply", KERNEL=="BAT1", ATTR{charge_control_end_threshold}="80"
+    '';
   };
 
   assertions = [
