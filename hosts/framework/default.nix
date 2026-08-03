@@ -27,6 +27,7 @@
     power-profiles-daemon.enable = true;
     thermald.enable = true;
     fprintd.enable = false;
+    hardware.bolt.enable = true;
 
     upower = {
       enable = true;
