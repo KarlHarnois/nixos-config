@@ -27,9 +27,13 @@ in
   home-manager.users.${username}.wayland.windowManager.hyprland.settings = {
     inherit hostDisplay;
 
-    monitor = {
-      mode = lib.mkForce (mkLuaInline ''hostDisplay.mode or "preferred"'');
-      scale = lib.mkForce (mkLuaInline "hostDisplay.scale or 1");
-    };
+    monitor = lib.mkForce [
+      {
+        output = "";
+        mode = mkLuaInline ''hostDisplay.mode or "preferred"'';
+        position = "auto";
+        scale = mkLuaInline "hostDisplay.scale or 1";
+      }
+    ];
   };
 }

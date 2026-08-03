@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  username,
-  ...
-}:
+{ config, ... }:
 
 {
   imports = [ ./disk.nix ];
@@ -33,9 +28,6 @@
       criticalPowerAction = "PowerOff";
     };
   };
-
-  home-manager.users.${username}.wayland.windowManager.hyprland.settings.monitor.scale =
-    lib.mkForce 2;
 
   assertions = [
     {

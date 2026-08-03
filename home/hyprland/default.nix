@@ -6,6 +6,7 @@
     ./cursor.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./monitors.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -14,13 +15,6 @@
     portalPackage = null;
 
     settings = {
-      monitor = {
-        output = "";
-        mode = "preferred";
-        position = "auto";
-        scale = 1;
-      };
-
       config = {
         input = {
           kb_layout = "us";
