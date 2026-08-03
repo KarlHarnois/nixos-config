@@ -26,6 +26,7 @@ in
 {
   imports = [
     ./blink-cmp.nix
+    ./checkmate.nix
     ./lsp.nix
     ./lualine.nix
     ./mini.nix
