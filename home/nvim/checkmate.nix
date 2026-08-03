@@ -4,8 +4,6 @@
   programs.nixvim = {
     extraPlugins = [ pkgs.vimPlugins.checkmate-nvim ];
 
-    extraConfigLua = ''
-      require("checkmate").setup()
-    '';
+    extraConfigLua = builtins.readFile ./checkmate.lua;
   };
 }
