@@ -9,6 +9,8 @@ if [ -z "$address" ]; then
   exit 1
 fi
 
+# /gfx:AVC444 needs AVC444ModePreferred and AVCHardwareEncodePreferred set to 1 on the
+# Windows host under HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services.
 exec xfreerdp \
   /v:"$address" \
   /u:"$ACCOUNT" \
