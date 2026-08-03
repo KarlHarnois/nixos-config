@@ -34,5 +34,7 @@
   systemd.user.tmpfiles.rules = [
     "d ${config.xdg.userDirs.projects}/Personal"
     "d ${config.xdg.userDirs.projects}/Work"
+    "d ${config.xdg.userDirs.documents}/Todo/Personal"
+    "d ${config.xdg.userDirs.documents}/Todo/Work"
   ];
 }

@@ -57,8 +57,11 @@ let
       end'';
   };
 
-  launchOrFocusTui =
-    app: ''launchOrFocus("local.${app}", "${terminal} --class=local.${app} -e ${app}")'';
+  launchOrFocusTuiCommand =
+    class: command:
+    ''launchOrFocus("local.${class}", "${terminal} --class=local.${class} -e ${command}")'';
+
+  launchOrFocusTui = app: launchOrFocusTuiCommand app app;
 
   webappClass =
     url:
@@ -164,6 +167,8 @@ in
       (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
       (bind "SHIFT + V" (launchOrFocusTui "clipse"))
+      (bind "SHIFT + X" (launchOrFocusTuiCommand "todo-work" "todo work"))
+      (bind "SHIFT + Z" (launchOrFocusTuiCommand "todo-personal" "todo personal"))
       (bind "SHIFT + D" (launchOrFocusWebapp "https://discord.com/app"))
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
       (bind "slash" ''launchOrFocus("1Password", "1password")'')

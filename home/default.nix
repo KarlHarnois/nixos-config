@@ -34,6 +34,7 @@
     ./starship
     ./swayimg.nix
     ./tabiew.nix
+    ./todo
     ./voxtype.nix
     ./wallpaper.nix
     ./waybar.nix
