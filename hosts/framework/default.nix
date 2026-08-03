@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [ ./disk.nix ];
@@ -8,6 +8,12 @@
   hardware = {
     enableRedistributableFirmware = true;
     cpu.intel.npu.enable = true;
+  };
+
+  console = {
+    font = "ter-v32n";
+    packages = [ pkgs.terminus_font ];
+    earlySetup = true;
   };
 
   boot = {
