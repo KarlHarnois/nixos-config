@@ -13,6 +13,8 @@ exec xfreerdp \
   /v:"$address" \
   /u:"$ACCOUNT" \
   /d:"$DOMAIN" \
+  /gfx:AVC444 \
+  +async-update \
   /dynamic-resolution \
   /clipboard \
   /sound:sys:pulse \
