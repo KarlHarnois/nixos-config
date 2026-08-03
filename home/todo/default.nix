@@ -21,7 +21,7 @@ let
           ;;
         personal)
           cd "${todoRoot}/Personal"
-          exec ${neovim} .
+          exec ${neovim} main.todo.md -c '${hideChrome}'
           ;;
         *)
           echo "usage: todo work|personal" >&2
