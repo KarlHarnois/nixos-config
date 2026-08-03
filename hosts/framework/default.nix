@@ -5,7 +5,10 @@
 
   networking.hostName = "framework";
 
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.intel.npu.enable = true;
+  };
 
   boot = {
     loader = {
@@ -16,6 +19,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelModules = [ "kvm-intel" ];
+    initrd.availableKernelModules = [ "thunderbolt" ];
   };
 
   services = {
