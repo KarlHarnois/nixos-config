@@ -21,6 +21,7 @@
           content = {
             type = "luks";
             name = "root";
+            settings.allowDiscards = true;
             content = {
               type = "filesystem";
               format = "ext4";
