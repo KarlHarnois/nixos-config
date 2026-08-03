@@ -26,6 +26,7 @@
     logind.settings.Login.HandlePowerKey = "ignore";
     power-profiles-daemon.enable = true;
     thermald.enable = true;
+    fprintd.enable = false;
 
     upower = {
       enable = true;
