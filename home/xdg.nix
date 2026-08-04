@@ -18,7 +18,10 @@
         "image/svg+xml"
         "image/tiff"
         "image/webp"
-      ] (_mimeType: "swayimg.desktop");
+      ] (_mimeType: "swayimg.desktop")
+      // {
+        "text/plain" = "nvim-ghostty.desktop";
+      };
   };
 
   xdg.userDirs = {

@@ -38,8 +38,15 @@ in
       keybind = [
         "shift+insert=paste_from_clipboard"
         "control+insert=copy_to_clipboard"
+        "ctrl+shift+space=write_scrollback_file:open"
       ];
     };
+  };
+
+  xdg.desktopEntries.nvim-ghostty = {
+    name = "Neovim (Ghostty)";
+    exec = "ghostty -e nvim + %f";
+    noDisplay = true;
   };
 
   wayland.windowManager.hyprland.settings.on = [
