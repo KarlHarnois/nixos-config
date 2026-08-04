@@ -4,5 +4,6 @@
     ./desktop.nix
     ./l2tp-client
     ./voxtype.nix
+    ./webcam
   ];
 }
