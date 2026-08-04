@@ -1,13 +1,13 @@
 # shellcheck shell=bash
 readonly CAMERA=${1:-$C920_DEFAULT_CAMERA}
 readonly STATE_FILE=$C920_STATE_FILE
-readonly TARGET_LUMINANCE=0.46
+readonly TARGET_LUMINANCE=0.49
 readonly TOLERANCE=0.04
 readonly MIN_EXPOSURE=3
 readonly MAX_EXPOSURE=333
 readonly MAX_GAIN=255
 readonly MAX_ITERATIONS=8
-readonly PRESENCE_CONTRAST_THRESHOLD=0.25
+readonly PRESENCE_CONTRAST_THRESHOLD=0.22
 
 exposure=250
 gain=0
@@ -49,7 +49,7 @@ measure_face_region() {
   frame=$(mktemp --suffix=.jpg)
   ffmpeg -hide_banner -loglevel error -f v4l2 -video_size 1280x720 -i "$CAMERA" \
     -vf "select=gte(n\,5)" -frames:v 1 -y "$frame" >/dev/null 2>&1
-  magick "$frame" -crop 400x400+440+160 -colorspace Gray \
+  magick "$frame" -crop 400x300+440+160 -colorspace Gray \
     -format "%[fx:mean] %[fx:standard_deviation/mean]" info:
   rm -f "$frame"
 }
@@ -100,14 +100,15 @@ tune() {
   for _ in $(seq "$MAX_ITERATIONS"); do
     apply_exposure_and_gain
     read -r mean contrast < <(measure_face_region)
-    if nobody_in_frame "$contrast"; then
-      return 1
-    fi
     if is_on_target "$mean"; then
+      if nobody_in_frame "$contrast"; then
+        return 1
+      fi
       return 0
     fi
     adjust_towards_target "$mean"
   done
+  return 1
 }
 
 restore_saved_values() {
@@ -118,7 +119,8 @@ restore_saved_values() {
 }
 
 if camera_is_busy; then
-  exit 0
+  echo "cannot tune: another program is using the camera ($CAMERA)" >&2
+  exit 1
 fi
 
 load_state
@@ -128,4 +130,6 @@ if tune; then
   save_state
 else
   restore_saved_values
+  echo "tuning did not converge on a face; keeping previous values" >&2
+  exit 1
 fi
