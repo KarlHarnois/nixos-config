@@ -16,6 +16,7 @@ in
       settings = {
         statuscolumn.enabled = true;
         picker.enabled = true;
+        indent.enabled = true;
       };
     };
 
