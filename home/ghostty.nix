@@ -38,7 +38,7 @@ in
       keybind = [
         "shift+insert=paste_from_clipboard"
         "control+insert=copy_to_clipboard"
-        "ctrl+shift+space=write_scrollback_file:open"
+        "ctrl+shift+space=write_screen_file:open"
       ];
     };
   };
