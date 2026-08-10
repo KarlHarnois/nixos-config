@@ -1,4 +1,4 @@
-HOST="${MTGO_HOST:-mtgo-toaster.local}"
+HOST="${MTGO_HOST:-mtgo-toaster.home.arpa}"
 ACCOUNT="${MTGO_USER:-Lenovo}"
 DOMAIN="${MTGO_DOMAIN:-mtgo-toaster}"
 
@@ -20,5 +20,4 @@ exec xfreerdp \
   /clipboard \
   /sound:sys:pulse \
   /network:lan \
-  /cert:ignore \
   +auto-reconnect
