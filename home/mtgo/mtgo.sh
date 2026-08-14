@@ -18,7 +18,6 @@ exec xfreerdp \
   /gfx:AVC444 \
   /dynamic-resolution \
   /scale-desktop:140 \
-  /scale-device:140 \
   /clipboard \
   /sound:sys:pulse \
   /network:lan \
