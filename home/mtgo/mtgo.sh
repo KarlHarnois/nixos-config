@@ -11,7 +11,7 @@ fi
 
 # /gfx:AVC444 needs AVC444ModePreferred and AVCHardwareEncodePreferred set to 1 on the
 # Windows host under HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services.
-exec xfreerdp \
+xfreerdp \
   /v:"$address" \
   /u:"$ACCOUNT" \
   /d:"$DOMAIN" \
@@ -21,4 +21,16 @@ exec xfreerdp \
   /clipboard \
   /sound:sys:pulse \
   /network:lan \
-  +auto-reconnect
+  +auto-reconnect || true
+
+# TermService leaks committed memory until RDP logons fail, so a fresh boot per
+# session keeps the box reachable. Decline after an unexpected drop to keep the
+# session alive and reconnect instead.
+read -r -p "Reboot the MTGO box? [Y/n] " answer
+case "$answer" in
+  [nN]*) ;;
+  *)
+    ssh -o HostName="$address" -o StrictHostKeyChecking=accept-new \
+      mtgo-toaster "shutdown /r /t 0"
+    ;;
+esac

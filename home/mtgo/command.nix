@@ -2,6 +2,7 @@
   writeShellApplication,
   freerdp,
   gawk,
+  openssh,
 }:
 
 let
@@ -17,6 +18,7 @@ writeShellApplication {
   runtimeInputs = [
     freerdpDecodingThroughFfmpeg
     gawk
+    openssh
   ];
 
   text = builtins.readFile ./mtgo.sh;
