@@ -4,15 +4,14 @@ start_ipsec() {
 }
 
 clear_stale_session() {
-  echo "[+] Ensuring no stale L2TP session is active..."
-  end_l2tp_session
-  sleep 1
+  echo "[+] Restarting xl2tpd to clear any stale tunnel state..."
+  as_root systemctl restart xl2tpd
 }
 
 start_l2tp_session() {
   echo "[+] Starting L2TP/PPP session via xl2tpd..."
 
-  if [ ! -e "$CONTROL_SOCKET" ]; then
+  if ! wait_until 10 control_socket_exists; then
     echo "[✘] xl2tpd control socket not found; is xl2tpd running?" >&2
     as_root systemctl status xl2tpd --no-pager || true
     exit 1

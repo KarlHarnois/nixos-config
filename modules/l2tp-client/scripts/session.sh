@@ -20,6 +20,10 @@ end_l2tp_session() {
   as_root pkill -f "pppd.*pppol2tp" >/dev/null 2>&1 || true
 }
 
+control_socket_exists() {
+  [ -e "$CONTROL_SOCKET" ]
+}
+
 interface_has_address() {
   ip link show "$INTERFACE" >/dev/null 2>&1 &&
     ip -4 addr show dev "$INTERFACE" | grep -q " inet "
