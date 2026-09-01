@@ -86,6 +86,22 @@ run_xfreerdp() {
   xfreerdp "${flags[@]}"
 }
 
+stop_vm_unless_declined() {
+  local answer
+  read -r -p "Stop the VM? [Y/n] " answer || answer=""
+
+  case "$answer" in
+  [nN]*)
+    echo "[+] Leaving the VM running; run windows-vm to reconnect"
+    ;;
+  *)
+    echo "[+] Stopping the VM; a Windows shutdown can take up to two minutes..."
+    systemctl stop "$SERVICE"
+    echo "[✔] VM stopped"
+    ;;
+  esac
+}
+
 rdp_scale() {
   command -v hyprctl >/dev/null || return 0
 
@@ -126,8 +142,7 @@ fi
 
 if [ "${1:-}" = "--keep-alive" ]; then
   echo "[+] Leaving the VM running; stop it with: systemctl stop $SERVICE"
-else
-  echo "[+] Stopping the VM; a Windows shutdown can take up to two minutes..."
-  systemctl stop "$SERVICE"
-  echo "[✔] VM stopped"
+  exit 0
 fi
+
+stop_vm_unless_declined
