@@ -82,26 +82,23 @@ require_running_service() {
 }
 
 run_xfreerdp() {
-  local flags=(
-    /v:"$RDP_ADDRESS"
-    /u:"$WINDOWS_VM_USER"
-    /p:"$(cat "$WINDOWS_VM_PASSWORD_FILE")"
-    /gfx:AVC444
-    /dynamic-resolution
-    /clipboard
-    /sound:sys:pulse
-    /microphone
-    -grab-keyboard
+  xfreerdp /args-from:fd:3 3< <(rdp_arguments) 2>"$RDP_LOG_FILE"
+}
+
+rdp_arguments() {
+  printf '%s\n' \
+    /v:"$RDP_ADDRESS" \
+    /u:"$WINDOWS_VM_USER" \
+    /p:"$(cat "$WINDOWS_VM_PASSWORD_FILE")" \
+    /gfx:AVC444 \
+    /dynamic-resolution \
+    /clipboard \
+    /sound:sys:pulse \
+    /microphone \
+    -grab-keyboard \
     "/floatbar:sticky:off,default:visible,show:fullscreen"
-  )
 
-  local scale
-  scale="$(rdp_scale)"
-  if [ -n "$scale" ]; then
-    flags+=("$scale")
-  fi
-
-  xfreerdp "${flags[@]}" 2>"$RDP_LOG_FILE"
+  rdp_scale
 }
 
 stop_vm_unless_declined() {
