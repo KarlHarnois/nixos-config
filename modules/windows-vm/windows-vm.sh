@@ -3,6 +3,8 @@ WEB_CONSOLE_URL=http://127.0.0.1:8006
 RDP_ADDRESS=127.0.0.1:3389
 RDP_CONNECT_TIMEOUT_SECONDS=180
 SHORTEST_REAL_SESSION_SECONDS=30
+RDP_AUTH_FAILED_EXIT_CODE=132
+RDP_LOGON_FAILED_EXIT_CODE=134
 
 require_password() {
   if [ ! -r "$WINDOWS_VM_PASSWORD_FILE" ]; then
@@ -34,15 +36,20 @@ start_first_install() {
 }
 
 connect_rdp() {
-  local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started
+  local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started status
 
   while [ "$SECONDS" -lt "$deadline" ]; do
     require_running_service
     started="$SECONDS"
 
-    if run_xfreerdp || was_real_session "$started"; then
+    status=0
+    run_xfreerdp || status=$?
+
+    if [ "$status" -eq 0 ] || was_real_session "$started"; then
       return 0
     fi
+
+    require_accepted_credentials "$status"
 
     echo "[+] Windows is not accepting RDP yet; retrying..."
     sleep 5
@@ -54,6 +61,16 @@ connect_rdp() {
 
 was_real_session() {
   [ $((SECONDS - $1)) -gt "$SHORTEST_REAL_SESSION_SECONDS" ]
+}
+
+require_accepted_credentials() {
+  if [ "$1" -ne "$RDP_AUTH_FAILED_EXIT_CODE" ] && [ "$1" -ne "$RDP_LOGON_FAILED_EXIT_CODE" ]; then
+    return 0
+  fi
+
+  echo "[✘] Windows rejected the password from $WINDOWS_VM_PASSWORD_FILE" >&2
+  echo "[!] Leaving the VM running; sync the vault and guest passwords, then rerun windows-vm" >&2
+  exit 1
 }
 
 require_running_service() {
