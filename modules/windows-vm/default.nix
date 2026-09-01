@@ -15,7 +15,10 @@ in
 
 {
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    };
 
     oci-containers = {
       backend = "docker";
