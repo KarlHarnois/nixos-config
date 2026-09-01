@@ -32,7 +32,12 @@ start_first_install() {
   echo "[+] Starting the Windows VM for the first time..."
   systemctl start "$SERVICE"
   echo "[✔] Windows is installing itself; this takes 15-30 minutes unattended"
-  echo "[+] Watch it at $WEB_CONSOLE_URL and run windows-vm again once it reaches the desktop"
+  echo "[+] Run windows-vm again once the installer reaches the desktop"
+  open_web_console
+}
+
+open_web_console() {
+  xdg-open "$WEB_CONSOLE_URL" 2>/dev/null || echo "[+] Watch the install at $WEB_CONSOLE_URL"
 }
 
 connect_rdp() {

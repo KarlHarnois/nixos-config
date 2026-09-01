@@ -4,6 +4,7 @@
   freerdp,
   gawk,
   jq,
+  xdg-utils,
   passwordFile,
   storageDirectory,
   username,
@@ -24,6 +25,7 @@ writeShellApplication {
     freerdpDecodingThroughFfmpeg
     gawk
     jq
+    xdg-utils
   ];
 
   runtimeEnv = {
