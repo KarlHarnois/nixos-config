@@ -3,6 +3,7 @@
   coreutils,
   freerdp,
   gawk,
+  gnugrep,
   jq,
   xdg-utils,
   passwordFile,
@@ -24,6 +25,7 @@ writeShellApplication {
     coreutils
     freerdpDecodingThroughFfmpeg
     gawk
+    gnugrep
     jq
     xdg-utils
   ];
