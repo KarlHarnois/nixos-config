@@ -35,6 +35,7 @@ start_first_install() {
   require_running_service
   echo "[✔] Windows is installing itself; this takes 15-30 minutes unattended"
   echo "[+] Run windows-vm again once the installer reaches the desktop"
+  echo "[+] The web console signs in as $WINDOWS_VM_USER with the vault password"
   open_web_console
 }
 
