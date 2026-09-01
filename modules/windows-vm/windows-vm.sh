@@ -26,6 +26,7 @@ connect_rdp() {
   local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started
 
   while [ "$SECONDS" -lt "$deadline" ]; do
+    require_running_service
     started="$SECONDS"
 
     if run_xfreerdp || was_real_session "$started"; then
@@ -42,6 +43,13 @@ connect_rdp() {
 
 was_real_session() {
   [ $((SECONDS - $1)) -gt "$SHORTEST_REAL_SESSION_SECONDS" ]
+}
+
+require_running_service() {
+  if ! systemctl is-active --quiet "$SERVICE"; then
+    echo "[✘] $SERVICE is not running; inspect it with: journalctl -u $SERVICE" >&2
+    exit 1
+  fi
 }
 
 run_xfreerdp() {
