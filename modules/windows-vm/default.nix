@@ -94,7 +94,8 @@ in
 
       preStart = ''
         umask 077
-        printf 'PASSWORD=%s\n' "$(cat ${passwordFile})" > ${environmentFile}
+        password=$(cat ${passwordFile})
+        printf 'PASSWORD=%s\n' "$password" > ${environmentFile}
       '';
 
       serviceConfig = {
