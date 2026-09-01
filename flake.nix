@@ -24,6 +24,11 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    opnix = {
+      url = "github:brizzbuzz/opnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,6 +40,7 @@
       nixvim,
       nixos-hardware,
       disko,
+      opnix,
       ...
     }:
     let
@@ -49,6 +55,7 @@
         imports = [
           ./modules
           home-manager.nixosModules.home-manager
+          opnix.nixosModules.default
         ];
 
         home-manager = {

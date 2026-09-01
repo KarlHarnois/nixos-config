@@ -5,5 +5,6 @@
     ./l2tp-client
     ./voxtype.nix
     ./webcam
+    ./windows-vm
   ];
 }
