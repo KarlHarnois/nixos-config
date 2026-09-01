@@ -87,9 +87,18 @@
         disko.nixosModules.disko
         nixos-hardware.nixosModules.framework-intel-core-ultra-series1
       ];
+
+      m700System = mkSystem [
+        ./hosts/m700
+        disko.nixosModules.disko
+        "${nixos-hardware}/common/cpu/intel/skylake"
+      ];
     in
     {
-      nixosConfigurations.framework = frameworkSystem;
+      nixosConfigurations = {
+        framework = frameworkSystem;
+        m700 = m700System;
+      };
 
       packages.${system} = {
         vm = vmRunner;
@@ -104,6 +113,8 @@
         vm = vmRunner;
 
         framework = frameworkSystem.config.system.build.toplevel;
+
+        m700 = m700System.config.system.build.toplevel;
 
         formatting = pkgs.runCommand "check-formatting" { nativeBuildInputs = [ pkgs.nixfmt ]; } ''
           nixfmt --check $(find ${self} -name '*.nix')
