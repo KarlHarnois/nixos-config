@@ -3,8 +3,8 @@ WEB_CONSOLE_URL=http://127.0.0.1:8006
 RDP_ADDRESS=127.0.0.1:3389
 RDP_CONNECT_TIMEOUT_SECONDS=180
 SHORTEST_REAL_SESSION_SECONDS=30
-RDP_AUTH_FAILED_EXIT_CODE=132
-RDP_LOGON_FAILED_EXIT_CODE=134
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/windows-vm"
+RDP_LOG_FILE="$STATE_DIR/xfreerdp.log"
 
 require_password() {
   if [ ! -r "$WINDOWS_VM_PASSWORD_FILE" ]; then
@@ -14,10 +14,9 @@ require_password() {
 }
 
 avoid_kerberos_lookup_stall() {
-  local config="${XDG_STATE_HOME:-$HOME/.local/state}/windows-vm/krb5.conf"
+  local config="$STATE_DIR/krb5.conf"
 
   if [ ! -f "$config" ]; then
-    mkdir -p "$(dirname "$config")"
     printf '[libdefaults]\n  dns_lookup_kdc = false\n  dns_lookup_realm = false\n' >"$config"
   fi
 
@@ -41,26 +40,23 @@ open_web_console() {
 }
 
 connect_rdp() {
-  local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started status
+  local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started
 
   while [ "$SECONDS" -lt "$deadline" ]; do
     require_running_service
     started="$SECONDS"
 
-    status=0
-    run_xfreerdp || status=$?
-
-    if [ "$status" -eq 0 ] || was_real_session "$started"; then
+    if run_xfreerdp || was_real_session "$started"; then
       return 0
     fi
 
-    require_accepted_credentials "$status"
+    require_accepted_credentials
 
     echo "[+] Windows is not accepting RDP yet; retrying..."
     sleep 5
   done
 
-  echo "[✘] Gave up connecting over RDP; if Windows is still installing, watch $WEB_CONSOLE_URL" >&2
+  echo "[✘] Gave up connecting over RDP; inspect $RDP_LOG_FILE, or watch $WEB_CONSOLE_URL if Windows is still installing" >&2
   return 1
 }
 
@@ -69,7 +65,7 @@ was_real_session() {
 }
 
 require_accepted_credentials() {
-  if [ "$1" -ne "$RDP_AUTH_FAILED_EXIT_CODE" ] && [ "$1" -ne "$RDP_LOGON_FAILED_EXIT_CODE" ]; then
+  if ! grep -qE 'ERRCONNECT_(AUTHENTICATION_FAILED|LOGON_FAILURE)' "$RDP_LOG_FILE"; then
     return 0
   fi
 
@@ -105,7 +101,7 @@ run_xfreerdp() {
     flags+=("$scale")
   fi
 
-  xfreerdp "${flags[@]}"
+  xfreerdp "${flags[@]}" 2>"$RDP_LOG_FILE"
 }
 
 stop_vm_unless_declined() {
@@ -146,6 +142,7 @@ case "${1:-}" in
   ;;
 esac
 
+mkdir -p "$STATE_DIR"
 require_password
 avoid_kerberos_lookup_stall
 
