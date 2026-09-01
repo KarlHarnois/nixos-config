@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./disk.nix ];
+  imports = [
+    ./disk.nix
+    ./monitors.nix
+  ];
 
   networking.hostName = "framework";
 
