@@ -3,6 +3,7 @@ WEB_CONSOLE_URL=http://127.0.0.1:8006
 RDP_ADDRESS=127.0.0.1:3389
 RDP_CONNECT_TIMEOUT_SECONDS=180
 SHORTEST_REAL_SESSION_SECONDS=30
+SERVICE_STARTUP_GRACE_SECONDS=3
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/windows-vm"
 RDP_LOG_FILE="$STATE_DIR/xfreerdp.log"
 
@@ -30,6 +31,8 @@ storage_is_empty() {
 start_first_install() {
   echo "[+] Starting the Windows VM for the first time..."
   systemctl start "$SERVICE"
+  sleep "$SERVICE_STARTUP_GRACE_SECONDS"
+  require_running_service
   echo "[✔] Windows is installing itself; this takes 15-30 minutes unattended"
   echo "[+] Run windows-vm again once the installer reaches the desktop"
   open_web_console
