@@ -156,7 +156,7 @@ echo "[+] Starting the Windows VM..."
 systemctl start "$SERVICE"
 
 if ! connect_rdp; then
-  echo "[!] Leaving the VM running so a first install can finish"
+  echo "[!] Leaving the VM running"
   exit 1
 fi
 
