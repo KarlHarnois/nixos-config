@@ -48,6 +48,12 @@
     '';
   };
 
+  virtualisation.windows-vm = {
+    memory = "8G";
+    cores = 4;
+    diskSize = "64G";
+  };
+
   assertions = [
     {
       assertion = !config.services.tlp.enable;

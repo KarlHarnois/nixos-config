@@ -31,6 +31,11 @@
         msize = 262144;
         memorySize = 8192;
         cores = 4;
+        windows-vm = {
+          memory = "4G";
+          cores = 2;
+          diskSize = "64G";
+        };
         forwardPorts = [
           {
             from = "host";

@@ -7,6 +7,7 @@
 
 let
   passwordFile = config.services.onepassword-secrets.secretPaths.windowsVmPassword;
+  sizing = config.virtualisation.windows-vm;
   environmentFile = "/run/windows-vm/environment";
   shareDirectory = "/home/${username}/Windows";
   inherit (import ./paths.nix) storageDirectory;
@@ -28,9 +29,9 @@ in
 
         environment = {
           VERSION = "11";
-          RAM_SIZE = "8G";
-          CPU_CORES = "4";
-          DISK_SIZE = "64G";
+          RAM_SIZE = sizing.memory;
+          CPU_CORES = toString sizing.cores;
+          DISK_SIZE = sizing.diskSize;
           USERNAME = username;
           PROTECT = "Y";
           TZ = config.time.timeZone;
