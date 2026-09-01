@@ -24,7 +24,7 @@ in
       backend = "docker";
 
       containers.windows-vm = {
-        image = "dockurr/windows";
+        image = "dockurr/windows:6.05";
         autoStart = false;
 
         environment = {
