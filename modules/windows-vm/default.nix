@@ -65,7 +65,7 @@ in
     enable = true;
 
     secrets.windowsVmPassword = {
-      reference = "op://Personal/windows-vm/password";
+      reference = "op://Workstation/Windows VM/password";
       owner = username;
     };
   };
