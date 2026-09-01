@@ -93,6 +93,6 @@ in
   };
 
   environment.systemPackages = [
-    (pkgs.callPackage ./command.nix { inherit passwordFile username; })
+    (pkgs.callPackage ./command.nix { inherit passwordFile storageDirectory username; })
   ];
 }

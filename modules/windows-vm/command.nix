@@ -5,6 +5,7 @@
   gawk,
   jq,
   passwordFile,
+  storageDirectory,
   username,
 }:
 
@@ -28,6 +29,7 @@ writeShellApplication {
   runtimeEnv = {
     WINDOWS_VM_USER = username;
     WINDOWS_VM_PASSWORD_FILE = passwordFile;
+    WINDOWS_VM_STORAGE_DIR = storageDirectory;
   };
 
   text = builtins.readFile ./windows-vm.sh;

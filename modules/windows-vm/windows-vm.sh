@@ -22,6 +22,17 @@ avoid_kerberos_lookup_stall() {
   export KRB5_CONFIG="$config"
 }
 
+storage_is_empty() {
+  [ -z "$(sudo ls -A "$WINDOWS_VM_STORAGE_DIR" 2>/dev/null)" ]
+}
+
+start_first_install() {
+  echo "[+] Starting the Windows VM for the first time..."
+  sudo systemctl start "$SERVICE"
+  echo "[✔] Windows is installing itself; this takes 15-30 minutes unattended"
+  echo "[+] Watch it at $WEB_CONSOLE_URL and run windows-vm again once it reaches the desktop"
+}
+
 connect_rdp() {
   local deadline=$((SECONDS + RDP_CONNECT_TIMEOUT_SECONDS)) started
 
@@ -99,6 +110,11 @@ esac
 
 require_password
 avoid_kerberos_lookup_stall
+
+if storage_is_empty; then
+  start_first_install
+  exit 0
+fi
 
 echo "[+] Starting the Windows VM..."
 sudo systemctl start "$SERVICE"
