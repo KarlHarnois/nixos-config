@@ -94,5 +94,13 @@ in
 
   environment.systemPackages = [
     (pkgs.callPackage ./command.nix { inherit passwordFile storageDirectory username; })
+
+    (pkgs.makeDesktopItem {
+      name = "windows-vm";
+      desktopName = "Windows";
+      exec = "windows-vm";
+      terminal = true;
+      categories = [ "System" ];
+    })
   ];
 }
