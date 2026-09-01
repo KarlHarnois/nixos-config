@@ -70,27 +70,23 @@
         };
       };
 
-      vmSystem = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit nixpkgs-unstable theme username; };
-        modules = [
-          desktop
-          ./hosts/vm
-        ];
-      };
+      mkSystem =
+        modules:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit nixpkgs-unstable theme username; };
+          modules = [ desktop ] ++ modules;
+        };
+
+      vmSystem = mkSystem [ ./hosts/vm ];
 
       vmRunner = vmSystem.config.system.build.vm;
 
-      frameworkSystem = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit nixpkgs-unstable theme username; };
-        modules = [
-          desktop
-          ./hosts/framework
-          disko.nixosModules.disko
-          nixos-hardware.nixosModules.framework-intel-core-ultra-series1
-        ];
-      };
+      frameworkSystem = mkSystem [
+        ./hosts/framework
+        disko.nixosModules.disko
+        nixos-hardware.nixosModules.framework-intel-core-ultra-series1
+      ];
     in
     {
       nixosConfigurations.framework = frameworkSystem;
