@@ -61,6 +61,20 @@ in
     };
   };
 
+  security.polkit.extraConfig = ''
+    polkit.addRule(function (action, subject) {
+      var verbs = ["start", "stop", "restart"];
+      if (
+        action.id == "org.freedesktop.systemd1.manage-units" &&
+        action.lookup("unit") == "docker-windows-vm.service" &&
+        verbs.indexOf(action.lookup("verb")) != -1 &&
+        subject.user == "${username}"
+      ) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   services.onepassword-secrets = {
     enable = true;
 
@@ -87,7 +101,7 @@ in
     };
 
     tmpfiles.rules = [
-      "d ${storageDirectory} 0700 root root -"
+      "d ${storageDirectory} 0750 root users -"
       "d ${shareDirectory} 0755 ${username} users -"
     ];
   };

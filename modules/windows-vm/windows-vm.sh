@@ -23,12 +23,12 @@ avoid_kerberos_lookup_stall() {
 }
 
 storage_is_empty() {
-  [ -z "$(sudo ls -A "$WINDOWS_VM_STORAGE_DIR" 2>/dev/null)" ]
+  [ -z "$(ls -A "$WINDOWS_VM_STORAGE_DIR" 2>/dev/null)" ]
 }
 
 start_first_install() {
   echo "[+] Starting the Windows VM for the first time..."
-  sudo systemctl start "$SERVICE"
+  systemctl start "$SERVICE"
   echo "[✔] Windows is installing itself; this takes 15-30 minutes unattended"
   echo "[+] Watch it at $WEB_CONSOLE_URL and run windows-vm again once it reaches the desktop"
 }
@@ -117,7 +117,7 @@ if storage_is_empty; then
 fi
 
 echo "[+] Starting the Windows VM..."
-sudo systemctl start "$SERVICE"
+systemctl start "$SERVICE"
 
 if ! connect_rdp; then
   echo "[!] Leaving the VM running so a first install can finish"
@@ -125,9 +125,9 @@ if ! connect_rdp; then
 fi
 
 if [ "${1:-}" = "--keep-alive" ]; then
-  echo "[+] Leaving the VM running; stop it with: sudo systemctl stop $SERVICE"
+  echo "[+] Leaving the VM running; stop it with: systemctl stop $SERVICE"
 else
   echo "[+] Stopping the VM; a Windows shutdown can take up to two minutes..."
-  sudo systemctl stop "$SERVICE"
+  systemctl stop "$SERVICE"
   echo "[✔] VM stopped"
 fi
