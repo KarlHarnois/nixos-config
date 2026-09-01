@@ -46,6 +46,7 @@ in
         volumes = [
           "${storageDirectory}:/storage"
           "${shareDirectory}:/shared"
+          "${./oem}:/oem:ro"
         ];
 
         devices = [
