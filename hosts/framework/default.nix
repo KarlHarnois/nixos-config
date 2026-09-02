@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../bare-metal.nix
     ./disk.nix
     ./monitors.nix
   ];

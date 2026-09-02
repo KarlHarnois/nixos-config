@@ -1,8 +1,5 @@
 {
-  imports = [
-    ../bare-metal.nix
-    ./disk.nix
-  ];
+  imports = [ ./disk.nix ];
 
   networking = {
     hostName = "m700";

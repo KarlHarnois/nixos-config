@@ -78,19 +78,27 @@
           modules = [ desktop ] ++ modules;
         };
 
+      mkBareMetal =
+        modules:
+        mkSystem (
+          [
+            ./hosts/bare-metal.nix
+            disko.nixosModules.disko
+          ]
+          ++ modules
+        );
+
       vmSystem = mkSystem [ ./hosts/vm ];
 
       vmRunner = vmSystem.config.system.build.vm;
 
-      frameworkSystem = mkSystem [
+      frameworkSystem = mkBareMetal [
         ./hosts/framework
-        disko.nixosModules.disko
         nixos-hardware.nixosModules.framework-intel-core-ultra-series1
       ];
 
-      m700System = mkSystem [
+      m700System = mkBareMetal [
         ./hosts/m700
-        disko.nixosModules.disko
         "${nixos-hardware}/common/cpu/intel/skylake"
       ];
     in
