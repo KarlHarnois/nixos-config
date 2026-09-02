@@ -3,7 +3,7 @@
 
   networking = {
     hostName = "m700";
-    interfaces.enp0s31f6.useDHCP = true;
+    interfaces.eno1.useDHCP = true;
   };
 
   virtualisation.windows-vm = {
