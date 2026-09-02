@@ -25,7 +25,6 @@
     ./git.nix
     ./hyprland
     ./mako.nix
-    ./mtgo
     ./nvim
     ./ghostty.nix
     ./power-menu
