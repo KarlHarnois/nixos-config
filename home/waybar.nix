@@ -45,7 +45,7 @@ in
       };
 
       clock = {
-        format = "{:L%B %d, %H:%M}";
+        format = "{:L%b %d, %H:%M}";
         tooltip = false;
       };
 
