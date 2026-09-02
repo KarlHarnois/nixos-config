@@ -7,7 +7,6 @@
     secrets.windowsVmPassword = {
       reference = "op://Workstation/Windows VM/password";
       owner = username;
-      services = [ "docker-windows-vm" ];
     };
   };
 }

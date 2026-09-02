@@ -66,6 +66,9 @@ in
 
   systemd = {
     services.docker-windows-vm = {
+      after = [ "opnix-secrets.service" ];
+      wants = [ "opnix-secrets.service" ];
+
       preStart = ''
         umask 077
         password=$(cat ${passwordFile})
