@@ -3,6 +3,11 @@
     enable = true;
 
     settings = {
+      user = {
+        name = "Karl Rivest Harnois";
+        email = "karlrivestharnois@gmail.com";
+      };
+
       core.editor = "nvim";
 
       alias = {
