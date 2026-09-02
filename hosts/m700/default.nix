@@ -6,6 +6,15 @@
     interfaces.eno1.useDHCP = true;
   };
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
+
+  nix.settings.max-jobs = 1;
+
   virtualisation.windows-vm = {
     memory = "4G";
     cores = 2;
