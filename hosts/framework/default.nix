@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../bare-metal.nix
     ./disk.nix
     ./monitors.nix
   ];
@@ -9,7 +10,6 @@
   networking.hostName = "framework";
 
   hardware = {
-    enableRedistributableFirmware = true;
     cpu.intel.npu.enable = true;
     framework.laptop13.audioEnhancement.enable = true;
   };
@@ -20,17 +20,7 @@
     earlySetup = true;
   };
 
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 12;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    kernelModules = [ "kvm-intel" ];
-    initrd.availableKernelModules = [ "thunderbolt" ];
-  };
+  boot.initrd.availableKernelModules = [ "thunderbolt" ];
 
   services = {
     logind.settings.Login.HandlePowerKey = "ignore";
