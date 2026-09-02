@@ -30,6 +30,7 @@
     ./power-menu
     ./readline.nix
     ./screenshot.nix
+    ./ssh.nix
     ./starship
     ./swayimg.nix
     ./tabiew.nix
