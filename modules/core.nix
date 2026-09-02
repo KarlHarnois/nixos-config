@@ -36,6 +36,8 @@
     extraGroups = [ "wheel" ];
   };
 
+  environment.shellAliases.rebuild = lib.mkDefault "sudo nixos-rebuild switch --flake .";
+
   environment.systemPackages = with pkgs; [
     git
   ];
