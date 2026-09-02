@@ -1,12 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./disk.nix ];
+  imports = [
+    ./disk.nix
+    ./monitors.nix
+  ];
 
   networking.hostName = "framework";
 
   hardware = {
-    enableRedistributableFirmware = true;
     cpu.intel.npu.enable = true;
     framework.laptop13.audioEnhancement.enable = true;
   };
@@ -17,17 +19,7 @@
     earlySetup = true;
   };
 
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 12;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    kernelModules = [ "kvm-intel" ];
-    initrd.availableKernelModules = [ "thunderbolt" ];
-  };
+  boot.initrd.availableKernelModules = [ "thunderbolt" ];
 
   services = {
     logind.settings.Login.HandlePowerKey = "ignore";
@@ -46,6 +38,12 @@
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="power_supply", KERNEL=="BAT1", ATTR{charge_control_end_threshold}="80"
     '';
+  };
+
+  virtualisation.windows-vm = {
+    memory = "8G";
+    cores = 4;
+    diskSize = "64G";
   };
 
   assertions = [
