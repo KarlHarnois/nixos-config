@@ -33,7 +33,10 @@
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
   };
 
   environment.shellAliases.rebuild = lib.mkDefault "sudo nixos-rebuild switch --flake .";
