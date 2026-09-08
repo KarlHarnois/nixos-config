@@ -17,7 +17,7 @@
   assertions = [
     {
       assertion = config.swapDevices != [ ];
-      message = "bare-metal hosts need a disk swapfile behind zram, which has no overflow of its own";
+      message = "bare-metal hosts must set `swapDevices`: zram has no overflow of its own";
     }
   ];
 }
