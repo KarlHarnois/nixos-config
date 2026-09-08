@@ -27,6 +27,15 @@
 
   zramSwap.enable = true;
 
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 5;
+  };
+
+  # Enabled by default, but every slice option defaults off, so it watches nothing.
+  systemd.oomd.enable = false;
+
   boot.tmp.cleanOnBoot = true;
 
   time.timeZone = "America/Montreal";
