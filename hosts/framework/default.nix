@@ -8,6 +8,13 @@
 
   networking.hostName = "framework";
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16384;
+    }
+  ];
+
   nix.settings = {
     max-jobs = 4;
     cores = 4;
