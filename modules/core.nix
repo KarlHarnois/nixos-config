@@ -27,7 +27,10 @@
 
   zramSwap.enable = true;
 
-  services.earlyoom.enable = true;
+  services.earlyoom = {
+    enable = true;
+    enableNotifications = true;
+  };
 
   # Enabled by default, but every slice option defaults off, so it watches nothing.
   systemd.oomd.enable = false;
