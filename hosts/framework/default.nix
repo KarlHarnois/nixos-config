@@ -8,6 +8,18 @@
 
   networking.hostName = "framework";
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16384;
+    }
+  ];
+
+  nix.settings = {
+    max-jobs = 4;
+    cores = 4;
+  };
+
   hardware = {
     cpu.intel.npu.enable = true;
     framework.laptop13.audioEnhancement.enable = true;

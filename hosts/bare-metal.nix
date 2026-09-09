@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   hardware.enableRedistributableFirmware = true;
 
@@ -11,4 +13,11 @@
     };
     kernelModules = [ "kvm-intel" ];
   };
+
+  assertions = [
+    {
+      assertion = config.swapDevices != [ ];
+      message = "bare-metal hosts must set `swapDevices`: zram has no overflow of its own";
+    }
+  ];
 }
