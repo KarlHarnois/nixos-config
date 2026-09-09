@@ -6,6 +6,17 @@ SHORTEST_REAL_SESSION_SECONDS=30
 SERVICE_STARTUP_GRACE_SECONDS=3
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/windows-vm"
 RDP_LOG_FILE="$STATE_DIR/xfreerdp.log"
+WINDOWS_DESKTOP_SCALE_PERCENT=150
+
+require_known_flag() {
+  case "$1" in
+  "" | --keep-alive) ;;
+  *)
+    echo "usage: windows-vm [--keep-alive]" >&2
+    exit 1
+    ;;
+  esac
+}
 
 require_password() {
   if [ ! -r "$WINDOWS_VM_PASSWORD_FILE" ]; then
@@ -96,13 +107,13 @@ rdp_arguments() {
     /p:"$(cat "$WINDOWS_VM_PASSWORD_FILE")" \
     /gfx:AVC444 \
     /dynamic-resolution \
+    /scale-desktop:"$WINDOWS_DESKTOP_SCALE_PERCENT" \
+    /scale-device:100 \
     /clipboard \
     /sound:sys:pulse \
     /microphone \
     -grab-keyboard \
     "/floatbar:sticky:off,default:visible,show:fullscreen"
-
-  rdp_scale
 }
 
 stop_vm_unless_declined() {
@@ -121,27 +132,7 @@ stop_vm_unless_declined() {
   esac
 }
 
-rdp_scale() {
-  command -v hyprctl >/dev/null || return 0
-
-  local monitor_scale
-  monitor_scale="$(hyprctl monitors -j 2>/dev/null | jq -r '[.[] | select(.focused)][0].scale // empty' || true)"
-  [ -n "$monitor_scale" ] || return 0
-
-  if awk -v scale="$monitor_scale" 'BEGIN { exit !(scale >= 1.7) }'; then
-    echo /scale:180
-  elif awk -v scale="$monitor_scale" 'BEGIN { exit !(scale >= 1.3) }'; then
-    echo /scale:140
-  fi
-}
-
-case "${1:-}" in
-"" | --keep-alive) ;;
-*)
-  echo "usage: windows-vm [--keep-alive]" >&2
-  exit 1
-  ;;
-esac
+require_known_flag "${1:-}"
 
 mkdir -p "$STATE_DIR"
 require_password

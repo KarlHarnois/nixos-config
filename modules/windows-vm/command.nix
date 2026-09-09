@@ -2,9 +2,7 @@
   writeShellApplication,
   coreutils,
   freerdp,
-  gawk,
   gnugrep,
-  jq,
   xdg-utils,
   passwordFile,
   storageDirectory,
@@ -24,9 +22,7 @@ writeShellApplication {
   runtimeInputs = [
     coreutils
     freerdpDecodingThroughFfmpeg
-    gawk
     gnugrep
-    jq
     xdg-utils
   ];
 
