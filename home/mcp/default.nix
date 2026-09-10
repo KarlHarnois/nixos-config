@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    (pkgs.callPackage ./toolbox.nix { })
-    pkgs.jq
-  ];
+  home.packages = [ (pkgs.callPackage ./toolbox.nix { }) ];
 }
