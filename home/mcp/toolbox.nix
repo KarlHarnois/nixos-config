@@ -1,27 +1,33 @@
 {
   lib,
-  stdenv,
-  fetchurl,
-  autoPatchelfHook,
+  buildGoModule,
+  fetchFromGitHub,
 }:
 
-stdenv.mkDerivation (finalAttrs: {
+buildGoModule (finalAttrs: {
   pname = "mcp-toolbox";
   version = "1.2.0";
 
-  src = fetchurl {
-    url = "https://storage.googleapis.com/mcp-toolbox-for-databases/v${finalAttrs.version}/linux/amd64/toolbox";
-    hash = "sha256-Yw+f1ZiBbQaWaN+BLCZoUMNHoqJepThOED5BPa2b+Eg=";
+  src = fetchFromGitHub {
+    owner = "googleapis";
+    repo = "mcp-toolbox";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-NHx7gFcNYhsHX4vQ8Bl52PF/lLa8NuXxb390Z4Dk1PA=";
   };
 
-  nativeBuildInputs = [ autoPatchelfHook ];
+  vendorHash = "sha256-12+ebXdWnmIetot6MhV0czJHRMpf3ZndS2ChaGstd7w=";
 
-  dontUnpack = true;
+  subPackages = [ "." ];
 
-  installPhase = ''
-    runHook preInstall
-    install -Dm755 $src $out/bin/toolbox
-    runHook postInstall
+  ldflags = [
+    "-s"
+    "-w"
+  ];
+
+  doCheck = false;
+
+  postInstall = ''
+    mv $out/bin/mcp-toolbox $out/bin/toolbox
   '';
 
   meta = {
