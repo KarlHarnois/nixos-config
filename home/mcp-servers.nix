@@ -20,10 +20,12 @@ in
 {
   home.packages = [
     mcpToolbox
-    pkgs.uv
     pkgs.python313
     pkgs.jq
   ];
 
-  home.sessionVariables.UV_PYTHON_PREFERENCE = "only-system";
+  programs.uv = {
+    enable = true;
+    settings.python-preference = "only-system";
+  };
 }
