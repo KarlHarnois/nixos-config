@@ -112,7 +112,6 @@
         vm = vmRunner;
         vmToplevel = vmSystem.config.virtualisation.vmVariant.system.build.toplevel;
         l2tp-commands = pkgs.callPackage ./modules/l2tp-client/commands.nix { };
-        mcp-toolbox = pkgs.callPackage ./home/mcp/toolbox.nix { };
       };
 
       formatter.${system} = pkgs.nixfmt-tree;
