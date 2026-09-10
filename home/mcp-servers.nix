@@ -14,7 +14,11 @@ let
 
     dontUnpack = true;
 
-    installPhase = "install -Dm755 $src $out/bin/toolbox";
+    installPhase = ''
+      runHook preInstall
+      install -Dm755 $src $out/bin/toolbox
+      runHook postInstall
+    '';
 
     meta = {
       mainProgram = "toolbox";
