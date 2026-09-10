@@ -29,6 +29,11 @@
       url = "github:brizzbuzz/opnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    skills = {
+      url = "github:KarlHarnois/skills";
+      flake = false;
+    };
   };
 
   outputs =
@@ -41,6 +46,7 @@
       nixos-hardware,
       disko,
       opnix,
+      skills,
       ...
     }:
     let
@@ -61,7 +67,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = { inherit theme; };
+          extraSpecialArgs = { inherit theme skills; };
           sharedModules = [
             nixvim.homeModules.nixvim
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })

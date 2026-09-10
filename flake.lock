@@ -184,7 +184,24 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
-        "opnix": "opnix"
+        "opnix": "opnix",
+        "skills": "skills"
+      }
+    },
+    "skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788245341,
+        "narHash": "sha256-fvO/lZ+WB/ii031E+9sYtIg5n9IlT9F0v8x1kIUPEJA=",
+        "owner": "KarlHarnois",
+        "repo": "skills",
+        "rev": "9ec3d50755c7f3c5a298a194ce4f9d71cb3eb269",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KarlHarnois",
+        "repo": "skills",
+        "type": "github"
       }
     },
     "systems": {
