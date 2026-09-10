@@ -25,7 +25,7 @@
     ./git.nix
     ./hyprland
     ./mako.nix
-    ./mcp-servers.nix
+    ./mcp
     ./nvim
     ./ghostty.nix
     ./opencode.nix

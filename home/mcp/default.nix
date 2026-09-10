@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (pkgs.callPackage ./mcp-toolbox.nix { })
+    (pkgs.callPackage ./toolbox.nix { })
     pkgs.python313
     pkgs.jq
   ];
