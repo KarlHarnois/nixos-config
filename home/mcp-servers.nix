@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   mcpToolbox = pkgs.stdenv.mkDerivation (finalAttrs: {
@@ -23,7 +23,7 @@ let
     meta = {
       mainProgram = "toolbox";
       platforms = [ "x86_64-linux" ];
-      license = pkgs.lib.licenses.asl20;
+      license = lib.licenses.asl20;
     };
   });
 in
