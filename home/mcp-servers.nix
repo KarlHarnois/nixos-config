@@ -15,6 +15,12 @@ let
     dontUnpack = true;
 
     installPhase = "install -Dm755 $src $out/bin/toolbox";
+
+    meta = {
+      mainProgram = "toolbox";
+      platforms = [ "x86_64-linux" ];
+      license = pkgs.lib.licenses.asl20;
+    };
   });
 in
 {
