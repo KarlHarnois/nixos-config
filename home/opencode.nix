@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
 {
-  home.packages = [ pkgs.opencode ];
+  programs.opencode.enable = true;
 
   programs.bash.shellAliases = {
     oc = "opencode";
