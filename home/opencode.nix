@@ -1,6 +1,7 @@
 { osConfig, ... }:
 
 let
+  secretsDir = osConfig.services.onepassword-secrets.outputDir;
   ollamaApiKeyFile = osConfig.services.onepassword-secrets.secretPaths.ollamaApiKey;
 in
 {
@@ -27,7 +28,12 @@ in
         };
         read = {
           "*" = "allow";
+          "*.env" = "deny";
+          "*.env.*" = "deny";
+          "*.env.example" = "allow";
+          "*.envrc" = "deny";
           "/run/user/**" = "deny";
+          "${secretsDir}/**" = "deny";
         };
       };
     };
