@@ -26,6 +26,7 @@ in
       gtk-toolbar-style = "flat";
       confirm-close-surface = false;
       resize-overlay = "never";
+      app-notifications = "no-clipboard-copy";
       cursor-style = "block";
       cursor-style-blink = false;
       shell-integration-features = "no-cursor,ssh-env";
