@@ -51,7 +51,7 @@
 
       theme = import ./themes/contract.nix (import ./themes/darkthrone);
 
-      desktop = {
+      shared = {
         imports = [
           ./modules
           home-manager.nixosModules.home-manager
@@ -75,7 +75,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit nixpkgs-unstable theme username; };
-          modules = [ desktop ] ++ modules;
+          modules = [ shared ] ++ modules;
         };
 
       mkBareMetal =
