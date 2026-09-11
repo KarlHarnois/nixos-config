@@ -43,6 +43,7 @@ in
           "/run/user/**" = "deny";
         };
         external_directory = {
+          "/run/user/**" = "deny";
           "${secretsDir}/**" = "deny";
           "${opencodeAuthFile}" = "deny";
         };
