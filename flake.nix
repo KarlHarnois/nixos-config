@@ -114,7 +114,7 @@
         l2tp-commands = pkgs.callPackage ./modules/l2tp-client/commands.nix { };
       };
 
-      formatter.${system} = pkgs.nixfmt-tree;
+      formatter.${system} = pkgs.nixfmt;
 
       checks.${system} = {
         vm = vmRunner;
@@ -123,8 +123,8 @@
 
         m700 = m700System.config.system.build.toplevel;
 
-        formatting = pkgs.runCommand "check-formatting" { nativeBuildInputs = [ pkgs.nixfmt ]; } ''
-          nixfmt --check $(find ${self} -name '*.nix')
+        formatting = pkgs.runCommand "check-formatting" { } ''
+          ${nixpkgs.lib.getExe self.formatter.${system}} --check $(find ${self} -name '*.nix')
           touch $out
         '';
 
