@@ -1,7 +1,6 @@
 {
   imports = [
     ./container.nix
-    ./secret.nix
     ./session.nix
     ./sizing.nix
   ];
