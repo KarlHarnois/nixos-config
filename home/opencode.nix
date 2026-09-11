@@ -1,8 +1,9 @@
-{ osConfig, ... }:
+{ config, osConfig, ... }:
 
 let
   secretsDir = osConfig.services.onepassword-secrets.outputDir;
   ollamaApiKeyFile = osConfig.services.onepassword-secrets.secretPaths.ollamaApiKey;
+  opencodeAuthFile = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
 in
 {
   programs.opencode = {
@@ -32,8 +33,18 @@ in
           "*.env.*" = "deny";
           "*.env.example" = "allow";
           "*.envrc" = "deny";
+          "*.envrc.*" = "deny";
           "/run/user/**" = "deny";
           "${secretsDir}/**" = "deny";
+        };
+        list = {
+          "*" = "allow";
+          "${secretsDir}/**" = "deny";
+          "/run/user/**" = "deny";
+        };
+        external_directory = {
+          "${secretsDir}/**" = "deny";
+          "${opencodeAuthFile}" = "deny";
         };
       };
     };
