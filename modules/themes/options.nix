@@ -50,6 +50,11 @@ let
               type = lib.types.str;
               description = "Path of the theme file within the repository.";
             };
+            palette = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              default = [ ];
+              description = "ANSI palette overrides in Ghostty `N=COLOR` form, applied on top of the theme file.";
+            };
           };
         };
       };
