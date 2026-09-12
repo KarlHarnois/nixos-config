@@ -7,43 +7,45 @@ let
   };
 in
 {
-  font = "IosevkaTerm Nerd Font Mono";
+  theme = {
+    font = "IosevkaTerm Nerd Font Mono";
 
-  wallpaper = ./wallpaper.jpg;
+    wallpaper = ./wallpaper.jpg;
 
-  palette = {
-    accent = "8a8a8d";
-    foreground = "c1c1c1";
-    background = "121212";
-    surface = "1e1e1e";
-    surfaceLight = "333333";
-    separator = "505050";
-  };
-
-  apps = {
-    btop = ./btop.theme;
-
-    ghostty = {
-      repo = blackMetalRepo;
-      themeFile = "extras/ghostty/darkthrone.lua";
+    palette = {
+      accent = "8a8a8d";
+      foreground = "c1c1c1";
+      background = "121212";
+      surface = "1e1e1e";
+      surfaceLight = "333333";
+      separator = "505050";
     };
 
-    voxtype = {
-      meterLow = "c1c1c1";
-      meterMid = "888888";
-      meterHigh = "5f8787";
-    };
+    apps = {
+      btop = ./btop.theme;
 
-    neovim = {
-      plugin = blackMetalRepo;
+      ghostty = {
+        repo = blackMetalRepo;
+        themeFile = "extras/ghostty/darkthrone.lua";
+      };
 
-      setup = ''
-        require("black-metal").setup({
-          theme = "darkthrone",
-          transparent = true,
-        })
-        require("black-metal").load()
-      '';
+      voxtype = {
+        meterLow = "c1c1c1";
+        meterMid = "888888";
+        meterHigh = "5f8787";
+      };
+
+      neovim = {
+        plugin = blackMetalRepo;
+
+        setup = ''
+          require("black-metal").setup({
+            theme = "darkthrone",
+            transparent = true,
+          })
+          require("black-metal").load()
+        '';
+      };
     };
   };
 }

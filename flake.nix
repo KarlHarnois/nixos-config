@@ -49,7 +49,7 @@
 
       username = "karl";
 
-      theme = import ./themes/contract.nix (import ./themes/darkthrone);
+      theme = import ./themes/contract.nix (import ./themes/darkthrone).theme;
 
       shared = {
         imports = [
