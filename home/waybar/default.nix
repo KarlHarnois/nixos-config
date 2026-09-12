@@ -37,10 +37,10 @@
 
     style = ''
       @define-color accent ${theme.palette.accent.hex};
-      @define-color surface ${theme.palette.surface.hex};
+      @define-color background ${theme.palette.background.hex};
 
       * {
-        background-color: @surface;
+        background-color: @background;
         color: @accent;
 
         border: none;
