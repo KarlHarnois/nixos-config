@@ -17,7 +17,7 @@
     settings.mainBar = {
       layer = "top";
       position = "top";
-      spacing = 0;
+      spacing = 16;
       height = 26;
 
       modules-left = [ "hyprland/workspaces" ];

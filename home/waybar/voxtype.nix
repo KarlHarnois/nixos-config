@@ -24,7 +24,6 @@ in
     style = ''
       #custom-voxtype {
         min-width: 12px;
-        margin-left: 7.5px;
       }
     '';
   };

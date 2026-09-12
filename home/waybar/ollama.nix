@@ -84,7 +84,6 @@ in
     style = ''
       #custom-ollama {
         min-width: 12px;
-        margin-right: 7.5px;
       }
     '';
   };
