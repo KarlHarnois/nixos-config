@@ -6,6 +6,7 @@
     ./clock.nix
     ./ollama.nix
     ./voxtype.nix
+    ./volume.nix
     ./workspaces.nix
   ];
 
@@ -26,6 +27,7 @@
       ];
       modules-right = [
         "custom/ollama"
+        "pulseaudio"
         "battery"
       ];
     };
