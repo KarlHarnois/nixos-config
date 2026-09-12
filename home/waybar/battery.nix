@@ -1,35 +1,6 @@
 {
   programs.waybar.settings.mainBar.battery = {
-    format = "{capacity}% {icon}";
-    format-full = "󰂅";
-
-    format-icons = {
-      charging = [
-        "󰢜"
-        "󰂆"
-        "󰂇"
-        "󰂈"
-        "󰢝"
-        "󰂉"
-        "󰢞"
-        "󰂊"
-        "󰂋"
-        "󰂅"
-      ];
-      default = [
-        "󰁺"
-        "󰁻"
-        "󰁼"
-        "󰁽"
-        "󰁾"
-        "󰁿"
-        "󰂀"
-        "󰂁"
-        "󰂂"
-        "󰁹"
-      ];
-    };
-
+    format = "BAT {capacity}%";
     interval = 5;
     tooltip = false;
   };
