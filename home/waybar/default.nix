@@ -3,6 +3,7 @@
 {
   imports = [
     ./battery.nix
+    ./claude.nix
     ./clock.nix
     ./ollama.nix
     ./voxtype.nix
@@ -26,6 +27,8 @@
         "custom/voxtype"
       ];
       modules-right = [
+        "custom/claude"
+        "custom/claude-work"
         "custom/ollama"
         "pulseaudio"
         "battery"
