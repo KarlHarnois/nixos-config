@@ -49,8 +49,6 @@
 
       username = "karl";
 
-      theme = import ./themes/contract.nix (import ./themes/darkthrone).theme;
-
       shared = {
         imports = [
           ./modules
@@ -61,7 +59,6 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = { inherit theme; };
           sharedModules = [
             nixvim.homeModules.nixvim
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
@@ -74,7 +71,7 @@
         modules:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit nixpkgs-unstable theme username; };
+          specialArgs = { inherit nixpkgs-unstable username; };
           modules = [ shared ] ++ modules;
         };
 

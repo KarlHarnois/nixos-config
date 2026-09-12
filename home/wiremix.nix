@@ -1,5 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
+let
+  inherit (osConfig) theme;
+in
 {
   home.packages = [ pkgs.wiremix ];
 

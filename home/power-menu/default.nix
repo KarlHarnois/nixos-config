@@ -1,11 +1,13 @@
 {
   lib,
+  osConfig,
   pkgs,
-  theme,
   ...
 }:
 
 let
+  inherit (osConfig) theme;
+
   colors = lib.concatStringsSep "," [
     "fg:${theme.palette.foreground.hex}"
     "fg+:${theme.palette.foreground.hex}"

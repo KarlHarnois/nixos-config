@@ -1,6 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
 let
+  inherit (osConfig) theme;
+
   trimTrailingWhitespaceOnSave = {
     event = "BufWritePre";
     pattern = "*";

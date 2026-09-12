@@ -1,6 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
 let
+  inherit (osConfig) theme;
+
   parakeetModelName = "parakeet-tdt-0.6b-v2";
 
   parakeetModelFile =

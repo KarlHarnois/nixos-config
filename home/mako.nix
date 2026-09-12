@@ -1,6 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
 let
+  inherit (osConfig) theme;
+
   notificationHistory = pkgs.writeShellScriptBin "notification-history" ''
     history_file=$(${pkgs.coreutils}/bin/mktemp --suffix=.json)
     trap '${pkgs.coreutils}/bin/rm -f "$history_file"' EXIT

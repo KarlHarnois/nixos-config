@@ -1,6 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
 let
+  inherit (osConfig) theme;
+
   activeGeneralPreset = "flush";
 
   generalPresets = {

@@ -1,6 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
 let
+  inherit (osConfig) theme;
+
   colors = fg: bg: {
     fg = fg.hex;
     bg = bg.hex;

@@ -1,5 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
+let
+  inherit (osConfig) theme;
+in
 {
   xdg.configFile."btop/btop.conf".force = true;
 

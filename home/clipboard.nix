@@ -1,6 +1,8 @@
-{ pkgs, theme, ... }:
+{ osConfig, pkgs, ... }:
 
 let
+  inherit (osConfig) theme;
+
   inherit (theme.palette)
     accent
     foreground

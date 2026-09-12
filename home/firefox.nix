@@ -1,6 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
 let
+  inherit (osConfig) theme;
+
   ctrlNumberTabSwitching = "{84601290-bec9-494a-b11c-1baa897a9683}";
   darkReader = "addon@darkreader.org";
   onePassword = "{d634138d-c276-4fc8-924b-40a0ea21d284}";

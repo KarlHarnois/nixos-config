@@ -1,5 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
+let
+  inherit (osConfig) theme;
+in
 {
   services.hyprpaper = {
     enable = true;

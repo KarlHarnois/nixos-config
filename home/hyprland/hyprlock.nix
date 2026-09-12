@@ -1,5 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
+let
+  inherit (osConfig) theme;
+in
 {
   programs.hyprlock = {
     enable = true;

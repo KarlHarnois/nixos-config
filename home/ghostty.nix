@@ -1,11 +1,13 @@
 {
   lib,
+  osConfig,
   pkgs,
-  theme,
   ...
 }:
 
 let
+  inherit (osConfig) theme;
+
   themeRepo = pkgs.fetchFromGitHub theme.apps.ghostty.repo;
 in
 {

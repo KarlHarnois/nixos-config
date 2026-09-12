@@ -1,6 +1,6 @@
 {
+  config,
   pkgs,
-  theme,
   username,
   ...
 }:
@@ -13,7 +13,7 @@
       enable = true;
       extraOpts = {
         BrowserColorScheme = "dark";
-        BrowserThemeColor = theme.palette.background.hex;
+        BrowserThemeColor = config.theme.palette.background.hex;
       };
     };
 

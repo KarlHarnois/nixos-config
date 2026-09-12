@@ -1,6 +1,8 @@
-{ theme, ... }:
+{ osConfig, ... }:
 
 let
+  inherit (osConfig) theme;
+
   glyph = builtins.fromJSON;
 
   folderIcon = glyph ''"\ue5ff"'';
