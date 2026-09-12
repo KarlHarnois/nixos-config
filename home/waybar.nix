@@ -23,12 +23,16 @@ let
 
     readonly unavailable='{"text":"OLL ?","tooltip":"Ollama usage unavailable"}'
     readonly apiKeyFile=${lib.escapeShellArg ollamaApiKeyFile}
-    readonly refreshInterval=300
+    readonly keyWaitAttempts=12
+    readonly keyWaitInterval=5
 
     waitForApiKey() {
-      until [ -r "$apiKeyFile" ]; do
-        sleep 5
+      local attempt
+      for ((attempt = 0; attempt < keyWaitAttempts; attempt++)); do
+        [ -r "$apiKeyFile" ] && return 0
+        sleep "$keyWaitInterval"
       done
+      return 1
     }
 
     fetchUsage() {
@@ -69,15 +73,12 @@ let
       printf '%s' "$response" | formatUsage 2>/dev/null || printf '%s\n' "$unavailable"
     }
 
-    if [ ! -r "$apiKeyFile" ]; then
+    waitForApiKey || {
       printf '%s\n' "$unavailable"
-      waitForApiKey
-    fi
+      exit 0
+    }
 
-    while true; do
-      printUsage
-      sleep "$refreshInterval"
-    done
+    printUsage
   '';
 in
 {
