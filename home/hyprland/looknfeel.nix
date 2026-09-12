@@ -1,13 +1,26 @@
 { theme, ... }:
 
+let
+  activeGeneralPreset = "flush";
+
+  generalPresets = {
+    flush = {
+      gaps_in = 0;
+      gaps_out = 0;
+      border_size = 1;
+    };
+
+    inset = {
+      gaps_in = 5;
+      gaps_out = 10;
+      border_size = 2;
+    };
+  };
+in
 {
   wayland.windowManager.hyprland.settings = {
     config = {
-      general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
-
+      general = generalPresets.${activeGeneralPreset} // {
         col = {
           active_border = theme.palette.accent.rgb;
           inactive_border = theme.palette.separator.rgba "aa";
