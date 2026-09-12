@@ -28,10 +28,10 @@ in
         repo = blackMetalRepo;
         themeFile = "extras/ghostty/darkthrone.lua";
         palette = [
-          "1=#dc2a22"
-          "9=#dc2a22"
-          "2=#6aa84f"
-          "10=#6aa84f"
+          "1=#a7534e"
+          "9=#a7534e"
+          "2=#719760"
+          "10=#719760"
         ];
       };
 
