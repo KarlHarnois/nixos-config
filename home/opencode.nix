@@ -22,10 +22,14 @@ let
   ];
 
   deny = paths: lib.genAttrs paths (_: "deny");
-  denyTrees = roots: deny (map (root: "${root}/**") roots);
-  denyPathMentions = paths: deny (map (path: "*${path}*") paths);
+  denySubstrings = texts: deny (map (text: "*${text}*") texts);
+  denySubtrees = roots: deny (map (root: "${root}/**") roots);
+  denyParentDirectories = paths: deny (map (path: "${dirOf path}/*") paths);
 
-  guardedPaths = deny guardedFiles // denyTrees guardedDirectories;
+  commandSubstringDenies = denySubstrings (guardedDirectories ++ guardedFiles);
+  fileNameSubstringDenies = denySubstrings (map baseNameOf guardedFiles);
+  directorySubtreeDenies = denySubtrees guardedDirectories;
+  parentDirectoryDenies = denyParentDirectories guardedFiles;
 in
 {
   programs.opencode = {
@@ -49,8 +53,7 @@ in
           "direnv export*" = "deny";
           "rm -rf *" = "deny";
         }
-        // denyPathMentions guardedDirectories
-        // denyPathMentions guardedFiles;
+        // commandSubstringDenies;
 
         read = {
           "*" = "allow";
@@ -60,14 +63,16 @@ in
           "*.envrc" = "deny";
           "*.envrc.*" = "deny";
         }
-        // guardedPaths;
+        // directorySubtreeDenies
+        // fileNameSubstringDenies;
 
         list = {
           "*" = "allow";
         }
-        // guardedPaths;
+        // directorySubtreeDenies
+        // fileNameSubstringDenies;
 
-        external_directory = guardedPaths;
+        external_directory = directorySubtreeDenies // parentDirectoryDenies;
       };
     };
 
