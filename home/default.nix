@@ -39,7 +39,7 @@
     ./todo
     ./voxtype.nix
     ./wallpaper.nix
-    ./waybar.nix
+    ./waybar
     ./wiremix.nix
     ./xdg.nix
     ./yazi.nix
