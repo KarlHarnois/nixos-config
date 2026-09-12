@@ -82,5 +82,6 @@ in
   programs.bash.shellAliases = {
     oc = "opencode --auto";
     ocr = "opencode run --auto";
+    occ = "opencode --continue --auto";
   };
 }
