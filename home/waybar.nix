@@ -21,40 +21,63 @@ let
   ollamaUsage = pkgs.writeShellScript "ollama-usage" ''
     set -euo pipefail
 
-    readonly unavailable='{"text":"󰚯 ?","tooltip":"Ollama usage unavailable"}'
+    readonly unavailable='{"text":"OLL ?","tooltip":"Ollama usage unavailable"}'
     readonly apiKeyFile=${lib.escapeShellArg ollamaApiKeyFile}
+    readonly refreshInterval=300
 
-    if [ ! -f "$apiKeyFile" ] || [ ! -r "$apiKeyFile" ]; then
+    waitForApiKey() {
+      until [ -r "$apiKeyFile" ]; do
+        sleep 5
+      done
+    }
+
+    fetchUsage() {
+      local apiKey
+      apiKey=$(<"$apiKeyFile")
+
+      printf 'Authorization: Bearer %s\n' "$apiKey" \
+        | ${lib.getExe pkgs.curl} \
+          --silent --show-error --fail \
+          --connect-timeout 5 \
+          --max-time 10 \
+          --header @- \
+          https://ollama.com/api/usage
+    }
+
+    formatUsage() {
+      ${lib.getExe pkgs.jq} -e --compact-output '
+        .limits.monthly
+        | (.usage // 0) as $usage
+        | (.models // []) as $models
+        | {
+            text: "OLL \(($usage * 1000 | floor) / 10)%",
+            tooltip:
+              "Ollama Cloud\n"
+              + "\(($usage * 1000 | floor) / 10)% of monthly credits\n\n"
+              + ([$models[] | "\(.name): \(.request_count)"] | join("\n"))
+          }
+      '
+    }
+
+    printUsage() {
+      local response
+      response=$(fetchUsage) || {
+        printf '%s\n' "$unavailable"
+        return
+      }
+
+      printf '%s' "$response" | formatUsage 2>/dev/null || printf '%s\n' "$unavailable"
+    }
+
+    if [ ! -r "$apiKeyFile" ]; then
       printf '%s\n' "$unavailable"
-      exit 0
+      waitForApiKey
     fi
 
-    apiKey=$(<"$apiKeyFile")
-    readonly apiKey
-
-    response=$(printf 'Authorization: Bearer %s\n' "$apiKey" \
-      | ${lib.getExe pkgs.curl} \
-        --silent --show-error --fail \
-        --connect-timeout 5 \
-        --max-time 10 \
-        --header @- \
-        https://ollama.com/api/usage) || {
-          printf '%s\n' "$unavailable"
-          exit 0
-        }
-
-    printf '%s' "$response" | ${lib.getExe pkgs.jq} -e --compact-output '
-      .limits.monthly
-      | (.usage // 0) as $usage
-      | (.models // []) as $models
-      | {
-          text: "󰚯 \([$models[].request_count] | add // 0)",
-          tooltip:
-            "Ollama Cloud\n"
-            + "\(($usage * 1000 | floor) / 10)% of monthly credits\n\n"
-            + ([$models[] | "\(.name): \(.request_count)"] | join("\n"))
-        }
-    ' 2>/dev/null || printf '%s\n' "$unavailable"
+    while true; do
+      printUsage
+      sleep "$refreshInterval"
+    done
   '';
 in
 {
