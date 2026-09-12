@@ -2,6 +2,7 @@
   lib,
   pkgs,
   theme,
+  osConfig,
   ...
 }:
 
@@ -13,6 +14,47 @@ let
     trap 'kill 0' EXIT
     ${pkgs.voxtype-onnx}/bin/voxtype status --follow --extended --format json \
       | ${lib.getExe pkgs.jq} --unbuffered --compact-output '. + {alt: .class}'
+  '';
+
+  ollamaApiKeyFile = osConfig.services.onepassword-secrets.secretPaths.ollamaApiKey;
+
+  ollamaUsage = pkgs.writeShellScript "ollama-usage" ''
+    set -euo pipefail
+
+    readonly unavailable='{"text":"󰚯 ?","tooltip":"Ollama usage unavailable"}'
+    readonly apiKeyFile=${lib.escapeShellArg ollamaApiKeyFile}
+
+    if [ ! -f "$apiKeyFile" ] || [ ! -r "$apiKeyFile" ]; then
+      printf '%s\n' "$unavailable"
+      exit 0
+    fi
+
+    apiKey=$(<"$apiKeyFile")
+    readonly apiKey
+
+    response=$(printf 'Authorization: Bearer %s\n' "$apiKey" \
+      | ${lib.getExe pkgs.curl} \
+        --silent --show-error --fail \
+        --connect-timeout 5 \
+        --max-time 10 \
+        --header @- \
+        https://ollama.com/api/usage) || {
+          printf '%s\n' "$unavailable"
+          exit 0
+        }
+
+    printf '%s' "$response" | ${lib.getExe pkgs.jq} -e --compact-output '
+      .limits.monthly
+      | (.usage // 0) as $usage
+      | (.models // []) as $models
+      | {
+          text: "󰚯 \([$models[].request_count] | add // 0)",
+          tooltip:
+            "Ollama Cloud\n"
+            + "\(($usage * 1000 | floor) / 10)% of monthly credits\n\n"
+            + ([$models[] | "\(.name): \(.request_count)"] | join("\n"))
+        }
+    ' 2>/dev/null || printf '%s\n' "$unavailable"
   '';
 in
 {
@@ -31,7 +73,10 @@ in
         "clock"
         "custom/voxtype"
       ];
-      modules-right = [ "battery" ];
+      modules-right = [
+        "custom/ollama"
+        "battery"
+      ];
 
       "hyprland/workspaces" = {
         format = "{icon}";
@@ -59,6 +104,14 @@ in
           recording = "󰍬";
           transcribing = "󰔟";
         };
+      };
+
+      "custom/ollama" = {
+        exec = ollamaUsage;
+        return-type = "json";
+        interval = 300;
+        tooltip = true;
+        escape = true;
       };
 
       battery = {
@@ -134,6 +187,11 @@ in
       #custom-voxtype {
         min-width: 12px;
         margin-left: 7.5px;
+      }
+
+      #custom-ollama {
+        min-width: 12px;
+        margin-right: 7.5px;
       }
     '';
   };
