@@ -5,8 +5,7 @@
     ./l2tp-client
     ./opencode.nix
     ./secrets.nix
-    ./theme.nix
-    ../themes/darkthrone
+    ./themes
     ./voxtype.nix
     ./webcam
     ./windows-vm
