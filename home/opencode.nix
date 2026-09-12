@@ -1,9 +1,31 @@
-{ config, osConfig, ... }:
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}:
 
 let
   secretsDir = osConfig.services.onepassword-secrets.outputDir;
   ollamaApiKeyFile = osConfig.services.onepassword-secrets.secretPaths.ollamaApiKey;
+  opnixTokenFile = osConfig.services.onepassword-secrets.tokenFile;
   opencodeAuthFile = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
+
+  guardedDirectories = [
+    secretsDir
+    "/run/user"
+  ];
+
+  guardedFiles = [
+    opencodeAuthFile
+    opnixTokenFile
+  ];
+
+  deny = paths: lib.genAttrs paths (_: "deny");
+  denyTrees = roots: deny (map (root: "${root}/**") roots);
+  denyPathMentions = paths: deny (map (path: "*${path}*") paths);
+
+  guardedPaths = deny guardedFiles // denyTrees guardedDirectories;
 in
 {
   programs.opencode = {
@@ -26,7 +48,10 @@ in
           "op document get*" = "deny";
           "direnv export*" = "deny";
           "rm -rf *" = "deny";
-        };
+        }
+        // denyPathMentions guardedDirectories
+        // denyPathMentions guardedFiles;
+
         read = {
           "*" = "allow";
           "*.env" = "deny";
@@ -34,19 +59,15 @@ in
           "*.env.example" = "allow";
           "*.envrc" = "deny";
           "*.envrc.*" = "deny";
-          "/run/user/**" = "deny";
-          "${secretsDir}/**" = "deny";
-        };
+        }
+        // guardedPaths;
+
         list = {
           "*" = "allow";
-          "${secretsDir}/**" = "deny";
-          "/run/user/**" = "deny";
-        };
-        external_directory = {
-          "/run/user/**" = "deny";
-          "${secretsDir}/**" = "deny";
-          "${opencodeAuthFile}" = "deny";
-        };
+        }
+        // guardedPaths;
+
+        external_directory = guardedPaths;
       };
     };
 
