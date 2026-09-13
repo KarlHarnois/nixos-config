@@ -15,9 +15,9 @@ let
   };
 
   lineHeightSetting =
-    lib.optionalAttrs (theme.lineHeightPercent != null && theme.lineHeightPercent != 100)
+    lib.optionalAttrs (ghosttyTheme.lineHeightPercent != null && ghosttyTheme.lineHeightPercent != 100)
       {
-        adjust-cell-height = "${toString (theme.lineHeightPercent - 100)}%";
+        adjust-cell-height = "${toString (ghosttyTheme.lineHeightPercent - 100)}%";
       };
 in
 {

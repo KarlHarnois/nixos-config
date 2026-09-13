@@ -65,6 +65,11 @@ let
               default = [ ];
               description = "ANSI palette overrides in Ghostty `N=COLOR` form, applied on top of the theme file.";
             };
+            lineHeightPercent = lib.mkOption {
+              type = lib.types.nullOr (lib.types.ints.between 100 200);
+              default = null;
+              description = "Line box height as a percentage of the font's natural line height, applied as Ghostty's `adjust-cell-height`. Null uses Ghostty's default.";
+            };
           };
         };
       };
@@ -116,12 +121,6 @@ in
     animations = lib.mkOption {
       type = lib.types.bool;
       description = "Whether Hyprland window animations are enabled.";
-    };
-
-    lineHeightPercent = lib.mkOption {
-      type = lib.types.nullOr (lib.types.ints.between 100 200);
-      default = null;
-      description = "Line box height as a percentage of the font's natural line height. Null uses each application's default.";
     };
 
     wallpaper = lib.mkOption {
