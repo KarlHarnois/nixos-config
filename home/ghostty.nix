@@ -8,15 +8,19 @@
 let
   inherit (osConfig) theme;
 
-  themeRepo = pkgs.fetchFromGitHub theme.apps.ghostty.repo;
+  ghosttyTheme = theme.apps.ghostty;
+
+  themeFileSetting = lib.optionalAttrs (ghosttyTheme.theme != null) {
+    theme = "${pkgs.fetchFromGitHub ghosttyTheme.theme.repo}/${ghosttyTheme.theme.themeFile}";
+  };
 in
 {
   programs.ghostty = {
     enable = true;
 
-    settings = {
-      theme = "${themeRepo}/${theme.apps.ghostty.themeFile}";
+    settings = themeFileSetting // {
       background = theme.palette.background.hex;
+      foreground = theme.palette.foreground.hex;
       palette = theme.apps.ghostty.palette;
 
       font-family = theme.font;

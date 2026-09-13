@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 let
   blackMetalRepo = {
     owner = "metalelf0";
@@ -9,6 +11,12 @@ in
 {
   theme = {
     font = "IosevkaTerm Nerd Font Mono";
+
+    fontPackage = pkgs.nerd-fonts.iosevka-term;
+
+    transparency = true;
+
+    animations = true;
 
     wallpaper = ./wallpaper.jpg;
 
@@ -25,8 +33,10 @@ in
       btop = ./btop.theme;
 
       ghostty = {
-        repo = blackMetalRepo;
-        themeFile = "extras/ghostty/darkthrone.lua";
+        theme = {
+          repo = blackMetalRepo;
+          themeFile = "extras/ghostty/darkthrone.lua";
+        };
         palette = [
           "1=#a7534e"
           "9=#a7534e"

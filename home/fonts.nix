@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ osConfig, ... }:
 
+let
+  inherit (osConfig) theme;
+in
 {
-  home.packages = [ pkgs.nerd-fonts.iosevka-term ];
+  home.packages = [ theme.fontPackage ];
   fonts.fontconfig.enable = true;
 }

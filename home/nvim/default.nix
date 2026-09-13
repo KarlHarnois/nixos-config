@@ -1,4 +1,9 @@
-{ osConfig, pkgs, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 
 let
   inherit (osConfig) theme;
@@ -70,7 +75,9 @@ in
 
     extraConfigLuaPre = theme.apps.neovim.setup;
 
-    extraFiles."plugin/after/transparency.lua".source = ./transparency.lua;
+    extraFiles = lib.optionalAttrs theme.transparency {
+      "plugin/after/transparency.lua".source = ./transparency.lua;
+    };
 
     autoCmd = [
       trimTrailingWhitespaceOnSave

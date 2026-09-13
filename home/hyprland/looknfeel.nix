@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ lib, osConfig, ... }:
 
 let
   inherit (osConfig) theme;
@@ -17,6 +17,28 @@ let
       gaps_out = 10;
       border_size = 2;
     };
+  };
+
+  terminalOpacityRule = {
+    name = "terminal-opacity";
+    match.class = "^(com.mitchellh.ghostty|local\\..+)$";
+    opacity = "0.97 0.9";
+  };
+
+  floatingPanelRule = {
+    name = "floating-panels";
+    match.class = "^(local\\.(bluetui|clipse|fsel|impala|wiremix)|1[pP]assword)$";
+    float = true;
+    center = true;
+    size = "800 600";
+  };
+
+  powerMenuRule = {
+    name = "power-menu";
+    match.class = "^local\\.power-menu$";
+    float = true;
+    center = true;
+    size = "400 260";
   };
 in
 {
@@ -49,26 +71,9 @@ in
       };
     };
 
-    window_rule = [
-      {
-        name = "terminal-opacity";
-        match.class = "^(com.mitchellh.ghostty|local\\..+)$";
-        opacity = "0.97 0.9";
-      }
-      {
-        name = "floating-panels";
-        match.class = "^(local\\.(bluetui|clipse|fsel|impala|wiremix)|1[pP]assword)$";
-        float = true;
-        center = true;
-        size = "800 600";
-      }
-      {
-        name = "power-menu";
-        match.class = "^local\\.power-menu$";
-        float = true;
-        center = true;
-        size = "400 260";
-      }
+    window_rule = lib.optionals theme.transparency [ terminalOpacityRule ] ++ [
+      floatingPanelRule
+      powerMenuRule
     ];
   };
 }

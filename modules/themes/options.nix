@@ -42,13 +42,23 @@ let
       ghostty = lib.mkOption {
         type = lib.types.submodule {
           options = {
-            repo = lib.mkOption {
-              type = repoType;
-              description = "Repository hosting the Ghostty theme.";
-            };
-            themeFile = lib.mkOption {
-              type = lib.types.str;
-              description = "Path of the theme file within the repository.";
+            theme = lib.mkOption {
+              type = lib.types.nullOr (
+                lib.types.submodule {
+                  options = {
+                    repo = lib.mkOption {
+                      type = repoType;
+                      description = "Repository hosting the Ghostty theme.";
+                    };
+                    themeFile = lib.mkOption {
+                      type = lib.types.str;
+                      description = "Path of the theme file within the repository.";
+                    };
+                  };
+                }
+              );
+              default = null;
+              description = "Optional Ghostty theme file fetched from a repository.";
             };
             palette = lib.mkOption {
               type = lib.types.listOf lib.types.str;
@@ -91,6 +101,21 @@ in
     font = lib.mkOption {
       type = lib.types.str;
       description = "Font family used throughout the desktop.";
+    };
+
+    fontPackage = lib.mkOption {
+      type = lib.types.package;
+      description = "Font package providing the family named by `font`.";
+    };
+
+    transparency = lib.mkOption {
+      type = lib.types.bool;
+      description = "Whether themed surfaces are translucent.";
+    };
+
+    animations = lib.mkOption {
+      type = lib.types.bool;
+      description = "Whether Hyprland window animations are enabled.";
     };
 
     wallpaper = lib.mkOption {
