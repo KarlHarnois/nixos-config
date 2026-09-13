@@ -2,12 +2,12 @@
 
 let
   wallpaper =
-    pkgs.runCommand "cga-wallpaper.png"
+    pkgs.runCommand "ega-wallpaper.png"
       {
         nativeBuildInputs = [ pkgs.imagemagick ];
       }
       ''
-        magick -size 1x1 xc:'#0000aa' "$out"
+        magick -size 1x1 xc:'#000000' "$out"
       '';
 
   nibbleRepo = {
@@ -20,8 +20,8 @@ let
   palette = {
     accent = "55ffff";
     foreground = "aaaaaa";
-    background = "0000aa";
-    surface = "000000";
+    background = "000000";
+    surface = "0000aa";
     surfaceLight = "5555ff";
     separator = "555555";
   };

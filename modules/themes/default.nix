@@ -1,6 +1,6 @@
 {
   imports = [
     ./options.nix
-    ./cga
+    ./ega
   ];
 }
