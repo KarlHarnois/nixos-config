@@ -13,40 +13,49 @@ let
   themeFileSetting = lib.optionalAttrs (ghosttyTheme.theme != null) {
     theme = "${pkgs.fetchFromGitHub ghosttyTheme.theme.repo}/${ghosttyTheme.theme.themeFile}";
   };
+
+  lineHeightSetting =
+    lib.optionalAttrs (theme.lineHeightPercent != null && theme.lineHeightPercent != 100)
+      {
+        adjust-cell-height = "${toString (theme.lineHeightPercent - 100)}%";
+      };
 in
 {
   programs.ghostty = {
     enable = true;
 
-    settings = themeFileSetting // {
-      background = theme.palette.background.hex;
-      foreground = theme.palette.foreground.hex;
-      palette = theme.apps.ghostty.palette;
+    settings =
+      themeFileSetting
+      // lineHeightSetting
+      // {
+        background = theme.palette.background.hex;
+        foreground = theme.palette.foreground.hex;
+        palette = theme.apps.ghostty.palette;
 
-      font-family = theme.font;
-      font-style = "Regular";
-      font-size = 11;
-      window-theme = "ghostty";
-      window-padding-x = 14;
-      gtk-toolbar-style = "flat";
-      confirm-close-surface = false;
-      resize-overlay = "never";
-      app-notifications = "no-clipboard-copy";
-      cursor-style = "block";
-      cursor-style-blink = false;
-      shell-integration-features = "no-cursor,ssh-env";
-      copy-on-select = "clipboard";
-      gtk-single-instance = true;
-      quit-after-last-window-closed = false;
-      mouse-scroll-multiplier = 0.95;
-      async-backend = "epoll";
+        font-family = theme.font;
+        font-style = "Regular";
+        font-size = 11;
+        window-theme = "ghostty";
+        window-padding-x = 14;
+        gtk-toolbar-style = "flat";
+        confirm-close-surface = false;
+        resize-overlay = "never";
+        app-notifications = "no-clipboard-copy";
+        cursor-style = "block";
+        cursor-style-blink = false;
+        shell-integration-features = "no-cursor,ssh-env";
+        copy-on-select = "clipboard";
+        gtk-single-instance = true;
+        quit-after-last-window-closed = false;
+        mouse-scroll-multiplier = 0.95;
+        async-backend = "epoll";
 
-      keybind = [
-        "shift+insert=paste_from_clipboard"
-        "control+insert=copy_to_clipboard"
-        "ctrl+shift+space=write_screen_file:open"
-      ];
-    };
+        keybind = [
+          "shift+insert=paste_from_clipboard"
+          "control+insert=copy_to_clipboard"
+          "ctrl+shift+space=write_screen_file:open"
+        ];
+      };
   };
 
   xdg.desktopEntries.nvim-ghostty = {

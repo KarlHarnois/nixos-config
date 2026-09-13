@@ -118,6 +118,12 @@ in
       description = "Whether Hyprland window animations are enabled.";
     };
 
+    lineHeightPercent = lib.mkOption {
+      type = lib.types.nullOr (lib.types.ints.between 100 200);
+      default = null;
+      description = "Line box height as a percentage of the font's natural line height. Null uses each application's default.";
+    };
+
     wallpaper = lib.mkOption {
       type = lib.types.path;
       description = "Wallpaper image.";

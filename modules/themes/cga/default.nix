@@ -36,6 +36,8 @@ in
 
     animations = false;
 
+    lineHeightPercent = 133;
+
     inherit wallpaper;
 
     inherit palette;
