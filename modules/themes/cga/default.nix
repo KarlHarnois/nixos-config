@@ -19,7 +19,7 @@ let
 
   palette = {
     accent = "55ffff";
-    foreground = "aaaaaa";
+    foreground = "ffffff";
     background = "0000aa";
     surface = "000000";
     surfaceLight = "5555ff";
