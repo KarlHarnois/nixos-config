@@ -25,6 +25,7 @@
     ./fsel.nix
     ./git.nix
     ./hyprland
+    ./lazydocker.nix
     ./mako.nix
     ./nvim
     ./ghostty.nix
