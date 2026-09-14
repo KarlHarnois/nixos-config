@@ -27,7 +27,7 @@ let
 
     .window {
       background: alpha(@background, 0.95);
-      border: solid 2px @accent;
+      border: solid 1px @accent;
       margin: 4px;
       padding: 18px;
     }
@@ -67,7 +67,7 @@ let
     flowboxchild > .card,
     button > .card {
       transition: all 0.2s ease;
-      border: solid 2px transparent;
+      border: solid 1px transparent;
       border-color: @background;
       border-radius: 5px;
       background-color: @card_bg;
@@ -81,7 +81,7 @@ let
     button:active > .card,
     button:selected > .card,
     button:focus > .card {
-      border: solid 2px @accent;
+      border: solid 1px @accent;
     }
 
     .image {
