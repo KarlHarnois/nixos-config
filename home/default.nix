@@ -20,6 +20,7 @@
     ./clipboard.nix
     ./dark-mode.nix
     ./direnv.nix
+    ./fastfetch.nix
     ./firefox.nix
     ./fonts.nix
     ./fsel.nix
