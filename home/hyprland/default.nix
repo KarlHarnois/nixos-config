@@ -3,6 +3,7 @@
     ./looknfeel.nix
     ./animations.nix
     ./bindings.nix
+    ./center-dynamic.nix
     ./cursor.nix
     ./hypridle.nix
     ./hyprlock.nix
