@@ -1,6 +1,6 @@
 {
   lib,
-  nixpkgs-unstable,
+  unstablePackages,
   username,
   ...
 }:
@@ -8,10 +8,8 @@
 {
   nixpkgs.overlays = [
     (
-      final: prev:
+      final: _prev:
       let
-        unstable = nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system};
-
         readThemeFromVoxtypeConfig = old: {
           postPatch = (old.postPatch or "") + ''
             substituteInPlace src/osd/theme.rs \
@@ -22,10 +20,10 @@
         enableRecordingOsd = old: {
           cargoBuildFeatures = old.cargoBuildFeatures ++ [ "osd-gtk4" ];
           cargoCheckFeatures = old.cargoCheckFeatures ++ [ "osd-gtk4" ];
-          nativeBuildInputs = old.nativeBuildInputs ++ [ unstable.wrapGAppsHook4 ];
+          nativeBuildInputs = old.nativeBuildInputs ++ [ unstablePackages.wrapGAppsHook4 ];
           buildInputs = old.buildInputs ++ [
-            unstable.gtk4
-            unstable.gtk4-layer-shell
+            unstablePackages.gtk4
+            unstablePackages.gtk4-layer-shell
           ];
         };
 
@@ -36,7 +34,7 @@
         };
       in
       {
-        voxtype-onnx = lib.foldl (pkg: override: pkg.overrideAttrs override) unstable.voxtype-onnx [
+        voxtype-onnx = lib.foldl (pkg: override: pkg.overrideAttrs override) unstablePackages.voxtype-onnx [
           readThemeFromVoxtypeConfig
           enableRecordingOsd
           putPlayerctlOnPath

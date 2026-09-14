@@ -49,6 +49,8 @@
 
       username = "karl";
 
+      unstablePackages = nixpkgs-unstable.legacyPackages.${system};
+
       shared = {
         imports = [
           ./modules
@@ -71,7 +73,7 @@
         modules:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit nixpkgs-unstable username; };
+          specialArgs = { inherit unstablePackages username; };
           modules = [ shared ] ++ modules;
         };
 

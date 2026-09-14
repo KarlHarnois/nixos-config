@@ -3,7 +3,7 @@
 {
   nixpkgs.overlays = [
     (_final: _prev: {
-      inherit (unstablePackages) opencode;
+      inherit (unstablePackages) hyprland-preview-share-picker;
     })
   ];
 }

@@ -32,6 +32,7 @@
     ./power-menu
     ./readline.nix
     ./screenshot.nix
+    ./share-picker.nix
     ./ssh.nix
     ./starship
     ./swayimg.nix
