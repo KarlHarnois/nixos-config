@@ -32,6 +32,8 @@ let
   parentDirectoryDenies = denyParentDirectories guardedFiles;
 in
 {
+  home.sessionVariables.OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS = "true";
+
   programs.opencode = {
     enable = true;
 
