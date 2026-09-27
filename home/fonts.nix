@@ -3,17 +3,20 @@
 let
   inherit (osConfig) theme;
 in
-{
-  home.packages = [
-    theme.fontPackage
-  ]
-  ++ lib.optional (theme.sansFont != null) theme.sansFont.package;
+lib.mkMerge [
+  {
+    home.packages = [ theme.fontPackage ];
+    fonts.fontconfig.enable = true;
+  }
 
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = lib.mkIf (theme.sansFont != null) {
+  (lib.mkIf (theme.sansFont != null) {
+    home.packages = [ theme.sansFont.package ];
+
+    fonts.fontconfig.defaultFonts = {
       sansSerif = [ theme.sansFont.family ];
       monospace = [ theme.font ];
     };
-  };
-}
+
+    dconf.settings."org/gnome/desktop/interface".font-name = "${theme.sansFont.family} 11";
+  })
+]
