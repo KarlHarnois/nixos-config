@@ -14,6 +14,11 @@ in
 
     fontPackage = pkgs.nerd-fonts.iosevka-term;
 
+    sansFont = {
+      family = "Iosevka Aile";
+      package = pkgs.iosevka-bin.override { variant = "Aile"; };
+    };
+
     transparency = true;
 
     animations = true;

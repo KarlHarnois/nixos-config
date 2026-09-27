@@ -113,6 +113,25 @@ in
       description = "Font package providing the family named by `font`.";
     };
 
+    sansFont = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.submodule {
+          options = {
+            family = lib.mkOption {
+              type = lib.types.str;
+              description = "Proportional font family used as the fontconfig sans-serif default.";
+            };
+            package = lib.mkOption {
+              type = lib.types.package;
+              description = "Font package providing `family`.";
+            };
+          };
+        }
+      );
+      default = null;
+      description = "Optional proportional companion to `font`. Null leaves the fontconfig defaults untouched.";
+    };
+
     transparency = lib.mkOption {
       type = lib.types.bool;
       description = "Whether themed surfaces are translucent.";
