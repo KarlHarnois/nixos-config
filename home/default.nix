@@ -15,6 +15,7 @@
     ./bash.nix
     ./bat.nix
     ./btop.nix
+    ./cameractrls.nix
     ./chromium.nix
     ./claude-code.nix
     ./clipboard.nix

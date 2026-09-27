@@ -8,7 +8,6 @@
     ./secrets.nix
     ./themes
     ./voxtype.nix
-    ./webcam
     ./windows-vm
   ];
 }
