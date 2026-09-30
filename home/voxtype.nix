@@ -50,7 +50,9 @@ in
       engine = "parakeet"
 
       [hotkey]
-      enabled = false
+      enabled = true
+      key = "LEFTCTRL"
+      modifiers = []
 
       [audio]
       device = "default"

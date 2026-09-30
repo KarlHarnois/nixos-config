@@ -45,5 +45,8 @@
 
   hardware.uinput.enable = true;
 
-  users.users.${username}.extraGroups = [ "uinput" ];
+  users.users.${username}.extraGroups = [
+    "uinput"
+    "input"
+  ];
 }

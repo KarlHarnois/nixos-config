@@ -19,8 +19,6 @@ let
 
   bind = keys: bindKeys "${mod} + ${keys}";
 
-  bindKeysOnRelease = bindKeysWith { release = true; };
-
   bindKeysWhileHeld = bindKeysWith {
     locked = true;
     repeating = true;
@@ -113,25 +111,8 @@ let
     (bindKeysEvenLocked "XF86AudioPrev" ''hl.dsp.exec_cmd("playerctl previous")'')
   ];
 
-  leftCtrlPressed = "code:37";
-  leftCtrlReleased = "CTRL + code:37";
-
-  bindKeysPassedThrough = bindKeysWith { non_consuming = true; };
-
-  bindKeysOnReleasePassedThrough = bindKeysWith {
-    release = true;
-    non_consuming = true;
-  };
-
-  startDictation = ''hl.dsp.exec_cmd("voxtype record start")'';
-  stopDictation = ''hl.dsp.exec_cmd("voxtype record stop")'';
-
   dictationBinds = [
     (bind "CTRL + X" ''hl.dsp.exec_cmd("voxtype record toggle")'')
-    (bindKeys "F9" startDictation)
-    (bindKeysOnRelease "F9" stopDictation)
-    (bindKeysPassedThrough leftCtrlPressed startDictation)
-    (bindKeysOnReleasePassedThrough leftCtrlReleased stopDictation)
   ];
 
   workspaceBinds = lib.concatMap (
