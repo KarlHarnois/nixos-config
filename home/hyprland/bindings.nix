@@ -7,41 +7,26 @@ let
   terminal = "ghostty";
   workspaceCount = 10;
 
-  bindKeys = keys: dispatcher: {
+  bindKeysWith = options: keys: dispatcher: {
     _args = [
       keys
       (mkLuaInline dispatcher)
-    ];
+    ]
+    ++ lib.optional (options != { }) options;
   };
+
+  bindKeys = bindKeysWith { };
 
   bind = keys: bindKeys "${mod} + ${keys}";
 
-  bindKeysOnRelease = keys: dispatcher: {
-    _args = [
-      keys
-      (mkLuaInline dispatcher)
-      { release = true; }
-    ];
+  bindKeysOnRelease = bindKeysWith { release = true; };
+
+  bindKeysWhileHeld = bindKeysWith {
+    locked = true;
+    repeating = true;
   };
 
-  bindKeysWhileHeld = keys: dispatcher: {
-    _args = [
-      keys
-      (mkLuaInline dispatcher)
-      {
-        locked = true;
-        repeating = true;
-      }
-    ];
-  };
-
-  bindKeysEvenLocked = keys: dispatcher: {
-    _args = [
-      keys
-      (mkLuaInline dispatcher)
-      { locked = true; }
-    ];
-  };
+  bindKeysEvenLocked = bindKeysWith { locked = true; };
 
   launchOrFocus = {
     _var = mkLuaInline ''
@@ -128,10 +113,25 @@ let
     (bindKeysEvenLocked "XF86AudioPrev" ''hl.dsp.exec_cmd("playerctl previous")'')
   ];
 
+  leftCtrlPressed = "code:37";
+  leftCtrlReleased = "CTRL + code:37";
+
+  bindKeysPassedThrough = bindKeysWith { non_consuming = true; };
+
+  bindKeysOnReleasePassedThrough = bindKeysWith {
+    release = true;
+    non_consuming = true;
+  };
+
+  startDictation = ''hl.dsp.exec_cmd("voxtype record start")'';
+  stopDictation = ''hl.dsp.exec_cmd("voxtype record stop")'';
+
   dictationBinds = [
     (bind "CTRL + X" ''hl.dsp.exec_cmd("voxtype record toggle")'')
-    (bindKeys "F9" ''hl.dsp.exec_cmd("voxtype record start")'')
-    (bindKeysOnRelease "F9" ''hl.dsp.exec_cmd("voxtype record stop")'')
+    (bindKeys "F9" startDictation)
+    (bindKeysOnRelease "F9" stopDictation)
+    (bindKeysPassedThrough leftCtrlPressed startDictation)
+    (bindKeysOnReleasePassedThrough leftCtrlReleased stopDictation)
   ];
 
   workspaceBinds = lib.concatMap (
