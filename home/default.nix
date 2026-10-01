@@ -40,6 +40,7 @@
     ./starship
     ./swayimg.nix
     ./tabiew.nix
+    ./text-extraction.nix
     ./todo
     ./voxtype.nix
     ./wallpaper.nix
