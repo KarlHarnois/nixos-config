@@ -51,7 +51,7 @@ in
 
       [hotkey]
       enabled = true
-      key = "LEFTCTRL"
+      key = "F1"
       modifiers = []
 
       [audio]
