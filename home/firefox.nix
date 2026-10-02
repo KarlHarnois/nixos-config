@@ -7,6 +7,7 @@ let
   darkReader = "addon@darkreader.org";
   onePassword = "{d634138d-c276-4fc8-924b-40a0ea21d284}";
   stylus = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
+  ublockOrigin = "uBlock0@raymondhill.net";
   vimium = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
 
   forceInstalled = slug: {
@@ -85,6 +86,7 @@ in
       ${darkReader} = forceInstalled "darkreader";
       ${onePassword} = forceInstalled "1password-x-password-manager";
       ${stylus} = forceInstalled "styl-us";
+      ${ublockOrigin} = forceInstalled "ublock-origin";
       ${vimium} = forceInstalled "vimium-ff";
     };
 
