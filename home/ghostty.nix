@@ -41,6 +41,7 @@ in
         gtk-toolbar-style = "flat";
         confirm-close-surface = false;
         resize-overlay = "never";
+        scrollbar = "never";
         app-notifications = "no-clipboard-copy";
         cursor-style = "block";
         cursor-style-blink = false;
