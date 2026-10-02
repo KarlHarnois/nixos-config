@@ -18,6 +18,7 @@
     ./cameractrls.nix
     ./chromium.nix
     ./claude-code.nix
+    ./claude-squad.nix
     ./clipboard.nix
     ./direnv.nix
     ./fastfetch.nix
