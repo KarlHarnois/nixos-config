@@ -5,7 +5,8 @@ let
   workTree = "$HOME/Projects/Work";
 
   claudeWithPerDirectoryAccount = pkgs.writeShellScriptBin "claude" ''
-    case "$PWD/" in
+    repoLocation="$(${pkgs.git}/bin/git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || echo "$PWD")"
+    case "$repoLocation/" in
       "${workTree}/"*) export CLAUDE_CONFIG_DIR="${workConfigDir}" ;;
     esac
     exec ${pkgs.claude-code}/bin/claude "$@"
