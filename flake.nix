@@ -55,7 +55,10 @@
 
       username = "karl";
 
-      unstablePackages = nixpkgs-unstable.legacyPackages.${system};
+      unstablePackages = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "claude-code" ];
+      };
 
       shared = {
         imports = [
@@ -67,7 +70,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = { inherit opencode-session-label; };
+          extraSpecialArgs = { inherit opencode-session-label unstablePackages; };
           sharedModules = [
             nixvim.homeModules.nixvim
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })

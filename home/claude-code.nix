@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstablePackages, ... }:
 
 let
   workConfigDir = "$HOME/.claude-work";
@@ -9,7 +9,7 @@ let
     case "$repoLocation/" in
       "${workTree}/"*) export CLAUDE_CONFIG_DIR="${workConfigDir}" ;;
     esac
-    exec ${pkgs.claude-code}/bin/claude "$@"
+    exec ${unstablePackages.claude-code}/bin/claude "$@"
   '';
 in
 {
