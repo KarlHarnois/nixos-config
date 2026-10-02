@@ -100,6 +100,11 @@ in
     apps = {
       btop = btopTheme;
 
+      gtk = {
+        inherit (palette) accent;
+        accentForeground = "000000";
+      };
+
       ghostty = {
         lineHeightPercent = 133;
 

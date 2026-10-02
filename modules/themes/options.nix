@@ -74,6 +74,15 @@ let
         };
       };
 
+      gtk = lib.mkOption {
+        type = lib.types.submodule {
+          options = {
+            accent = mkColor;
+            accentForeground = mkColor;
+          };
+        };
+      };
+
       voxtype = lib.mkOption {
         type = lib.types.submodule {
           options = {

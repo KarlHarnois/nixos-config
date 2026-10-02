@@ -7,6 +7,17 @@ let
     rev = "6d0207871387077f40d5396ab1ae90520e688d36";
     hash = "sha256-sRbXxekmQuL412AJKrSkI1EdcuYQkKm1qfcIyMNhLBA=";
   };
+
+  palette = {
+    accent = "8a8a8d";
+    foreground = "c1c1c1";
+    background = "121212";
+    surface = "1e1e1e";
+    surfaceLight = "333333";
+    separator = "505050";
+  };
+
+  accentForeground = palette.background;
 in
 {
   theme = {
@@ -25,17 +36,15 @@ in
 
     wallpaper = ./wallpaper.jpg;
 
-    palette = {
-      accent = "8a8a8d";
-      foreground = "c1c1c1";
-      background = "121212";
-      surface = "1e1e1e";
-      surfaceLight = "333333";
-      separator = "505050";
-    };
+    inherit palette;
 
     apps = {
       btop = ./btop.theme;
+
+      gtk = {
+        inherit (palette) accent;
+        inherit accentForeground;
+      };
 
       ghostty = {
         theme = {

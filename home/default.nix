@@ -19,7 +19,6 @@
     ./chromium.nix
     ./claude-code.nix
     ./clipboard.nix
-    ./dark-mode.nix
     ./direnv.nix
     ./fastfetch.nix
     ./firefox.nix
@@ -31,6 +30,7 @@
     ./mako.nix
     ./nvim
     ./ghostty.nix
+    ./gtk.nix
     ./opencode.nix
     ./power-menu
     ./readline.nix
