@@ -155,6 +155,22 @@
         "type": "github"
       }
     },
+    "opencode-session-label": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790139280,
+        "narHash": "sha256-kGLb5bb/5iUszrH+RILe6b4CPFynZKc0SPj27vrUq18=",
+        "owner": "KarlHarnois",
+        "repo": "opencode-session-label",
+        "rev": "039b4094e0a91a27d675efbac433153a7dc7beaf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KarlHarnois",
+        "repo": "opencode-session-label",
+        "type": "github"
+      }
+    },
     "opnix": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -184,6 +200,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
+        "opencode-session-label": "opencode-session-label",
         "opnix": "opnix"
       }
     },

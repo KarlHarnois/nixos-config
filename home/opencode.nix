@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  opencode-session-label,
   osConfig,
   ...
 }:
@@ -78,7 +79,10 @@ in
       };
     };
 
-    tui.theme = "system";
+    tui = {
+      theme = "system";
+      plugin = [ opencode-session-label ];
+    };
   };
 
   programs.bash.shellAliases = {

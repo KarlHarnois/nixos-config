@@ -29,6 +29,11 @@
       url = "github:brizzbuzz/opnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    opencode-session-label = {
+      url = "github:KarlHarnois/opencode-session-label";
+      flake = false;
+    };
   };
 
   outputs =
@@ -41,6 +46,7 @@
       nixos-hardware,
       disko,
       opnix,
+      opencode-session-label,
       ...
     }:
     let
@@ -61,6 +67,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
+          extraSpecialArgs = { inherit opencode-session-label; };
           sharedModules = [
             nixvim.homeModules.nixvim
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
