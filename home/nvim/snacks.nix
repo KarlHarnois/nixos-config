@@ -20,6 +20,14 @@ in
       };
     };
 
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = "clojure";
+        callback.__raw = "function(ev) vim.b[ev.buf].snacks_indent = false end";
+      }
+    ];
+
     extraPackages = [
       pkgs.ripgrep
       pkgs.fd
