@@ -65,8 +65,11 @@ in
       on_demand_loading = true
 
       [output]
-      mode = "type"
-      type_delay_ms = 1
+      # Paste instead of type: wtype puts the 15th distinct character on the Tab key code,
+      # and Ghostty sends it as a Tab (atx/wtype#71).
+      mode = "paste"
+      paste_keys = "ctrl+shift+v"
+      restore_clipboard = true
 
       [output.notification]
       on_transcription = false
