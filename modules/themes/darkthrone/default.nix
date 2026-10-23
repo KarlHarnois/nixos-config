@@ -32,7 +32,7 @@ in
 
     transparency = true;
 
-    animations = true;
+    animations = false;
 
     wallpaper = ./wallpaper.jpg;
 
