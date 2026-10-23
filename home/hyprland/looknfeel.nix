@@ -51,6 +51,12 @@ in
         };
       };
 
+      plugin.hyprmullion = {
+        enabled = true;
+        color = theme.palette.background.rgb;
+        show_bar_border = theme.showBarBorder;
+      };
+
       decoration = {
         rounding = 0;
 

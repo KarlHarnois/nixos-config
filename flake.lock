@@ -80,6 +80,29 @@
         "type": "github"
       }
     },
+    "hyprmullion": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792791891,
+        "narHash": "sha256-gvarn/GAYnF9n1xrvWtH1t4O5SBT8bHgWqELP0sQT4A=",
+        "owner": "KarlHarnois",
+        "repo": "hyprmullion",
+        "rev": "e653d42e42121bd3b0e3296c0b1d09736c3d8a14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KarlHarnois",
+        "repo": "hyprmullion",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": [
@@ -196,6 +219,7 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
+        "hyprmullion": "hyprmullion",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

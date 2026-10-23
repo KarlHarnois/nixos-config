@@ -151,6 +151,12 @@ in
       description = "Whether Hyprland window animations are enabled.";
     };
 
+    showBarBorder = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Show the window border next to a bar.";
+    };
+
     wallpaper = lib.mkOption {
       type = lib.types.path;
       description = "Wallpaper image.";

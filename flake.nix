@@ -34,6 +34,12 @@
       url = "github:KarlHarnois/opencode-session-label";
       flake = false;
     };
+
+    hyprmullion = {
+      url = "github:KarlHarnois/hyprmullion";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -47,11 +53,14 @@
       disko,
       opnix,
       opencode-session-label,
+      hyprmullion,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+
+      hyprmullionPackage = hyprmullion.lib.${system}.mkPlugin pkgs;
 
       username = "karl";
 
@@ -70,7 +79,10 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = { inherit opencode-session-label unstablePackages; };
+          extraSpecialArgs = {
+            inherit opencode-session-label unstablePackages;
+            hyprmullion = hyprmullionPackage;
+          };
           sharedModules = [
             nixvim.homeModules.nixvim
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
