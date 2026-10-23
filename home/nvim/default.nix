@@ -34,6 +34,7 @@ in
   imports = [
     ./blink-cmp.nix
     ./checkmate.nix
+    ./clojure.nix
     ./lsp.nix
     ./lualine.nix
     ./mini.nix
