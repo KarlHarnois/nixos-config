@@ -145,7 +145,10 @@
         m700 = m700System.config.system.build.toplevel;
 
         formatting = pkgs.runCommand "check-formatting" { } ''
-          ${nixpkgs.lib.getExe self.formatter.${system}} --ci --tree-root ${self}
+          cp --recursive ${self} source
+          chmod --recursive u+w source
+          cd source
+          ${nixpkgs.lib.getExe self.formatter.${system}} --ci
           touch $out
         '';
 
