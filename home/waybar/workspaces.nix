@@ -17,7 +17,7 @@ in
     style = ''
       #workspaces button {
         all: initial;
-        padding: 0 4px;
+        padding: 0 0.5em;
         color: @foreground;
       }
 

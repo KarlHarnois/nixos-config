@@ -54,18 +54,18 @@ in
       }
 
       .modules-left {
-        margin-left: 8px;
+        margin-left: 0.5em;
       }
 
       .modules-right {
-        margin-right: 8px;
+        margin-right: 0.5em;
       }
 
       #custom-voxtype,
       #pulseaudio,
       #battery,
       #clock {
-        padding: 0 8px;
+        padding: 0 0.5em;
       }
 
       tooltip {
