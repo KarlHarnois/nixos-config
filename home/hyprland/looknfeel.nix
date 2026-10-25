@@ -1,4 +1,4 @@
-{ lib, osConfig, ... }:
+{ osConfig, ... }:
 
 let
   inherit (osConfig) theme;
@@ -17,12 +17,6 @@ let
       gaps_out = 10;
       border_size = 1;
     };
-  };
-
-  terminalOpacityRule = {
-    name = "terminal-opacity";
-    match.class = "^(com.mitchellh.ghostty|local\\..+)$";
-    opacity = "0.97 0.9";
   };
 
   floatingPanelRule = {
@@ -67,17 +61,11 @@ in
           color = theme.palette.surface.rgba "ee";
         };
 
-        blur = {
-          enabled = true;
-          size = 2;
-          passes = 2;
-          brightness = 0.60;
-          contrast = 0.75;
-        };
+        blur.enabled = false;
       };
     };
 
-    window_rule = lib.optionals theme.transparency [ terminalOpacityRule ] ++ [
+    window_rule = [
       floatingPanelRule
       powerMenuRule
     ];

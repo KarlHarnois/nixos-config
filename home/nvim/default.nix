@@ -76,7 +76,7 @@ in
 
     extraConfigLuaPre = theme.apps.neovim.setup;
 
-    extraFiles = lib.optionalAttrs theme.transparency {
+    extraFiles = lib.optionalAttrs theme.apps.neovim.transparentBackground {
       "plugin/after/transparency.lua".source = ./transparency.lua;
     };
 

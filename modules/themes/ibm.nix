@@ -89,8 +89,6 @@ in
 
     fontPackage = pkgs.nerd-fonts.bigblue-terminal;
 
-    transparency = false;
-
     animations = false;
 
     inherit wallpaper;

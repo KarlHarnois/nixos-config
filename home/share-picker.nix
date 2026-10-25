@@ -26,7 +26,7 @@ let
     }
 
     .window {
-      background: alpha(@background, 0.95);
+      background: @background;
       border: solid 1px @accent;
       margin: 4px;
       padding: 18px;

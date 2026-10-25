@@ -30,8 +30,6 @@ in
       package = pkgs.iosevka-bin.override { variant = "Aile"; };
     };
 
-    transparency = true;
-
     animations = false;
 
     showBarBorder = true;
@@ -69,6 +67,8 @@ in
 
       neovim = {
         plugin = blackMetalRepo;
+
+        transparentBackground = true;
 
         setup = ''
           require("black-metal").setup({

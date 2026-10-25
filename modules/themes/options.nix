@@ -104,6 +104,11 @@ let
               type = lib.types.lines;
               description = "Lua configuring and loading the colorscheme.";
             };
+            transparentBackground = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Clear Neovim's highlight backgrounds so it shows the terminal background.";
+            };
           };
         };
       };
@@ -139,11 +144,6 @@ in
       );
       default = null;
       description = "Optional proportional companion to `font`. Null leaves the fontconfig defaults untouched.";
-    };
-
-    transparency = lib.mkOption {
-      type = lib.types.bool;
-      description = "Whether themed surfaces are translucent.";
     };
 
     animations = lib.mkOption {
