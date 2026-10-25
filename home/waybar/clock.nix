@@ -1,6 +1,7 @@
 {
   programs.waybar.settings.mainBar.clock = {
-    format = "{:L%a %b %d %H:%M}";
+    format = "{:%H:%M %d-%b-%y}";
+    format-alt = "{:%a %d %B W%V %Y}";
     tooltip = false;
   };
 }

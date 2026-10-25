@@ -29,6 +29,7 @@ let
       surface = mkColor;
       surfaceLight = mkColor;
       separator = mkColor;
+      alert = mkColor;
     };
   };
 

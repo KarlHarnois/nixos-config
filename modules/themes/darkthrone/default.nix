@@ -15,6 +15,7 @@ let
     surface = "1e1e1e";
     surfaceLight = "333333";
     separator = "505050";
+    alert = "a7534e";
   };
 
   accentForeground = palette.background;
@@ -32,7 +33,7 @@ in
 
     animations = false;
 
-    showBarBorder = true;
+    showBarBorder = false;
 
     wallpaper = ./wallpaper.jpg;
 

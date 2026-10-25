@@ -1,4 +1,4 @@
-{ osConfig, ... }:
+{ lib, osConfig, ... }:
 
 let
   inherit (osConfig) theme;
@@ -6,9 +6,7 @@ in
 {
   imports = [
     ./battery.nix
-    ./claude.nix
     ./clock.nix
-    ./ollama.nix
     ./voxtype.nix
     ./volume.nix
     ./workspaces.nix
@@ -21,36 +19,38 @@ in
     settings.mainBar = {
       layer = "top";
       position = "top";
-      spacing = 16;
-      height = 26;
+      spacing = 0;
+      height = 20;
 
       modules-left = [ "hyprland/workspaces" ];
-      modules-center = [
-        "clock"
-        "custom/voxtype"
-      ];
+      modules-center = [ ];
       modules-right = [
-        "custom/claude"
-        "custom/claude-work"
-        "custom/ollama"
+        "custom/voxtype"
         "pulseaudio"
         "battery"
+        "clock"
       ];
     };
 
-    style = ''
-      @define-color accent ${theme.palette.accent.hex};
+    style = lib.mkBefore ''
+      @define-color foreground ${theme.palette.foreground.hex};
       @define-color background ${theme.palette.background.hex};
+      @define-color muted mix(@foreground, @background, 0.3);
+      @define-color accent ${theme.palette.accent.hex};
+      @define-color alert ${theme.palette.alert.hex};
 
       * {
-        background-color: @background;
-        color: @accent;
-
+        background-color: transparent;
         border: none;
         border-radius: 0;
         min-height: 0;
         font-family: '${theme.font}';
-        font-size: 12px;
+        font-size: 14.67px;
+      }
+
+      window#waybar {
+        background-color: mix(@background, @foreground, 0.07);
+        color: @muted;
       }
 
       .modules-left {
@@ -59,6 +59,18 @@ in
 
       .modules-right {
         margin-right: 8px;
+      }
+
+      #custom-voxtype,
+      #pulseaudio,
+      #battery,
+      #clock {
+        padding: 0 8px;
+      }
+
+      tooltip {
+        background-color: @background;
+        padding: 2px;
       }
     '';
   };

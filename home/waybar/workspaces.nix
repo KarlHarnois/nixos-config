@@ -1,32 +1,33 @@
 { lib, ... }:
 
 let
-  pinnedWorkspaceCount = 5;
-  pinnedWorkspaces = map toString (lib.range 1 pinnedWorkspaceCount);
+  numberedWorkspaces = map toString (lib.range 1 9);
+  numberedWorkspaceIcons = lib.genAttrs numberedWorkspaces lib.id;
 in
 {
   programs.waybar = {
     settings.mainBar."hyprland/workspaces" = {
       format = "{icon}";
-
-      format-icons = {
+      format-icons = numberedWorkspaceIcons // {
         "10" = "0";
-        active = "󱓻";
       };
-
-      persistent-workspaces = lib.genAttrs pinnedWorkspaces (_: [ ]);
+      all-outputs = true;
     };
 
     style = ''
       #workspaces button {
         all: initial;
-        padding: 0 6px;
-        margin: 0 1.5px;
-        min-width: 9px;
+        padding: 0 4px;
+        color: @foreground;
       }
 
-      #workspaces button.empty {
-        opacity: 0.5;
+      #workspaces button.active {
+        color: @accent;
+        font-weight: bold;
+      }
+
+      #workspaces button.urgent {
+        color: @alert;
       }
     '';
   };

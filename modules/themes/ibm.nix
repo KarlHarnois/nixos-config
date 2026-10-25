@@ -21,6 +21,7 @@ let
     inherit background surface;
     surfaceLight = "5555ff";
     separator = "555555";
+    alert = "ff5555";
   };
 
   wallpaper =

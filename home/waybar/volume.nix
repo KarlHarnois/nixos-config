@@ -2,8 +2,8 @@
 
 {
   programs.waybar.settings.mainBar.pulseaudio = {
-    format = "VOL {volume}%";
-    format-muted = "VOL muted";
+    format = "vol:{volume}%";
+    format-muted = "vol:mute";
     tooltip = false;
     on-click = "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
   };

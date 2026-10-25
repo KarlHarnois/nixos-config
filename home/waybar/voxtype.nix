@@ -16,14 +16,19 @@ in
 
       format-icons = {
         idle = "";
-        recording = "󰍬";
-        transcribing = "󰔟";
+        recording = "MIC";
+        transcribing = "MIC";
       };
     };
 
     style = ''
       #custom-voxtype {
-        min-width: 12px;
+        color: @accent;
+        font-weight: bold;
+      }
+
+      #custom-voxtype.idle {
+        padding: 0;
       }
     '';
   };
