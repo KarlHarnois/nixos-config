@@ -18,11 +18,11 @@ in
       #workspaces button {
         all: initial;
         padding: 0 0.5em;
-        color: @foreground;
+        color: @muted;
       }
 
       #workspaces button.active {
-        color: @accent;
+        color: #ffffff;
         font-weight: bold;
       }
 
