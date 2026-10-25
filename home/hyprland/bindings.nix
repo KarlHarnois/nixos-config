@@ -157,7 +157,7 @@ in
       (bind "M" (launchOrFocusWebapp "https://www.messenger.com"))
       (bind "A" (launchOrFocusWebapp "https://claude.ai"))
       (bind "slash" ''launchOrFocus("1Password", "1password")'')
-      (bind "B" ''hl.dsp.exec_cmd("firefox -P personal")'')
+      (bind "B" ''hl.dsp.exec_cmd("qutebrowser")'')
       (bind "SHIFT + B" ''hl.dsp.exec_cmd("firefox -P work")'')
       (bind "ALT + comma" (launchOrFocusTui "notification-history"))
       (bind "comma" ''hl.dsp.exec_cmd("makoctl dismiss")'')

@@ -33,6 +33,7 @@
     ./gtk.nix
     ./opencode.nix
     ./power-menu
+    ./qutebrowser
     ./readline.nix
     ./screenshot.nix
     ./share-picker.nix
