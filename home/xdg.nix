@@ -8,7 +8,10 @@
         "text/html"
         "x-scheme-handler/http"
         "x-scheme-handler/https"
-      ] (_mimeType: "firefox.desktop")
+        "x-scheme-handler/about"
+        "x-scheme-handler/unknown"
+        "application/xhtml+xml"
+      ] (_mimeType: "org.qutebrowser.qutebrowser.desktop")
       // lib.genAttrs [
         "image/avif"
         "image/bmp"
