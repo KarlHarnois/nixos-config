@@ -8,7 +8,6 @@ in
     ./battery.nix
     ./clock.nix
     ./voxtype.nix
-    ./volume.nix
     ./workspaces.nix
   ];
 
@@ -26,7 +25,6 @@ in
       modules-center = [ ];
       modules-right = [
         "custom/voxtype"
-        "pulseaudio"
         "battery"
         "clock"
       ];
@@ -62,7 +60,6 @@ in
       }
 
       #custom-voxtype,
-      #pulseaudio,
       #battery,
       #clock {
         padding: 0 0.5em;
