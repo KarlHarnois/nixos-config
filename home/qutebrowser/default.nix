@@ -8,6 +8,7 @@ in
     ./1password.nix
     ./completion.nix
     ./hints.nix
+    ./google.nix
     ./popups.nix
     ./quickmarks.nix
     ./scrolling.nix
