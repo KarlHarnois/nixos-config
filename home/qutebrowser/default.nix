@@ -28,6 +28,8 @@ in
         darkmode.enabled = true;
       };
 
+      content.javascript.clipboard = "access";
+
       url = {
         start_pages = [ "about:blank" ];
         default_page = "about:blank";
