@@ -10,6 +10,7 @@ in
     ./hints.nix
     ./popups.nix
     ./quickmarks.nix
+    ./scrolling.nix
     ./statusbar.nix
     ./tabs.nix
   ];
