@@ -31,6 +31,8 @@ let
   ];
 
   unbound = lib.genAttrs defaultKeysStartingWithT (_: null);
+
+  newTabQuickmarkPrompt = "cmd-set-text -s :quickmark-load -t";
 in
 {
   programs.qutebrowser = {
@@ -44,7 +46,8 @@ in
 
     keyBindings.normal = unbound // {
       t = "cmd-set-text -s :quickmark-load";
-      "<Ctrl-t>" = "cmd-set-text -s :quickmark-load -t";
+      T = newTabQuickmarkPrompt;
+      "<Ctrl-t>" = newTabQuickmarkPrompt;
     };
   };
 }
