@@ -27,6 +27,11 @@ in
         darkmode.enabled = true;
       };
 
+      url = {
+        start_pages = [ "about:blank" ];
+        default_page = "about:blank";
+      };
+
       fonts = {
         default_family = theme.font;
         default_size = "11pt";
