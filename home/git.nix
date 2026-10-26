@@ -9,7 +9,10 @@
           email = "karlrivestharnois@gmail.com";
         };
 
-        core.editor = "nvim";
+        core = {
+          editor = "nvim";
+          pager = "less -+X";
+        };
 
         alias = {
           w = "worktree";
