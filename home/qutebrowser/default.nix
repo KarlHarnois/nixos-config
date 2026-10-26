@@ -9,6 +9,7 @@ in
     ./completion.nix
     ./hints.nix
     ./google.nix
+    ./insert-mode.nix
     ./popups.nix
     ./quickmarks.nix
     ./scrolling.nix
