@@ -84,6 +84,14 @@ let
         };
       };
 
+      qutebrowser = lib.mkOption {
+        type = lib.types.submodule {
+          options = {
+            selectedTab = mkColor;
+          };
+        };
+      };
+
       voxtype = lib.mkOption {
         type = lib.types.submodule {
           options = {

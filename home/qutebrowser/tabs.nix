@@ -6,8 +6,9 @@ let
     background
     foreground
     separator
-    surface
     ;
+
+  inherit (osConfig.theme.apps.qutebrowser) selectedTab;
 
   unfocused = {
     fg = separator.hex;
@@ -16,7 +17,7 @@ let
 
   focused = {
     fg = foreground.hex;
-    bg = surface.hex;
+    bg = selectedTab.hex;
   };
 
   numberedTabKeys = lib.listToAttrs (

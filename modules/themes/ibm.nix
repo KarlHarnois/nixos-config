@@ -127,6 +127,8 @@ in
         ];
       };
 
+      qutebrowser.selectedTab = surface;
+
       voxtype = {
         meterLow = "55ff55";
         meterMid = "ffff55";
