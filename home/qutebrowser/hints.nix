@@ -5,21 +5,26 @@ let
     accent
     background
     foreground
+    separator
     surface
     ;
 in
 {
-  programs.qutebrowser.settings.colors = {
-    hints = {
-      fg = background.hex;
-      bg = accent.hex;
-      match.fg = foreground.hex;
-    };
+  programs.qutebrowser.settings = {
+    hints.border = "1px solid ${foreground.hex}";
 
-    keyhint = {
-      fg = foreground.hex;
-      bg = surface.hex;
-      suffix.fg = accent.hex;
+    colors = {
+      hints = {
+        fg = foreground.hex;
+        bg = background.hex;
+        match.fg = separator.hex;
+      };
+
+      keyhint = {
+        fg = foreground.hex;
+        bg = surface.hex;
+        suffix.fg = accent.hex;
+      };
     };
   };
 }
