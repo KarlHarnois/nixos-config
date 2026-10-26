@@ -7,6 +7,7 @@ in
   imports = [
     ./1password.nix
     ./completion.nix
+    ./focus-indicator.nix
     ./hints.nix
     ./google.nix
     ./insert-mode.nix
