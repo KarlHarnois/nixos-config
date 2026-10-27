@@ -13,5 +13,6 @@ in
     ${gmail}.content.register_protocol_handler = true;
   };
 
-  xdg.configFile."qutebrowser/greasemonkey/${calendarPermissionScript}".source = ./${calendarPermissionScript};
+  xdg.configFile."qutebrowser/greasemonkey/${calendarPermissionScript}".source =
+    ./${calendarPermissionScript};
 }
