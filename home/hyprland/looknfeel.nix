@@ -54,12 +54,7 @@ in
       decoration = {
         rounding = 0;
 
-        shadow = {
-          enabled = true;
-          range = 2;
-          render_power = 3;
-          color = theme.palette.surface.rgba "ee";
-        };
+        shadow.enabled = false;
 
         blur.enabled = false;
       };
