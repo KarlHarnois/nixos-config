@@ -11,6 +11,7 @@ in
     ./hints.nix
     ./google.nix
     ./insert-mode.nix
+    ./open.nix
     ./popups.nix
     ./quickmarks.nix
     ./scrolling.nix

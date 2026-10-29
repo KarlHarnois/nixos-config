@@ -26,6 +26,8 @@ let
 in
 {
   programs.qutebrowser = {
+    settings.tabs.position = "bottom";
+
     settings.colors.tabs = {
       bar.bg = background.hex;
       odd = unfocused;
