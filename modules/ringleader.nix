@@ -10,7 +10,7 @@
     description = "Ringleader agents and their builds, capped to leave room for the desktop";
     sliceConfig = {
       MemoryHigh = config.programs.ringleader.memoryHigh;
-      CPUWeight = 20;
+      CPUWeight = "idle";
     };
   };
 }
