@@ -26,6 +26,8 @@
 
       networking.interfaces.eth0.useDHCP = true;
 
+      programs.ringleader.memoryHigh = "4G";
+
       virtualisation = {
         diskSize = 32 * 1024;
         msize = 262144;

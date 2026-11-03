@@ -52,6 +52,8 @@
     '';
   };
 
+  programs.ringleader.memoryHigh = "23G";
+
   virtualisation.windows-vm = {
     memory = "8G";
     cores = 4;

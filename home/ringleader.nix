@@ -9,6 +9,13 @@ let
   inherit (osConfig.theme) palette;
   colors = osConfig.theme.apps.ringleader;
 
+  ringleaderInSlice = pkgs.writeShellApplication {
+    name = "ringleader";
+    text = ''
+      exec systemd-run --user --scope --quiet --slice=ringleader.slice ${ringleader}/bin/ringleader "$@"
+    '';
+  };
+
   toml = pkgs.formats.toml { };
 
   foreground = color: { fg = color.hex; };
@@ -66,7 +73,7 @@ let
   };
 in
 {
-  home.packages = [ ringleader ];
+  home.packages = [ ringleaderInSlice ];
 
   xdg.configFile."ringleader/theme.toml" = {
     force = true;

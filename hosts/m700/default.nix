@@ -15,6 +15,8 @@
 
   nix.settings.max-jobs = 1;
 
+  programs.ringleader.memoryHigh = "4G";
+
   virtualisation.windows-vm = {
     memory = "4G";
     cores = 2;
