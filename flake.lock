@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "crane": {
+      "locked": {
+        "lastModified": 1792350552,
+        "narHash": "sha256-292lvpvxTGKryKxh3/3tcIVi85CwYGdl4oOi113Sob8=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "e675a36b7377bebe41d548388a2501cbb16d380d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -215,6 +230,27 @@
         "type": "github"
       }
     },
+    "ringleader": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793510749,
+        "narHash": "sha256-X0cwU6ZhjOb1mFO1PGN2dXSUOoAkEicToiGXAk4GHhM=",
+        "owner": "KarlHarnois",
+        "repo": "ringleader",
+        "rev": "e242a97b7e292e53a65a5d1cb483d87a3b892812",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KarlHarnois",
+        "repo": "ringleader",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -225,7 +261,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "opencode-session-label": "opencode-session-label",
-        "opnix": "opnix"
+        "opnix": "opnix",
+        "ringleader": "ringleader"
       }
     },
     "systems": {

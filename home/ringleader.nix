@@ -1,0 +1,5 @@
+{ ringleader, ... }:
+
+{
+  home.packages = [ ringleader ];
+}

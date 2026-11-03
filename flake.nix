@@ -40,6 +40,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     };
+
+    ringleader = {
+      url = "github:KarlHarnois/ringleader";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -54,6 +59,7 @@
       opnix,
       opencode-session-label,
       hyprmullion,
+      ringleader,
       ...
     }:
     let
@@ -82,6 +88,7 @@
           extraSpecialArgs = {
             inherit opencode-session-label unstablePackages;
             hyprmullion = hyprmullionPackage;
+            ringleader = ringleader.packages.${system}.default;
           };
           sharedModules = [
             nixvim.homeModules.nixvim

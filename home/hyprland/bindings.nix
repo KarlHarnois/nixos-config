@@ -145,6 +145,7 @@ in
       (bind "SHIFT + F" ''hl.dsp.exec_cmd("${terminal} -e yazi")'')
       (bind "I" (launchOrFocusTui "impala"))
       (bind "U" (launchOrFocusTui "bluetui"))
+      (bind "R" (launchOrFocusTui "ringleader"))
       (bind "T" toggleFloatingCentered)
       (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))

@@ -35,6 +35,7 @@
     ./power-menu
     ./qutebrowser
     ./readline.nix
+    ./ringleader.nix
     ./screenshot.nix
     ./share-picker.nix
     ./ssh.nix
