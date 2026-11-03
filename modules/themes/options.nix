@@ -92,6 +92,16 @@ let
         };
       };
 
+      ringleader = lib.mkOption {
+        type = lib.types.submodule {
+          options = {
+            success = mkColor;
+            warning = mkColor;
+            merged = mkColor;
+          };
+        };
+      };
+
       voxtype = lib.mkOption {
         type = lib.types.submodule {
           options = {

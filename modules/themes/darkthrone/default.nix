@@ -62,6 +62,12 @@ in
 
       qutebrowser.selectedTab = "000000";
 
+      ringleader = {
+        success = "719760";
+        warning = "888888";
+        merged = "5f8787";
+      };
+
       voxtype = {
         meterLow = "c1c1c1";
         meterMid = "888888";

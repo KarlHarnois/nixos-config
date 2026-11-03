@@ -129,6 +129,12 @@ in
 
       qutebrowser.selectedTab = surface;
 
+      ringleader = {
+        success = "55ff55";
+        warning = "ffff55";
+        merged = "ff55ff";
+      };
+
       voxtype = {
         meterLow = "55ff55";
         meterMid = "ffff55";
