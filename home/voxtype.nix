@@ -1,4 +1,10 @@
-{ osConfig, pkgs, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  unstablePackages,
+  ...
+}:
 
 let
   inherit (osConfig) theme;
@@ -23,6 +29,73 @@ let
       parakeetModelFile "nemo128.onnx" "sha256-qf3hSG6/zAjzKNda1GEMZ4Nf6ljHO6V+Mgmm9s8Bnp8=";
     "vocab.txt" = parakeetModelFile "vocab.txt" "sha256-7BgrcN1CETr/bFNyx1ysWMlSRD6yIyL1e71/U5d9SX0=";
   };
+
+  s1MiniModel = pkgs.fetchurl {
+    url = "https://huggingface.co/superwhisper/s1-mini-GGUF/resolve/main/s1-mini-q4_k_m.gguf";
+    hash = "sha256-O0Hr4lAsvQPoEdXRawIvWrVR7aWNYll9FS+JU1ADxjQ=";
+  };
+
+  s1MiniMappedModelMegabytes = 490;
+  cleanupServerWorkingMegabytes = 300;
+
+  cleanupServerAddress = "127.0.0.1";
+  cleanupServerPort = 18080;
+  cleanupServerUrl = "http://${cleanupServerAddress}:${toString cleanupServerPort}";
+  cleanupTimeoutSeconds = "6";
+
+  s1MiniSystemPrompt = "You are a text normalizer for speech-to-text transcripts. The input begins with a control line specifying the styling, structure, and context settings; clean the transcript to match those settings and output only the cleaned text.";
+  s1MiniControlLine = "[Styling: semi-formal] [Structure: prose] [Context: general]";
+
+  cleanDictation = pkgs.writeShellApplication {
+    name = "voxtype-clean-dictation";
+    runtimeInputs = [
+      pkgs.curl
+      pkgs.jq
+    ];
+    text = ''
+      clean_with_s1_mini() {
+        s1_mini_request "$(cat)" |
+          curl --silent --fail --max-time ${cleanupTimeoutSeconds} \
+            --header 'Content-Type: application/json' --data @- ${cleanupServerUrl}/v1/chat/completions |
+          jq --raw-output --exit-status '.choices[0].message.content'
+      }
+
+      s1_mini_request() {
+        jq --null-input \
+          --arg system ${lib.escapeShellArg s1MiniSystemPrompt} \
+          --arg user ${lib.escapeShellArg s1MiniControlLine}$'\n'"$1" \
+          '{messages: [{role: "system", content: $system}, {role: "user", content: $user}], temperature: 0}'
+      }
+
+      clean_with_s1_mini
+    '';
+  };
+
+  cleanupServer = lib.escapeShellArgs [
+    "${unstablePackages.llama-cpp-vulkan}/bin/llama-server"
+    "--model"
+    s1MiniModel
+    "--host"
+    cleanupServerAddress
+    "--port"
+    (toString cleanupServerPort)
+    "--jinja"
+    "--chat-template-kwargs"
+    (builtins.toJSON { enable_thinking = false; })
+    "--temp"
+    "0"
+    "--ctx-size"
+    "512"
+    "--batch-size"
+    "256"
+    "--ubatch-size"
+    "256"
+    "--parallel"
+    "1"
+    "--no-repack"
+    "--no-webui"
+    "--log-disable"
+  ];
 in
 {
   home.packages = [ pkgs.voxtype-onnx ];
@@ -72,6 +145,10 @@ in
       restore_clipboard = true
       wait_for_modifier_release = false
 
+      [output.post_process]
+      command = "${cleanDictation}/bin/voxtype-clean-dictation"
+      timeout_ms = 8000
+
       [output.notification]
       on_transcription = false
     '';
@@ -96,6 +173,26 @@ in
         "MALLOC_TRIM_THRESHOLD_=65536"
         "MALLOC_MMAP_THRESHOLD_=65536"
       ];
+    };
+
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services.voxtype-cleanup = {
+    Unit = {
+      Description = "S1-mini dictation cleanup server for Voxtype";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+      Before = [ "voxtype.service" ];
+    };
+
+    Service = {
+      ExecStart = cleanupServer;
+      Restart = "on-failure";
+      RestartSec = 5;
+
+      MemoryHigh = "${toString (s1MiniMappedModelMegabytes + cleanupServerWorkingMegabytes)}M";
+      MemoryMax = "${toString (s1MiniMappedModelMegabytes + cleanupServerWorkingMegabytes * 2)}M";
     };
 
     Install.WantedBy = [ "graphical-session.target" ];
