@@ -52,7 +52,10 @@
     '';
   };
 
-  programs.ringleader.memoryHigh = "23G";
+  programs.ringleader = {
+    memoryHigh = "23G";
+    desktopMemoryLow = "8G";
+  };
 
   virtualisation.windows-vm = {
     memory = "8G";

@@ -15,7 +15,10 @@
 
   nix.settings.max-jobs = 1;
 
-  programs.ringleader.memoryHigh = "4G";
+  programs.ringleader = {
+    memoryHigh = "4G";
+    desktopMemoryLow = "2G";
+  };
 
   virtualisation.windows-vm = {
     memory = "4G";
