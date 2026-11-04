@@ -44,7 +44,7 @@
     ./tabiew.nix
     ./text-extraction.nix
     ./todo
-    ./voxtype.nix
+    ./voxtype
     ./wallpaper.nix
     ./waybar
     ./wiremix.nix
