@@ -70,6 +70,7 @@ in
       mode = "paste"
       paste_keys = "ctrl+shift+v"
       restore_clipboard = true
+      wait_for_modifier_release = false
 
       [output.notification]
       on_transcription = false
