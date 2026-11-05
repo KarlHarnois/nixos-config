@@ -16,6 +16,22 @@ let
       aspect_ratio_height=2
 
       main() {
+        if active_window_is_floating; then
+          make_active_window_tiled
+        else
+          float_and_center_active_window
+        fi
+      }
+
+      active_window_is_floating() {
+        hyprctl activewindow -j | jq -e '.floating' >/dev/null
+      }
+
+      make_active_window_tiled() {
+        hyprctl dispatch 'hl.dsp.window.float({ action = "disable" })'
+      }
+
+      float_and_center_active_window() {
         make_active_window_floating
         local window_height window_width
         window_height=$(height_filling_screen)

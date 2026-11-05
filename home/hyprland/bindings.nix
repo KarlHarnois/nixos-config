@@ -149,7 +149,7 @@ in
       (bind "T" toggleFloatingCentered)
       (bind "SHIFT + T" (launchOrFocusTui "btop"))
       (bind "SHIFT + A" (launchOrFocusTui "wiremix"))
-      (bind "SHIFT + V" ''hl.dsp.exec_cmd("center-dynamic")'')
+      (bind "O" ''hl.dsp.exec_cmd("center-dynamic")'')
       (bind "SHIFT + C" (launchOrFocusTui "clipse"))
       (bind "SHIFT + X" (launchOrFocusTuiCommand "todo-work" "todo work"))
       (bind "SHIFT + Z" (launchOrFocusTuiCommand "todo-personal" "todo personal"))
