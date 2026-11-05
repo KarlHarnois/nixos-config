@@ -238,11 +238,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793510749,
-        "narHash": "sha256-X0cwU6ZhjOb1mFO1PGN2dXSUOoAkEicToiGXAk4GHhM=",
+        "lastModified": 1793743905,
+        "narHash": "sha256-yZYupchyjzJNe8quAH0ABFdf0nnUhgxxg/TL6woWpyg=",
         "owner": "KarlHarnois",
         "repo": "ringleader",
-        "rev": "e242a97b7e292e53a65a5d1cb483d87a3b892812",
+        "rev": "aedf16ad45dac10b9e0bc999edb4a6f6fdee5b0d",
         "type": "github"
       },
       "original": {
