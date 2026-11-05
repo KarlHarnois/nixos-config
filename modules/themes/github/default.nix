@@ -25,6 +25,8 @@ let
     done = "d2a8ff";
   };
 
+  githubCanvasSubtle = "161b22";
+
   wallpaper =
     pkgs.runCommand "github-wallpaper.png"
       {
@@ -102,6 +104,11 @@ in
         setup = ''
           require("github-theme").setup({
             options = { transparent = true },
+            groups = {
+              all = {
+                CursorLine = { bg = "#${githubCanvasSubtle}" },
+              },
+            },
           })
           vim.cmd.colorscheme("github_dark_default")
         '';
