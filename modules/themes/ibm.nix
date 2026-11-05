@@ -5,6 +5,7 @@
   surface,
   frame,
   rampMid,
+  ansiBlue,
 }:
 
 let
@@ -112,7 +113,7 @@ in
           "1=#aa0000"
           "2=#00aa00"
           "3=#aa5500"
-          "4=#0000aa"
+          "4=#${ansiBlue}"
           "5=#aa00aa"
           "6=#00aaaa"
           "7=#aaaaaa"

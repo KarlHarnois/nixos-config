@@ -7,4 +7,5 @@ import ../ibm.nix {
   surface = "000000";
   frame = "5555ff";
   rampMid = "55ffff";
+  ansiBlue = "5555ff";
 }
