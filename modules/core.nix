@@ -67,9 +67,15 @@
       dates = [ "weekly" ];
     };
 
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      extra-substituters = [ "https://rslisp.cachix.org" ];
+      extra-trusted-public-keys = [
+        "rslisp.cachix.org-1:Of60umd2y+ba64qVC6OWIRs9pZ8Csb5QfBScTrxO8sM="
+      ];
+    };
   };
 }
