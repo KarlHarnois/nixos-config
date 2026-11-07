@@ -24,7 +24,6 @@ in
     style = ''
       #custom-voxtype {
         color: @accent;
-        font-weight: bold;
       }
 
       #custom-voxtype.idle {

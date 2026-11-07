@@ -17,12 +17,21 @@ in
     style = ''
       #workspaces button {
         all: initial;
-        padding: 0 0.5em;
+        margin-top: -1px;
+        margin-bottom: -1px;
         color: @muted;
       }
 
+      #workspaces button:nth-child(odd) {
+        padding: 0 8px;
+      }
+
+      #workspaces button:nth-child(even) {
+        padding: 0 7px 0 8px;
+      }
+
       #workspaces button.active {
-        color: #ffffff;
+        color: @accent;
         font-weight: bold;
       }
 

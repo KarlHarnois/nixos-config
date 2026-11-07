@@ -7,6 +7,7 @@ in
   imports = [
     ./battery.nix
     ./clock.nix
+    ./session.nix
     ./voxtype.nix
     ./workspaces.nix
   ];
@@ -19,9 +20,12 @@ in
       layer = "top";
       position = "top";
       spacing = 0;
-      height = 20;
+      height = 18;
 
-      modules-left = [ "hyprland/workspaces" ];
+      modules-left = [
+        "custom/session"
+        "hyprland/workspaces"
+      ];
       modules-center = [ ];
       modules-right = [
         "custom/voxtype"
@@ -47,22 +51,31 @@ in
       }
 
       window#waybar {
-        background-color: mix(@background, @foreground, 0.07);
+        background-color: @background;
         color: @muted;
       }
 
+      label {
+        margin-top: -1px;
+        margin-bottom: -1px;
+      }
+
       .modules-left {
-        margin-left: 0.5em;
+        margin-left: 19px;
       }
 
       .modules-right {
-        margin-right: 0.5em;
+        margin-right: 21px;
+      }
+
+      window#waybar.DP-1 .modules-right {
+        margin-right: 25px;
       }
 
       #custom-voxtype,
       #battery,
       #clock {
-        padding: 0 0.5em;
+        padding: 0 7px 0 8px;
       }
 
       tooltip {
