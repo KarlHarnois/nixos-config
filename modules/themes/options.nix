@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 let
   mkColor = lib.mkOption {
@@ -170,12 +170,6 @@ in
       description = "Whether Hyprland window animations are enabled.";
     };
 
-    showBarBorder = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Show the window border next to a bar.";
-    };
-
     wallpaper = lib.mkOption {
       type = lib.types.path;
       description = "Wallpaper image.";
@@ -186,9 +180,21 @@ in
       description = "Colors shared across themed applications.";
     };
 
+    designSystemColors = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Keep the design system's own colors where it styles an app, instead of mapping them from `palette`.";
+    };
+
+    focusedBorder = mkColor // {
+      description = "Border of the focused window. Defaults to the palette accent.";
+    };
+
     apps = lib.mkOption {
       type = appsType;
       description = "Per-application theme data.";
     };
   };
+
+  config.theme.focusedBorder = lib.mkDefault (lib.removePrefix "#" config.theme.palette.accent.hex);
 }

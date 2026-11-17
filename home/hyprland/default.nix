@@ -1,8 +1,4 @@
-{
-  hyprmullion,
-  ...
-}:
-{
+_: {
   imports = [
     ./looknfeel.nix
     ./animations.nix
@@ -18,7 +14,6 @@
     enable = true;
     package = null;
     portalPackage = null;
-    plugins = [ hyprmullion ];
 
     settings = {
       config = {

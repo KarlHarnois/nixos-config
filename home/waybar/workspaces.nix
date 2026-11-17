@@ -14,30 +14,5 @@ in
       all-outputs = true;
     };
 
-    style = ''
-      #workspaces button {
-        all: initial;
-        margin-top: -1px;
-        margin-bottom: -1px;
-        color: @muted;
-      }
-
-      #workspaces button:nth-child(odd) {
-        padding: 0 8px;
-      }
-
-      #workspaces button:nth-child(even) {
-        padding: 0 7px 0 8px;
-      }
-
-      #workspaces button.active {
-        color: @accent;
-        font-weight: bold;
-      }
-
-      #workspaces button.urgent {
-        color: @alert;
-      }
-    '';
   };
 }

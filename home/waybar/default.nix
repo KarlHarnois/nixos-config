@@ -5,83 +5,41 @@ let
 in
 {
   imports = [
-    ./battery.nix
-    ./clock.nix
     ./session.nix
     ./voxtype.nix
     ./workspaces.nix
   ];
+
+  designSystem.waybar.colors = lib.optionalAttrs (!theme.designSystemColors) {
+    "color.surface.base" = theme.palette.background.hex;
+    "color.border.default" = theme.palette.separator.hex;
+    "color.text.primary" = theme.palette.foreground.hex;
+    "color.text.secondary" = "mix(@color_text_primary, @color_surface_base, 0.3)";
+    "color.text.inverse" = theme.palette.background.hex;
+    "color.focus" = theme.palette.accent.hex;
+  };
 
   programs.waybar = {
     enable = true;
     systemd.enable = true;
 
     settings.mainBar = {
-      layer = "top";
-      position = "top";
-      spacing = 0;
-      height = 18;
-
       modules-left = [
         "custom/session"
         "hyprland/workspaces"
       ];
-      modules-center = [ ];
       modules-right = [
         "custom/voxtype"
-        "battery"
-        "clock"
+        "group/status"
+        "group/clock"
       ];
     };
 
-    style = lib.mkBefore ''
-      @define-color foreground ${theme.palette.foreground.hex};
-      @define-color background ${theme.palette.background.hex};
-      @define-color muted mix(@foreground, @background, 0.3);
-      @define-color accent ${theme.palette.accent.hex};
+    style = lib.mkOrder 600 ''
+      @define-color foreground @color_text_primary;
+      @define-color background @color_surface_base;
+      @define-color accent @color_focus;
       @define-color alert ${theme.palette.alert.hex};
-
-      * {
-        background-color: transparent;
-        border: none;
-        border-radius: 0;
-        min-height: 0;
-        font-family: '${theme.font}';
-        font-size: 14.67px;
-      }
-
-      window#waybar {
-        background-color: @background;
-        color: @muted;
-      }
-
-      label {
-        margin-top: -1px;
-        margin-bottom: -1px;
-      }
-
-      .modules-left {
-        margin-left: 19px;
-      }
-
-      .modules-right {
-        margin-right: 21px;
-      }
-
-      window#waybar.DP-1 .modules-right {
-        margin-right: 25px;
-      }
-
-      #custom-voxtype,
-      #battery,
-      #clock {
-        padding: 0 7px 0 8px;
-      }
-
-      tooltip {
-        background-color: @background;
-        padding: 2px;
-      }
     '';
   };
 }

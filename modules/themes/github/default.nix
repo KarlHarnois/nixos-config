@@ -49,8 +49,6 @@ in
 
     animations = false;
 
-    showBarBorder = false;
-
     inherit wallpaper;
 
     inherit palette;

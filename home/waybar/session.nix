@@ -9,8 +9,7 @@
       #custom-session {
         background-color: @accent;
         color: @background;
-        padding-left: 4px;
-        padding-right: 12px;
+        padding: 0 4px;
         margin-right: 7px;
       }
     '';

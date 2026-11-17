@@ -35,15 +35,14 @@
       flake = false;
     };
 
-    hyprmullion = {
-      url = "github:KarlHarnois/hyprmullion";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
-    };
-
     ringleader = {
       url = "github:KarlHarnois/ringleader";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    design-system = {
+      url = "github:KarlHarnois/design-system";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -58,15 +57,13 @@
       disko,
       opnix,
       opencode-session-label,
-      hyprmullion,
       ringleader,
+      design-system,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-
-      hyprmullionPackage = hyprmullion.lib.${system}.mkPlugin pkgs;
 
       username = "karl";
 
@@ -87,11 +84,11 @@
           useUserPackages = true;
           extraSpecialArgs = {
             inherit opencode-session-label unstablePackages;
-            hyprmullion = hyprmullionPackage;
             ringleader = ringleader.packages.${system}.default;
           };
           sharedModules = [
             nixvim.homeModules.nixvim
+            design-system.homeManagerModules.default
             ({ pkgs, ... }: { programs.nixvim.nixpkgs.pkgs = pkgs; })
           ];
           users.${username} = ./home;
@@ -102,7 +99,10 @@
         modules:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit unstablePackages username; };
+          specialArgs = {
+            inherit unstablePackages username;
+            designSystemPackage = design-system.packages.${system}.default;
+          };
           modules = [ shared ] ++ modules;
         };
 

@@ -33,8 +33,6 @@ in
 
     animations = false;
 
-    showBarBorder = false;
-
     wallpaper = ./wallpaper.jpg;
 
     inherit palette;
