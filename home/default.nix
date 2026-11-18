@@ -26,6 +26,7 @@
     ./fsel.nix
     ./git.nix
     ./hyprland
+    ./knave-mail.nix
     ./lazydocker.nix
     ./mako.nix
     ./nvim
