@@ -37,6 +37,7 @@
     ./qutebrowser
     ./readline.nix
     ./ringleader.nix
+    ./screen-recording.nix
     ./screenshot.nix
     ./share-picker.nix
     ./ssh.nix

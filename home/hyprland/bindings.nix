@@ -167,6 +167,7 @@ in
       (bind "CTRL + comma" ''hl.dsp.exec_cmd("makoctl mode -t do-not-disturb")'')
       (bindKeys "Print" ''hl.dsp.exec_cmd("grimblast copysave area")'')
       (bindKeys "SHIFT + Print" ''hl.dsp.exec_cmd([[f="$XDG_RUNTIME_DIR/annotate.png"; grimblast save area "$f" && satty --filename "$f"]])'')
+      (bindKeys "ALT + Print" ''hl.dsp.exec_cmd("toggle-screen-recording")'')
       (bind "Print" ''hl.dsp.exec_cmd("extract-text")'')
       (bind "C" ''hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })'')
       (bind "V" ''hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" })'')
