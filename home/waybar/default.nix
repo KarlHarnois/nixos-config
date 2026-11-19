@@ -29,6 +29,7 @@ in
         "hyprland/workspaces"
       ];
       modules-right = [
+        "custom/screen-recording"
         "custom/voxtype"
         "group/status"
         "group/clock"
