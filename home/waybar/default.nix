@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./indicators.nix
     ./session.nix
     ./voxtype.nix
     ./workspaces.nix
@@ -29,8 +30,7 @@ in
         "hyprland/workspaces"
       ];
       modules-right = [
-        "custom/screen-recording"
-        "custom/voxtype"
+        "group/indicators"
         "group/status"
         "group/clock"
       ];

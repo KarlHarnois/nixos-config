@@ -74,14 +74,5 @@ in
       hide-empty-text = true;
       on-click = "toggle-screen-recording";
     };
-
-    style = ''
-      #custom-screen-recording {
-        background-color: @accent;
-        color: @background;
-        padding: 0 4px;
-        margin-right: 7px;
-      }
-    '';
   };
 }

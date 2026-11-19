@@ -13,6 +13,7 @@ in
       exec = voxtypeStatusStream;
       return-type = "json";
       format = "{icon}";
+      hide-empty-text = true;
 
       format-icons = {
         idle = "";
@@ -20,15 +21,5 @@ in
         transcribing = "MIC";
       };
     };
-
-    style = ''
-      #custom-voxtype {
-        color: @accent;
-      }
-
-      #custom-voxtype.idle {
-        padding: 0;
-      }
-    '';
   };
 }
