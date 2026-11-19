@@ -36,8 +36,9 @@ in
         font-style = "Regular";
         font-size = 11;
         window-theme = "ghostty";
-        window-padding-x = 14;
-        window-padding-y = 14;
+        window-padding-x = 11;
+        window-padding-y = 11;
+        window-padding-balance = true;
         gtk-toolbar-style = "flat";
         confirm-close-surface = false;
         resize-overlay = "never";
